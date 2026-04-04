@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>E-commerce Solutions | VIVE-IA</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "surface-tint": "#d2bbff",
+              "on-error-container": "#ffdad6",
+              "secondary-fixed-dim": "#4cd7f6",
+              "on-tertiary-fixed": "#301400",
+              "on-tertiary-fixed-variant": "#713700",
+              "tertiary-fixed-dim": "#ffb784",
+              "on-surface-variant": "#ccc3d8",
+              "outline-variant": "#4a4455",
+              "tertiary-container": "#a15100",
+              "surface-variant": "#35343a",
+              "primary-fixed-dim": "#d2bbff",
+              "on-secondary-fixed": "#001f26",
+              "on-primary": "#3f008e",
+              "surface-container-lowest": "#0e0e13",
+              "surface": "#131318",
+              "on-primary-fixed-variant": "#5a00c6",
+              "secondary-fixed": "#acedff",
+              "inverse-surface": "#e4e1e9",
+              "secondary-container": "#03b5d3",
+              "background": "#131318",
+              "on-surface": "#e4e1e9",
+              "inverse-primary": "#732ee4",
+              "on-tertiary-container": "#ffe0cd",
+              "surface-container-high": "#2a292f",
+              "on-secondary": "#003640",
+              "surface-dim": "#131318",
+              "surface-bright": "#39383e",
+              "surface-container-highest": "#35343a",
+              "on-background": "#e4e1e9",
+              "on-primary-fixed": "#25005a",
+              "primary": "#d2bbff",
+              "on-tertiary": "#4f2500",
+              "error-container": "#93000a",
+              "primary-container": "#7c3aed",
+              "on-secondary-fixed-variant": "#004e5c",
+              "tertiary": "#ffb784",
+              "secondary": "#4cd7f6",
+              "outline": "#958da1",
+              "on-secondary-container": "#00424e",
+              "inverse-on-surface": "#303036",
+              "primary-fixed": "#eaddff",
+              "surface-container-low": "#1b1b20",
+              "surface-container": "#1f1f25",
+              "on-error": "#690005",
+              "error": "#ffb4ab",
+              "on-primary-container": "#ede0ff",
+              "tertiary-fixed": "#ffdcc6"
+            },
+            fontFamily: {
+              "headline": ["Inter"],
+              "body": ["Inter"],
+              "label": ["Inter"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .tonal-transition {
+            background: linear-gradient(to bottom, transparent, #1B1B20);
+        }
+        .glass-card {
+            background: rgba(53, 52, 58, 0.4);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(74, 68, 85, 0.2);
+        }
+        .violet-glow {
+            box-shadow: 0 0 40px -10px rgba(124, 58, 237, 0.3);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body selection:bg-primary-container selection:text-on-primary-container">
+<!-- Top Navigation -->
+<nav class="fixed top-0 w-full z-50 bg-[#131318]/80 backdrop-blur-xl shadow-[0_20px_40px_rgba(0,0,0,0.4)] h-20">
+<div class="max-w-7xl mx-auto px-8 flex justify-between items-center h-full">
+<div class="text-2xl font-bold tracking-tighter text-white">VIVE-IA</div>
+<div class="hidden md:flex items-center gap-8 font-['Inter'] text-sm font-medium tracking-wide">
+<a class="text-gray-400 hover:text-white transition-colors" href="#">Solutions</a>
+<a class="text-gray-400 hover:text-white transition-colors" href="#">Mentors</a>
+<a class="text-gray-400 hover:text-white transition-colors" href="#">Case Studies</a>
+<a class="text-gray-400 hover:text-white transition-colors" href="#">Pricing</a>
+</div>
+<div class="flex items-center gap-4">
+<button class="hidden md:block px-6 py-2 text-gray-400 hover:text-white transition-all duration-200">Login</button>
+<button class="bg-primary-container text-on-primary-container px-6 py-2.5 rounded-lg font-semibold scale-95 active:scale-90 duration-200">Get Started</button>
+</div>
+</div>
+</nav>
+<main class="pt-20">
+<!-- Hero Section -->
+<section class="relative min-h-[819px] flex items-center justify-center overflow-hidden px-8 py-24">
+<div class="absolute inset-0 z-0">
+<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-primary-container/10 rounded-full blur-[120px]"></div>
+</div>
+<div class="relative z-10 max-w-5xl mx-auto text-center">
+<div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-surface-container-highest border border-outline-variant/20 mb-8">
+<span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+<span class="text-label-sm uppercase tracking-widest text-primary font-bold">Inteligencia Conversacional</span>
+</div>
+<h1 class="text-5xl md:text-7xl font-bold tracking-tight text-white mb-6 leading-[1.1]">
+                    Agentes conversacionales para <span class="text-primary">E-commerce</span>
+</h1>
+<p class="text-xl text-on-surface-variant max-w-2xl mx-auto mb-10 leading-relaxed">
+                    Transforma tu tienda online con IA que vende, atiende y fideliza 24/7. Reduce el abandono de carritos y escala tus ventas sin aumentar el equipo.
+                </p>
+<div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+<button class="w-full sm:w-auto px-8 py-4 bg-primary-container text-on-primary-container rounded-xl font-bold text-lg flex items-center justify-center gap-2 transition-transform hover:scale-105 active:scale-95">
+                        Agendar Demo
+                        <span class="material-symbols-outlined">calendar_today</span>
+</button>
+<button class="w-full sm:w-auto px-8 py-4 bg-transparent border border-secondary text-secondary rounded-xl font-bold text-lg flex items-center justify-center gap-2 hover:bg-secondary/10 transition-all">
+                        WhatsApp
+                        <span class="material-symbols-outlined">chat</span>
+</button>
+</div>
+</div>
+</section>
+<!-- Metric Counters -->
+<section class="py-12 bg-surface-container-low border-y border-outline-variant/10">
+<div class="max-w-7xl mx-auto px-8 grid grid-cols-1 md:grid-cols-3 gap-12 text-center">
+<div>
+<div class="text-4xl font-extrabold text-white mb-2">50+</div>
+<p class="text-on-surface-variant uppercase tracking-widest text-xs font-semibold">Carritos recuperados/mes</p>
+</div>
+<div>
+<div class="text-4xl font-extrabold text-primary mb-2">$2.5K</div>
+<p class="text-on-surface-variant uppercase tracking-widest text-xs font-semibold">Ingresos recuperados promedio</p>
+</div>
+<div>
+<div class="text-4xl font-extrabold text-secondary mb-2">+1150%</div>
+<p class="text-on-surface-variant uppercase tracking-widest text-xs font-semibold">ROI en implementación</p>
+</div>
+</div>
+</section>
+<!-- Problems Grid -->
+<section class="py-24 px-8 max-w-7xl mx-auto">
+<div class="text-center mb-16">
+<h2 class="text-3xl md:text-4xl font-bold text-white mb-4">¿Tu E-commerce sufre de estos problemas?</h2>
+<div class="h-1.5 w-24 bg-primary mx-auto rounded-full"></div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<!-- Row 1 -->
+<div class="p-8 bg-surface-container rounded-xl border border-outline-variant/10">
+<span class="material-symbols-outlined text-error mb-4 text-3xl">cancel</span>
+<h3 class="text-xl font-bold text-white mb-3">Carritos abandonados</h3>
+<p class="text-on-surface-variant leading-relaxed">El 70% de tus clientes potenciales se van sin comprar por falta de asistencia inmediata.</p>
+</div>
+<div class="p-8 bg-surface-container rounded-xl border border-outline-variant/10">
+<span class="material-symbols-outlined text-error mb-4 text-3xl">timer_off</span>
+<h3 class="text-xl font-bold text-white mb-3">Tareas manuales</h3>
+<p class="text-on-surface-variant leading-relaxed">Tu equipo pierde horas respondiendo "¿dónde está mi pedido?" o "¿tienen stock?".</p>
+</div>
+<div class="p-8 bg-surface-container rounded-xl border border-outline-variant/10">
+<span class="material-symbols-outlined text-error mb-4 text-3xl">person_remove</span>
+<h3 class="text-xl font-bold text-white mb-3">Baja retención</h3>
+<p class="text-on-surface-variant leading-relaxed">Sin un seguimiento post-venta personalizado, los clientes rara vez vuelven a comprar.</p>
+</div>
+<!-- Row 2 -->
+<div class="p-8 bg-surface-container rounded-xl border border-outline-variant/10">
+<span class="material-symbols-outlined text-error mb-4 text-3xl">sync_disabled</span>
+<h3 class="text-xl font-bold text-white mb-3">Falta de integración</h3>
+<p class="text-on-surface-variant leading-relaxed">Tus sistemas no hablan entre sí, causando fricción en el proceso de compra.</p>
+</div>
+<div class="p-8 bg-surface-container rounded-xl border border-outline-variant/10">
+<span class="material-symbols-outlined text-error mb-4 text-3xl">mood_bad</span>
+<h3 class="text-xl font-bold text-white mb-3">Soporte lento</h3>
+<p class="text-on-surface-variant leading-relaxed">Tiempos de respuesta superiores a 2 horas matan la intención de compra del usuario.</p>
+</div>
+<div class="p-8 bg-surface-container rounded-xl border border-outline-variant/10">
+<span class="material-symbols-outlined text-error mb-4 text-3xl">trending_down</span>
+<h3 class="text-xl font-bold text-white mb-3">Escalabilidad nula</h3>
+<p class="text-on-surface-variant leading-relaxed">En épocas de alta demanda (Hot Sale, Navidad), tu equipo colapsa y pierdes ventas.</p>
+</div>
+</div>
+</section>
+<!-- Explainer Section & Solutions -->
+<section class="py-24 bg-surface-container-low">
+<div class="max-w-7xl mx-auto px-8 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+<div class="relative">
+<div class="rounded-2xl overflow-hidden aspect-square glass-card p-4">
+<img alt="Futuristic AI interface representation" class="w-full h-full object-cover rounded-xl" data-alt="Futuristic digital interface with violet glowing neural network patterns and holographic data displays in a dark studio setting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB6XI6Rbcz4rKMXw5hWWenDN2F2NqzqNTop7Fnj1dE9QbneGKxgoGCEZ8y8ZpXBw57GH7I1rKx-LtuOqSMLn1ZNCMa8rUKSzeaTDzPFVKsArD3mQD7UED6USRuhfjP4ICaxRGODHJo9UIXmveLbMdl5sF6hQj9Tof2jFzUubimCGqa3Ud5h4kMiTGW-tihU3N-zm0q7f9-YVuRboBmdibkxWouy2UV1U7wVjzIkKfc-8pw2kkfgeZPk3R1ky3L7Q8BoN9CHSmIgI6r_"/>
+</div>
+<div class="absolute -bottom-6 -right-6 p-6 bg-surface-container-high rounded-2xl shadow-2xl border border-outline-variant/20 max-w-xs">
+<div class="flex items-center gap-3 mb-2">
+<div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-sm text-on-primary" style="font-variation-settings: 'FILL' 1;">bolt</span>
+</div>
+<span class="font-bold text-white">IA Activa</span>
+</div>
+<p class="text-xs text-on-surface-variant">Analizando 1,240 sesiones en tiempo real para optimizar conversiones.</p>
+</div>
+</div>
+<div>
+<h2 class="text-4xl font-bold text-white mb-6">¿Qué es un agente conversacional?</h2>
+<p class="text-lg text-on-surface-variant mb-8 leading-relaxed">
+                        No es un simple chatbot. Es un experto en ventas digital que entiende el contexto, conoce tu catálogo y actúa proactivamente para cerrar ventas, tal como lo haría tu mejor vendedor.
+                    </p>
+<div class="space-y-4">
+<div class="flex items-start gap-4">
+<div class="mt-1 w-6 h-6 rounded-full bg-primary/20 flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined text-primary text-sm font-bold">check</span>
+</div>
+<div>
+<h4 class="font-bold text-white">Atención Instantánea 24/7</h4>
+<p class="text-on-surface-variant text-sm">Respuestas en menos de 3 segundos, siempre disponible.</p>
+</div>
+</div>
+<div class="flex items-start gap-4">
+<div class="mt-1 w-6 h-6 rounded-full bg-primary/20 flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined text-primary text-sm font-bold">check</span>
+</div>
+<div>
+<h4 class="font-bold text-white">Venta Sugestiva Inteligente</h4>
+<p class="text-on-surface-variant text-sm">Recomienda productos basados en el comportamiento del usuario.</p>
+</div>
+</div>
+<div class="flex items-start gap-4">
+<div class="mt-1 w-6 h-6 rounded-full bg-primary/20 flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined text-primary text-sm font-bold">check</span>
+</div>
+<div>
+<h4 class="font-bold text-white">Gestión de Logística Automática</h4>
+<p class="text-on-surface-variant text-sm">Rastreo de pedidos e incidencias sin intervención humana.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Use Cases -->
+<section class="py-24 px-8 max-w-7xl mx-auto">
+<div class="flex flex-col md:flex-row items-end justify-between mb-12 gap-6">
+<div class="max-w-2xl">
+<h2 class="text-4xl font-bold text-white mb-4">Casos de Uso Especializados</h2>
+<p class="text-on-surface-variant">Soluciones diseñadas para los dos pilares críticos de cualquier tienda online exitosa.</p>
+</div>
+<div class="flex bg-surface-container rounded-lg p-1 border border-outline-variant/10">
+<button class="px-6 py-2 rounded-md bg-primary-container text-on-primary-container font-semibold shadow-lg">Ventas</button>
+<button class="px-6 py-2 rounded-md text-gray-400 hover:text-white transition-colors">Soporte</button>
+</div>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+<div class="group p-8 bg-surface-container-high rounded-2xl border border-outline-variant/10 transition-all hover:border-primary/40">
+<div class="w-14 h-14 bg-primary/10 rounded-xl flex items-center justify-center mb-6 group-hover:bg-primary/20 transition-colors">
+<span class="material-symbols-outlined text-primary text-3xl">shopping_cart_checkout</span>
+</div>
+<h3 class="text-2xl font-bold text-white mb-4">Recuperación proactiva</h3>
+<p class="text-on-surface-variant mb-6 leading-relaxed">Cuando un usuario abandona el flujo de checkout, el agente inicia una conversación personalizada ofreciendo ayuda, resolviendo dudas de envío o aplicando un cupón temporal.</p>
+<ul class="space-y-3">
+<li class="flex items-center gap-2 text-sm text-on-surface"><span class="w-1.5 h-1.5 rounded-full bg-primary"></span> Reactivación vía WhatsApp</li>
+<li class="flex items-center gap-2 text-sm text-on-surface"><span class="w-1.5 h-1.5 rounded-full bg-primary"></span> Cupones dinámicos</li>
+<li class="flex items-center gap-2 text-sm text-on-surface"><span class="w-1.5 h-1.5 rounded-full bg-primary"></span> Manejo de objeciones de precio</li>
+</ul>
+</div>
+<div class="group p-8 bg-surface-container-high rounded-2xl border border-outline-variant/10 transition-all hover:border-secondary/40">
+<div class="w-14 h-14 bg-secondary/10 rounded-xl flex items-center justify-center mb-6 group-hover:bg-secondary/20 transition-colors">
+<span class="material-symbols-outlined text-secondary text-3xl">support_agent</span>
+</div>
+<h3 class="text-2xl font-bold text-white mb-4">Resolución Autónoma</h3>
+<p class="text-on-surface-variant mb-6 leading-relaxed">Centraliza todas las consultas de post-venta. El agente se conecta a tu ERP/Logística para dar estados reales de envío y gestionar cambios de talle o devoluciones.</p>
+<ul class="space-y-3">
+<li class="flex items-center gap-2 text-sm text-on-surface"><span class="w-1.5 h-1.5 rounded-full bg-secondary"></span> Tracking de pedidos 24/7</li>
+<li class="flex items-center gap-2 text-sm text-on-surface"><span class="w-1.5 h-1.5 rounded-full bg-secondary"></span> FAQ dinámica contextual</li>
+<li class="flex items-center gap-2 text-sm text-on-surface"><span class="w-1.5 h-1.5 rounded-full bg-secondary"></span> Derivación humana inteligente</li>
+</ul>
+</div>
+</div>
+</section>
+<!-- Benefits Grid -->
+<section class="py-24 bg-surface-container-lowest">
+<div class="max-w-7xl mx-auto px-8">
+<div class="text-center mb-16">
+<h2 class="text-3xl font-bold text-white mb-4">Beneficios de implementar VIVE-IA</h2>
+<p class="text-on-surface-variant">Potencia cada aspecto de tu operación digital.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+<div class="flex gap-5">
+<span class="material-symbols-outlined text-primary text-3xl">trending_up</span>
+<div>
+<h4 class="font-bold text-white mb-2">Escala masiva</h4>
+<p class="text-sm text-on-surface-variant leading-relaxed">Atiende a 1 o 10,000 personas al mismo tiempo sin degradar la calidad.</p>
+</div>
+</div>
+<div class="flex gap-5">
+<span class="material-symbols-outlined text-primary text-3xl">insights</span>
+<div>
+<h4 class="font-bold text-white mb-2">Data Analytics</h4>
+<p class="text-sm text-on-surface-variant leading-relaxed">Descubre por qué tus clientes no compran y optimiza tu catálogo con insights reales.</p>
+</div>
+</div>
+<div class="flex gap-5">
+<span class="material-symbols-outlined text-primary text-3xl">language</span>
+<div>
+<h4 class="font-bold text-white mb-2">Multilingüe</h4>
+<p class="text-sm text-on-surface-variant leading-relaxed">Vende en cualquier mercado. Tu agente habla más de 50 idiomas con fluidez.</p>
+</div>
+</div>
+<div class="flex gap-5">
+<span class="material-symbols-outlined text-primary text-3xl">hub</span>
+<div>
+<h4 class="font-bold text-white mb-2">Omnicanalidad</h4>
+<p class="text-sm text-on-surface-variant leading-relaxed">Mismo cerebro en WhatsApp, Instagram, Web y Facebook Messenger.</p>
+</div>
+</div>
+<div class="flex gap-5">
+<span class="material-symbols-outlined text-primary text-3xl">verified_user</span>
+<div>
+<h4 class="font-bold text-white mb-2">Seguridad GDPR</h4>
+<p class="text-sm text-on-surface-variant leading-relaxed">Tratamiento de datos personales bajo los más altos estándares internacionales.</p>
+</div>
+</div>
+<div class="flex gap-5">
+<span class="material-symbols-outlined text-primary text-3xl">auto_fix_high</span>
+<div>
+<h4 class="font-bold text-white mb-2">Setup Rápido</h4>
+<p class="text-sm text-on-surface-variant leading-relaxed">Implementación en menos de 15 días con entrenamiento personalizado.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Pricing Cards -->
+<section class="py-24 px-8 max-w-7xl mx-auto">
+<div class="text-center mb-16">
+<h2 class="text-4xl font-bold text-white mb-4">Planes diseñados para crecer</h2>
+<p class="text-on-surface-variant">Elige el motor que impulsará tu tienda al siguiente nivel.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-stretch">
+<!-- Bronze -->
+<div class="p-8 bg-surface-container rounded-2xl border border-outline-variant/10 flex flex-col">
+<h3 class="text-xl font-bold text-white mb-2">Bronze</h3>
+<div class="text-3xl font-extrabold text-white mb-6">$199<span class="text-sm font-normal text-on-surface-variant">/mes</span></div>
+<p class="text-sm text-on-surface-variant mb-8">Ideal para tiendas boutique y startups en crecimiento.</p>
+<ul class="space-y-4 mb-10 flex-grow">
+<li class="flex items-center gap-3 text-sm"><span class="material-symbols-outlined text-sm text-primary">check</span> 1 Canal (Web o WhatsApp)</li>
+<li class="flex items-center gap-3 text-sm"><span class="material-symbols-outlined text-sm text-primary">check</span> 500 conversaciones/mes</li>
+<li class="flex items-center gap-3 text-sm"><span class="material-symbols-outlined text-sm text-primary">check</span> Entrenamiento básico</li>
+</ul>
+<button class="w-full py-3 rounded-xl border border-outline-variant text-white font-bold hover:bg-surface-container-highest transition-colors">Elegir Bronze</button>
+</div>
+<!-- Silver (Featured) -->
+<div class="p-8 bg-surface-container-high rounded-2xl border-2 border-primary-container flex flex-col relative violet-glow scale-105 z-10">
+<div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-primary-container text-on-primary-container px-4 py-1 rounded-full text-xs font-black uppercase tracking-widest">Recomendado</div>
+<h3 class="text-xl font-bold text-white mb-2">Silver</h3>
+<div class="text-3xl font-extrabold text-white mb-6">$499<span class="text-sm font-normal text-on-surface-variant">/mes</span></div>
+<p class="text-sm text-on-surface-variant mb-8">Para líderes de mercado que buscan automatización total.</p>
+<ul class="space-y-4 mb-10 flex-grow">
+<li class="flex items-center gap-3 text-sm font-semibold text-white"><span class="material-symbols-outlined text-sm text-primary" style="font-variation-settings: 'FILL' 1;">check</span> 3 Canales Omnicanal</li>
+<li class="flex items-center gap-3 text-sm font-semibold text-white"><span class="material-symbols-outlined text-sm text-primary" style="font-variation-settings: 'FILL' 1;">check</span> 2,500 conversaciones/mes</li>
+<li class="flex items-center gap-3 text-sm font-semibold text-white"><span class="material-symbols-outlined text-sm text-primary" style="font-variation-settings: 'FILL' 1;">check</span> Integración CRM &amp; Logística</li>
+<li class="flex items-center gap-3 text-sm font-semibold text-white"><span class="material-symbols-outlined text-sm text-primary" style="font-variation-settings: 'FILL' 1;">check</span> Soporte prioritario</li>
+</ul>
+<button class="w-full py-3 rounded-xl bg-primary-container text-on-primary-container font-bold shadow-xl hover:brightness-110 transition-all">Impulsar mi Tienda</button>
+</div>
+<!-- Gold -->
+<div class="p-8 bg-surface-container rounded-2xl border border-outline-variant/10 flex flex-col">
+<h3 class="text-xl font-bold text-white mb-2">Gold</h3>
+<div class="text-3xl font-extrabold text-white mb-6">Custom</div>
+<p class="text-sm text-on-surface-variant mb-8">Soluciones Enterprise con necesidades complejas.</p>
+<ul class="space-y-4 mb-10 flex-grow">
+<li class="flex items-center gap-3 text-sm"><span class="material-symbols-outlined text-sm text-primary">check</span> Canales ilimitados</li>
+<li class="flex items-center gap-3 text-sm"><span class="material-symbols-outlined text-sm text-primary">check</span> Conversaciones ilimitadas</li>
+<li class="flex items-center gap-3 text-sm"><span class="material-symbols-outlined text-sm text-primary">check</span> Entrenamiento In-House LLM</li>
+<li class="flex items-center gap-3 text-sm"><span class="material-symbols-outlined text-sm text-primary">check</span> Account Manager dedicado</li>
+</ul>
+<button class="w-full py-3 rounded-xl border border-outline-variant text-white font-bold hover:bg-surface-container-highest transition-colors">Contactar Ventas</button>
+</div>
+</div>
+</section>
+<!-- Final CTA Section -->
+<section class="py-24 px-8">
+<div class="max-w-5xl mx-auto glass-card rounded-[2rem] p-12 md:p-20 text-center relative overflow-hidden">
+<div class="absolute -top-24 -left-24 w-64 h-64 bg-primary/20 rounded-full blur-[80px]"></div>
+<div class="absolute -bottom-24 -right-24 w-64 h-64 bg-secondary/20 rounded-full blur-[80px]"></div>
+<div class="relative z-10">
+<h2 class="text-4xl md:text-5xl font-bold text-white mb-6 leading-tight">¿Listo para transformar tus visitas en clientes leales?</h2>
+<p class="text-lg text-on-surface-variant mb-10 max-w-2xl mx-auto">Únete a más de 200 tiendas que ya están escalando su facturación con nuestra tecnología conversacional.</p>
+<div class="flex flex-col sm:flex-row gap-4 justify-center">
+<button class="px-10 py-4 bg-white text-background rounded-full font-black text-lg transition-transform hover:scale-105">Empezar ahora</button>
+<button class="px-10 py-4 border border-outline-variant text-white rounded-full font-bold text-lg hover:bg-white/5 transition-colors">Ver casos de éxito</button>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-[#131318] w-full py-12 border-t border-[#4A4455]/10 mt-24">
+<div class="max-w-7xl mx-auto px-8 grid grid-cols-2 md:grid-cols-4 gap-8">
+<div class="col-span-2 md:col-span-1">
+<div class="text-lg font-semibold text-white mb-4">VIVE-IA</div>
+<p class="text-gray-400 font-['Inter'] text-sm mb-4">The Ethereal Intelligence.</p>
+</div>
+<div>
+<h5 class="text-white font-medium mb-4">Plataforma</h5>
+<ul class="space-y-2">
+<li><a class="text-gray-500 hover:text-[#4CD7F6] transition-colors text-sm" href="#">Soluciones</a></li>
+<li><a class="text-gray-500 hover:text-[#4CD7F6] transition-colors text-sm" href="#">API Docs</a></li>
+</ul>
+</div>
+<div>
+<h5 class="text-white font-medium mb-4">Legal</h5>
+<ul class="space-y-2">
+<li><a class="text-gray-500 hover:text-[#4CD7F6] transition-colors text-sm" href="#">Privacy Policy</a></li>
+<li><a class="text-gray-500 hover:text-[#4CD7F6] transition-colors text-sm" href="#">Terms of Service</a></li>
+</ul>
+</div>
+<div>
+<h5 class="text-white font-medium mb-4">Soporte</h5>
+<ul class="space-y-2">
+<li><a class="text-gray-500 hover:text-[#4CD7F6] transition-colors text-sm" href="#">Contact</a></li>
+<li><a class="text-gray-500 hover:text-[#4CD7F6] transition-colors text-sm" href="#">Ayuda</a></li>
+</ul>
+</div>
+</div>
+<div class="max-w-7xl mx-auto px-8 mt-12 pt-8 border-t border-[#4A4455]/10 flex flex-col md:flex-row justify-between items-center gap-4">
+<p class="text-gray-500 text-sm">© 2024 VIVE-IA. The Ethereal Intelligence.</p>
+<div class="flex gap-6">
+<a class="text-gray-500 hover:text-white transition-colors" href="#"><span class="material-symbols-outlined text-xl">brand_family</span></a>
+<a class="text-gray-500 hover:text-white transition-colors" href="#"><span class="material-symbols-outlined text-xl">share</span></a>
+</div>
+</div>
+</footer>
+</body></html>

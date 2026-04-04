@@ -1,0 +1,649 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import SectionBadge from '../../components/SectionBadge.astro';
+import MetricCounter from '../../components/MetricCounter.astro';
+
+const problemas = [
+  {
+    image: '/images/responder-dm.png',
+    title: 'Respondés DMs todo el día',
+    description: 'Pasás horas en Instagram y WhatsApp respondiendo preguntas repetidas, robándote tiempo que deberías invertir en crear.',
+  },
+  {
+    image: '/images/leads-seguimiento.png',
+    title: 'Leads sin seguimiento',
+    description: 'Interesados que te escribieron hace semanas y nunca convertiste porque no tuviste tiempo de hacer el seguimiento.',
+  },
+  {
+    image: '/images/escala.png',
+    title: 'No podés escalar sin más trabajo manual',
+    description: 'Cada vez que crece tu comunidad, también crece tu carga operativa. Más alumnos = más tiempo respondiendo preguntas.',
+  },
+  {
+    image: '/images/orden-automatizacion.png',
+    title: 'Embudo de ventas inconsistente',
+    description: 'No tenés un sistema claro de captación y conversión. Cada venta depende de tu energía y disponibilidad del momento.',
+  },
+];
+
+const capacidades = [
+  {
+    title: 'Atención Inmediata 24/7',
+    description: 'Responde consultas de programas, precios y fechas en segundos, sin que vos intervengas.',
+  },
+  {
+    title: 'Calificación Automática de Leads',
+    description: 'Detecta el nivel de interés de cada prospecto y los segmenta para que vos solo hables con los más calificados.',
+  },
+  {
+    title: 'Seguimiento y Nurturing Inteligente',
+    description: 'Mantiene el contacto con leads fríos y los reactiva en el momento justo con mensajes personalizados.',
+  },
+];
+
+const beneficios = [
+  {
+    image: '/images/crecimiento-sostenible.png',
+    title: 'Crecimiento sostenible',
+    description: 'Escalá tu comunidad y tus ventas sin que tu carga operativa crezca proporcionalmente.',
+  },
+  {
+    image: '/images/eficiencia-humano.png',
+    title: 'Más tiempo para crear',
+    description: 'Delegá la atención repetitiva a la IA y enfocá tu energía en contenido de alto valor.',
+  },
+  {
+    image: '/images/impacto-real.png',
+    title: 'Más conversiones',
+    description: 'Un agente que nunca deja enfriar un lead convierte hasta 3x más que la atención manual.',
+  },
+  {
+    image: '/images/integracion.png',
+    title: 'Integración total',
+    description: 'Conectado a WhatsApp, Instagram, tu web y plataformas de cursos. Un solo agente, todos los canales.',
+  },
+  {
+    image: '/images/data-analisis.png',
+    title: 'Insights de tu audiencia',
+    description: 'Descubrí qué preguntan, qué frena la compra y qué temas generan más interés en tu comunidad.',
+  },
+  {
+    image: '/images/evolucion-constante.png',
+    title: 'Mejora continua',
+    description: 'El agente aprende de cada conversación y se optimiza con el tiempo para responder cada vez mejor.',
+  },
+];
+
+const planes = [
+  {
+    nombre: 'Bronce',
+    logo: '/images/logo-bronce.png',
+    descripcion: 'Automatización esencial para profesionalizar tu atención',
+    features: [
+      'Agente conversacional con respuestas automáticas',
+      'Información sobre programas, precios y fechas',
+      'Derivación inteligente a humano',
+      'Disponibilidad 24/7',
+    ],
+    destacado: false,
+    cta: 'Quiero el Plan Bronce',
+  },
+  {
+    nombre: 'Plata',
+    logo: '/images/logo-plata.png',
+    descripcion: 'Para comunidades activas que quieren vender más',
+    features: [
+      'Todo lo del Plan Bronce',
+      'Asesoramiento y recomendaciones inteligentes',
+      'Calificación y segmentación automática de leads',
+    ],
+    destacado: true,
+    cta: 'Quiero el Plan Plata',
+  },
+  {
+    nombre: 'Oro',
+    logo: '/images/logo-oro.png',
+    descripcion: 'Escala profesional con máxima eficiencia',
+    features: [
+      'Todo lo del Plan Plata',
+      'IA conversacional con lenguaje natural personalizado',
+      'Automatización completa de embudos y secuencias',
+      'Soporte prioritario y optimización continua',
+    ],
+    destacado: false,
+    cta: 'Quiero el Plan Oro',
+  },
+];
+---
+
+<BaseLayout
+  title="Agentes IA para Mentores y Marcas Personales — VIVE-IA"
+  description="Escalá tu negocio con inteligencia artificial. Automatizá la atención, recuperá leads y liberá tiempo valioso."
+>
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!-- 1. HERO                                      -->
+  <!-- ═══════════════════════════════════════════ -->
+  <section class="relative min-h-[92vh] flex items-center justify-center overflow-hidden">
+    <!-- Video de fondo: rectángulo vertical centrado (tamaño celular) -->
+    <div class="absolute inset-0 flex items-center justify-center z-0 pointer-events-none">
+      <div class="relative w-[280px] h-[498px] rounded-3xl overflow-hidden opacity-70">
+        <iframe
+          src="https://www.youtube.com/embed/grPCcGV1WNs?autoplay=1&mute=1&loop=1&playlist=grPCcGV1WNs&controls=0&showinfo=0&rel=0&modestbranding=1&playsinline=1"
+          allow="autoplay; encrypted-media"
+          allowfullscreen
+          title="VIVE-IA Mentores"
+          class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 border-none"
+          style="width:280px; height:498px;"
+        ></iframe>
+      </div>
+    </div>
+
+    <!-- Overlay oscuro degradado -->
+    <div
+      class="absolute inset-0 z-10"
+      style="background: linear-gradient(135deg, rgba(10,10,15,0.88) 0%, rgba(10,10,15,0.72) 50%, rgba(10,10,15,0.88) 100%);"
+    ></div>
+
+    <!-- Partículas decorativas -->
+    <div class="absolute top-20 right-20 w-72 h-72 rounded-full opacity-10 blur-3xl z-10"
+         style="background: radial-gradient(circle, #7C3AED, transparent);"></div>
+    <div class="absolute bottom-20 left-10 w-56 h-56 rounded-full opacity-8 blur-3xl z-10"
+         style="background: radial-gradient(circle, #06B6D4, transparent);"></div>
+
+    <div class="relative z-20 max-w-4xl mx-auto text-left px-4 sm:px-6 py-24" data-aos="fade-up">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full
+                  bg-white/[0.06] border border-violet-600/30 mb-8">
+        <span class="w-2 h-2 rounded-full bg-violet-400 animate-pulse"></span>
+        <span class="text-violet-400 text-xs font-bold uppercase tracking-widest">Inteligencia Conversacional</span>
+      </div>
+
+      <h1 class="text-[clamp(2.5rem,6vw,4.5rem)] font-bold tracking-tight text-white mb-6 leading-[1.1]">
+        Agentes IA para{' '}
+        <span style="background: linear-gradient(135deg, #A855F7 0%, #06B6D4 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">
+          Mentores y Marcas Personales
+        </span>
+      </h1>
+
+      <p class="text-xl text-slate-400 max-w-2xl mb-10 leading-relaxed">
+        Automatizá la atención, calificá leads y escalá tu negocio sin trabajar más horas.
+        Tu marca personal, disponible 24/7 con tu voz y tu estilo.
+      </p>
+
+      <div class="flex flex-col sm:flex-row gap-4">
+        <a
+          href="/contacto"
+          class="inline-flex items-center gap-2 px-8 py-4 rounded-lg font-bold text-lg text-white
+                 bg-violet-600 hover:bg-violet-500
+                 shadow-[0_0_20px_rgba(124,58,237,0.3)] hover:shadow-[0_0_30px_rgba(124,58,237,0.5)]
+                 transition-all duration-300"
+        >
+          ¡Lo necesito!
+        </a>
+        <a
+          href="https://wa.me/5492665258874"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center gap-2 px-8 py-4 rounded-lg font-bold text-lg
+                 bg-[#25D366] hover:bg-[#1ebe5a] text-white
+                 transition-all duration-300"
+        >
+          Escribir por WhatsApp
+        </a>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!-- 2. PROBLEMAS                                 -->
+  <!-- ═══════════════════════════════════════════ -->
+  <section class="py-24 px-4 sm:px-6 lg:px-8 bg-[#0D0D14]">
+    <div class="max-w-7xl mx-auto">
+      <div class="text-center mb-16" data-aos="fade-up">
+        <SectionBadge text="El problema" />
+        <h2 class="text-[clamp(2rem,4vw,3rem)] font-semibold text-white mb-4">
+          ¿Te identificás con alguno de estos problemas?
+        </h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+        {problemas.map((p, i) => (
+          <div
+            data-aos="fade-up"
+            data-aos-delay={String((i % 2) * 100)}
+            class="rounded-2xl bg-[#111118] border border-red-900/20
+                   hover:border-red-900/40 transition-all duration-300 overflow-hidden"
+          >
+            <img
+              src={p.image}
+              alt={p.title}
+              class="w-full h-28 object-cover object-center rounded-t-xl"
+              loading="lazy"
+            />
+            <div class="p-6">
+              <h3 class="text-white font-semibold text-lg mb-3">{p.title}</h3>
+              <p class="text-slate-400 text-sm leading-relaxed">{p.description}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!-- 3. QUÉ HACE EL AGENTE                       -->
+  <!-- ═══════════════════════════════════════════ -->
+  <section class="py-24 px-4 sm:px-6 lg:px-8 bg-[#0A0A0F]">
+    <div class="max-w-7xl mx-auto">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+
+        <div data-aos="fade-right">
+          <SectionBadge text="La solución" />
+          <h2 class="text-[clamp(2rem,4vw,3rem)] font-semibold text-white mb-6">
+            Un agente que trabaja mientras vos creás
+          </h2>
+          <p class="text-slate-400 text-lg leading-relaxed mb-8">
+            No es un bot genérico. Es un asistente entrenado con tu contenido, tu tono y
+            tu metodología. Responde como vos lo harías, califica prospectos y cierra el
+            primer paso de la venta — todo de forma automática.
+          </p>
+
+          <ul class="space-y-5">
+            {capacidades.map((c, i) => (
+              <li class="flex items-start gap-4" data-aos="fade-right" data-aos-delay={String(i * 80)}>
+                <span class="flex-shrink-0 w-6 h-6 rounded-full bg-violet-600/20 border border-violet-600/40
+                             flex items-center justify-center mt-0.5">
+                  <svg class="w-3.5 h-3.5 text-violet-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                  </svg>
+                </span>
+                <div>
+                  <h4 class="text-white font-semibold mb-1">{c.title}</h4>
+                  <p class="text-slate-400 text-sm">{c.description}</p>
+                </div>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <!-- Panel decorativo: chat simulado -->
+        <div data-aos="fade-left" data-aos-delay="100">
+          <div class="relative p-8 rounded-2xl bg-[#111118] border border-white/[0.06]
+                      shadow-[0_0_60px_rgba(124,58,237,0.08)]">
+            <div class="space-y-4">
+              <div class="flex items-start gap-3">
+                <div class="w-8 h-8 rounded-full bg-slate-700 flex-shrink-0 flex items-center justify-center text-xs text-slate-300">👤</div>
+                <div class="bg-[#1A1A28] rounded-2xl rounded-tl-none px-4 py-3 max-w-xs">
+                  <p class="text-slate-300 text-sm">Hola! ¿Cuándo arranca el próximo programa?</p>
+                </div>
+              </div>
+              <div class="flex items-start gap-3 flex-row-reverse">
+                <div class="w-8 h-8 rounded-full bg-violet-600/30 flex-shrink-0 flex items-center justify-center text-xs">🤖</div>
+                <div class="bg-violet-600/15 border border-violet-600/20 rounded-2xl rounded-tr-none px-4 py-3 max-w-xs">
+                  <p class="text-slate-200 text-sm">¡Hola! La próxima cohorte arranca el 15 de mayo. Tenemos 8 lugares disponibles. ¿Querés que te cuente qué incluye? 🚀</p>
+                </div>
+              </div>
+              <div class="flex items-start gap-3">
+                <div class="w-8 h-8 rounded-full bg-slate-700 flex-shrink-0 flex items-center justify-center text-xs text-slate-300">👤</div>
+                <div class="bg-[#1A1A28] rounded-2xl rounded-tl-none px-4 py-3 max-w-xs">
+                  <p class="text-slate-300 text-sm">Sí, y también el precio.</p>
+                </div>
+              </div>
+              <div class="flex items-start gap-3 flex-row-reverse">
+                <div class="w-8 h-8 rounded-full bg-violet-600/30 flex-shrink-0 flex items-center justify-center text-xs">🤖</div>
+                <div class="bg-violet-600/15 border border-violet-600/20 rounded-2xl rounded-tr-none px-4 py-3 max-w-xs">
+                  <p class="text-slate-200 text-sm">¡Claro! Te comparto toda la info ahora. Y si querés, te agendo una llamada de 15 min para resolver tus dudas 📅</p>
+                </div>
+              </div>
+            </div>
+            <div class="absolute -bottom-5 -right-5 p-4 rounded-xl bg-[#1A1A28] border border-violet-600/20 flex items-center gap-3">
+              <span class="w-2.5 h-2.5 rounded-full bg-violet-400 animate-pulse"></span>
+              <span class="text-slate-300 text-xs font-medium">IA activa 24/7</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!-- 4. FACTOR DIFERENCIAL                        -->
+  <!-- ═══════════════════════════════════════════ -->
+  <section class="py-24 px-4 sm:px-6 lg:px-8 bg-[#0D0D14]">
+    <div class="max-w-7xl mx-auto">
+      <div class="text-center mb-16" data-aos="fade-up">
+        <SectionBadge text="Lo que nos diferencia" />
+        <h2 class="text-[clamp(2rem,4vw,3rem)] font-semibold text-white mb-4">
+          Tu voz. Tu estilo. Tu marca personal automatizada.
+        </h2>
+        <p class="text-slate-400 text-lg max-w-2xl mx-auto leading-relaxed">
+          No configuramos un chatbot genérico. Entrenamos un agente que habla como vos,
+          conoce tu metodología y mantiene la esencia de tu marca en cada conversación.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+
+        <div data-aos="fade-up" data-aos-delay="0"
+             class="p-8 rounded-2xl bg-[#111118] border border-white/[0.06]
+                    hover:border-violet-600/30 hover:-translate-y-1 transition-all duration-300">
+          <img
+            src="/images/base-conocimientos.png"
+            alt="Entrenado con tu contenido"
+            class="w-24 h-24 object-contain mb-4"
+            loading="lazy"
+          />
+          <h3 class="text-white font-bold text-xl mb-3">Entrenado con tu contenido</h3>
+          <p class="text-slate-400 text-sm leading-relaxed">
+            Cargamos tus posts, videos, metodología y FAQs. El agente absorbe todo y responde
+            con tu perspectiva y tu forma de comunicar.
+          </p>
+        </div>
+
+        <div data-aos="fade-up" data-aos-delay="120"
+             class="p-8 rounded-2xl bg-[#111118] border border-white/[0.06]
+                    hover:border-violet-600/30 hover:-translate-y-1 transition-all duration-300">
+          <img
+            src="/images/tono-de-voz.png"
+            alt="Tono y personalidad coherentes"
+            class="w-24 h-24 object-contain mb-4"
+            loading="lazy"
+          />
+          <h3 class="text-white font-bold text-xl mb-3">Tono y personalidad coherentes</h3>
+          <p class="text-slate-400 text-sm leading-relaxed">
+            Definimos junto con vos el estilo de comunicación: formal, cercano, motivador.
+            Cada respuesta suena auténtica, no robotizada.
+          </p>
+        </div>
+
+        <div data-aos="fade-up" data-aos-delay="240"
+             class="p-8 rounded-2xl bg-[#111118] border border-white/[0.06]
+                    hover:border-violet-600/30 hover:-translate-y-1 transition-all duration-300">
+          <img
+            src="/images/cierre-automatico.png"
+            alt="Optimización basada en datos"
+            class="w-24 h-24 object-contain mb-4"
+            loading="lazy"
+          />
+          <h3 class="text-white font-bold text-xl mb-3">Optimización basada en datos</h3>
+          <p class="text-slate-400 text-sm leading-relaxed">
+            Analizamos las conversaciones para mejorar el agente continuamente. Tu marca
+            se vuelve más efectiva con cada interacción.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!-- 5. CASOS DE USO                              -->
+  <!-- ═══════════════════════════════════════════ -->
+  <section class="py-24 px-4 sm:px-6 lg:px-8 bg-[#0A0A0F]">
+    <div class="max-w-7xl mx-auto">
+      <div class="text-center mb-16" data-aos="fade-up">
+        <SectionBadge text="Aplicaciones" />
+        <h2 class="text-[clamp(2rem,4vw,3rem)] font-semibold text-white mb-4">
+          Casos de Uso para tu Negocio
+        </h2>
+        <p class="text-slate-400 text-lg max-w-xl mx-auto">
+          Desde la captación hasta la fidelización, el agente actúa en cada etapa del proceso.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+
+        <!-- Ventas -->
+        <div
+          data-aos="fade-right"
+          class="group p-8 rounded-2xl bg-[#111118] border border-violet-600/20
+                 hover:border-violet-600/40 transition-all duration-300"
+        >
+          <img src="/images/ventas-conversion.png" alt="Ventas y Conversión" class="w-16 h-16 object-contain mb-4" loading="lazy" />
+          <h3 class="text-white font-bold text-2xl mb-4">Ventas y Conversión</h3>
+          <p class="text-slate-400 leading-relaxed mb-6">
+            El agente califica cada lead que te escribe, presenta tu programa en función
+            de su perfil y lo lleva al siguiente paso del funnel sin que vos intervengas.
+          </p>
+          <ul class="space-y-2.5">
+            {['Presentación personalizada de programas', 'Gestión de objeciones frecuentes', 'Agendamiento automático de llamadas de cierre'].map((item) => (
+              <li class="flex items-center gap-2.5 text-sm text-slate-300">
+                <span class="w-1.5 h-1.5 rounded-full bg-violet-400 flex-shrink-0"></span>
+                {item}
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <!-- Comunidad -->
+        <div
+          data-aos="fade-up"
+          data-aos-delay="100"
+          class="group p-8 rounded-2xl bg-[#111118] border border-cyan-600/20
+                 hover:border-cyan-600/40 transition-all duration-300"
+        >
+          <img src="/images/atencion-comu.png" alt="Atención a tu Comunidad" class="w-16 h-16 object-contain mb-4" loading="lazy" />
+          <h3 class="text-white font-bold text-2xl mb-4">Atención a tu Comunidad</h3>
+          <p class="text-slate-400 leading-relaxed mb-6">
+            Alumnos con dudas, seguidores con preguntas, nuevos interesados que necesitan
+            orientación. El agente los atiende al instante y escala solo cuando es necesario.
+          </p>
+          <ul class="space-y-2.5">
+            {['Respuestas automáticas a alumnos', 'FAQ dinámica sobre tu contenido', 'Derivación inteligente cuando se requiere atención humana'].map((item) => (
+              <li class="flex items-center gap-2.5 text-sm text-slate-300">
+                <span class="w-1.5 h-1.5 rounded-full bg-cyan-400 flex-shrink-0"></span>
+                {item}
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <!-- Agente Mentorizado -->
+        <div
+          data-aos="fade-left"
+          data-aos-delay="200"
+          class="group p-8 rounded-2xl bg-[#111118] border border-violet-600/20
+                 hover:border-violet-600/40 transition-all duration-300"
+        >
+          <img src="/images/mentor-ia.png" alt="Agente Mentorizado" class="w-16 h-16 object-contain mb-4" loading="lazy" />
+          <h3 class="text-white font-bold text-2xl mb-4">Agente Mentorizado</h3>
+          <p class="text-slate-400 leading-relaxed mb-6">
+            Convertí tu conocimiento en un asistente disponible 24/7. Creamos agentes entrenados
+            con todo el contenido de tu curso, mentoría o programa, capaces de responder consultas
+            en tiempo real y acompañar a tus alumnos sin depender de tu tiempo.
+          </p>
+          <ul class="space-y-2.5">
+            {['Respuestas alineadas a tu método y propuesta de valor', 'Más soporte sin saturarte', 'Escalabilidad real sin contratar más personal'].map((item) => (
+              <li class="flex items-center gap-2.5 text-sm text-slate-300">
+                <span class="w-1.5 h-1.5 rounded-full bg-violet-400 flex-shrink-0"></span>
+                {item}
+              </li>
+            ))}
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!-- 6. BENEFICIOS                                -->
+  <!-- ═══════════════════════════════════════════ -->
+  <section class="py-24 px-4 sm:px-6 lg:px-8 bg-[#0D0D14]">
+    <div class="max-w-7xl mx-auto">
+      <div class="text-center mb-16" data-aos="fade-up">
+        <SectionBadge text="Beneficios" />
+        <h2 class="text-[clamp(2rem,4vw,3rem)] font-semibold text-white mb-4">
+          Lo que ganás cuando automatizás bien
+        </h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {beneficios.map((b, i) => (
+          <div
+            data-aos="fade-up"
+            data-aos-delay={String((i % 3) * 100)}
+            class="rounded-2xl bg-[#111118] border border-white/[0.06]
+                   hover:border-violet-600/20 transition-all duration-300 overflow-hidden"
+          >
+            <img
+              src={b.image}
+              alt={b.title}
+              class="w-full h-28 object-cover object-center rounded-t-xl"
+              loading="lazy"
+            />
+            <div class="p-6">
+              <h4 class="text-white font-semibold mb-2">{b.title}</h4>
+              <p class="text-slate-400 text-sm leading-relaxed">{b.description}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!-- 7. MÉTRICAS DE IMPACTO                       -->
+  <!-- ═══════════════════════════════════════════ -->
+  <section class="py-14 px-4 sm:px-6 bg-[#0A0A0F] border-t border-b border-white/[0.06]">
+    <div class="max-w-4xl mx-auto grid grid-cols-1 sm:grid-cols-3 gap-10 text-center">
+      <div data-aos="fade-up" data-aos-delay="0">
+        <MetricCounter value={80} suffix="%" label="Reducción de consultas manuales" />
+      </div>
+      <div data-aos="fade-up" data-aos-delay="100">
+        <MetricCounter value={3} suffix="x" label="Más leads calificados por mes" />
+      </div>
+      <div data-aos="fade-up" data-aos-delay="200">
+        <div class="text-4xl font-extrabold text-white mb-2">24/7</div>
+        <p class="text-slate-500 uppercase tracking-widest text-xs font-semibold">Disponibilidad del agente</p>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!-- 8. PLANES                                    -->
+  <!-- ═══════════════════════════════════════════ -->
+  <section class="py-24 px-4 sm:px-6 lg:px-8 bg-[#0D0D14]">
+    <div class="max-w-7xl mx-auto">
+      <div class="text-center mb-16" data-aos="fade-up">
+        <SectionBadge text="Inversión" />
+        <h2 class="text-[clamp(2rem,4vw,3rem)] font-semibold text-white mb-4">
+          Planes diseñados para tu etapa
+        </h2>
+        <p class="text-slate-400 text-lg">Elegí el nivel que mejor se adapta a tu comunidad y tus objetivos.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch">
+        {planes.map((plan, i) => (
+          <div
+            data-aos="fade-up"
+            data-aos-delay={String(i * 100)}
+            class={`relative flex flex-col p-8 rounded-2xl transition-all duration-300
+              ${plan.destacado
+                ? 'bg-[#111118] border-2 border-violet-600 shadow-[0_0_40px_rgba(124,58,237,0.2)] scale-[1.03] z-10'
+                : 'bg-[#111118] border border-white/[0.06] hover:border-violet-600/30'
+              }`}
+          >
+            {plan.destacado && (
+              <div class="absolute -top-4 left-1/2 -translate-x-1/2
+                          bg-violet-600 text-white px-4 py-1 rounded-full
+                          text-xs font-black uppercase tracking-widest">
+                Más popular
+              </div>
+            )}
+
+            <img
+              src={plan.logo}
+              alt={`Plan ${plan.nombre}`}
+              class="h-28 w-auto object-contain mx-auto mb-6"
+              loading="lazy"
+            />
+
+            <h3 class="text-white font-bold text-xl mb-2 text-center">{plan.nombre}</h3>
+            <p class="text-slate-500 text-sm text-center mb-6">{plan.descripcion}</p>
+
+            <ul class="space-y-3 mb-10 flex-grow">
+              {plan.features.map((f) => (
+                <li class="flex items-start gap-3 text-sm text-slate-300">
+                  <svg class="w-4 h-4 text-violet-400 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                  </svg>
+                  {f}
+                </li>
+              ))}
+            </ul>
+
+            <a
+              href="/contacto"
+              class={`w-full py-3 rounded-xl font-bold text-center transition-all duration-300
+                ${plan.destacado
+                  ? 'bg-violet-600 hover:bg-violet-500 text-white shadow-[0_0_20px_rgba(124,58,237,0.3)]'
+                  : 'border border-white/[0.12] text-white hover:bg-white/[0.04]'
+                }`}
+            >
+              {plan.cta}
+            </a>
+          </div>
+        ))}
+      </div>
+
+      <p class="text-center text-slate-500 text-sm mt-10">
+        Contratación mínima: 6 meses. Incluye: funcionamiento del servicio, onboarding, soporte, mantenimiento y asesoramiento en mejoras continuas.
+      </p>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!-- 9. CTA FINAL                                 -->
+  <!-- ═══════════════════════════════════════════ -->
+  <section class="relative py-28 px-4 sm:px-6 lg:px-8 overflow-hidden text-center"
+           style="background: linear-gradient(135deg, #3b0764 0%, #1e1b4b 40%, #0f172a 100%);">
+    <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] rounded-full blur-[100px] pointer-events-none opacity-40"
+         style="background: radial-gradient(circle, rgba(124,58,237,0.6), transparent 70%);"></div>
+
+    <div class="relative z-10 max-w-3xl mx-auto" data-aos="fade-up">
+      <SectionBadge text="¿Listo para automatizar?" />
+      <h2 class="text-[clamp(1.8rem,4vw,2.8rem)] font-bold text-white mb-4 mt-2">
+        ¿Listo para automatizar tu crecimiento?
+      </h2>
+      <p class="text-slate-300 text-lg mb-10 max-w-xl mx-auto leading-relaxed">
+        Agendá un diagnóstico gratuito y descubrí cómo un agente IA puede transformar
+        tu marca personal en un negocio que escala solo.
+      </p>
+
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+        <a
+          href="/contacto"
+          class="inline-flex items-center gap-2 px-8 py-3.5 rounded-lg font-semibold text-white
+                 bg-violet-600 hover:bg-violet-500
+                 shadow-[0_0_20px_rgba(124,58,237,0.4)] hover:shadow-[0_0_30px_rgba(124,58,237,0.6)]
+                 transition-all duration-300"
+        >
+          ¡Lo necesito!
+        </a>
+        <a
+          href="https://wa.me/5492665258874"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center gap-2 px-8 py-3.5 rounded-lg font-semibold text-white
+                 bg-[#25D366] hover:bg-[#1ebe5a]
+                 transition-all duration-300"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white" class="w-5 h-5">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+          </svg>
+          Escribir por WhatsApp
+        </a>
+      </div>
+    </div>
+  </section>
+
+</BaseLayout>

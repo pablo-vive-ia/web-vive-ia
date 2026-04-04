@@ -1,0 +1,31 @@
+---
+interface Props {
+  number: string;
+  title: string;
+  description: string;
+  isLast?: boolean;
+}
+const { number, title, description, isLast = false } = Astro.props;
+---
+
+<div class="relative flex gap-6">
+  <!-- Número + línea conectora -->
+  <div class="flex flex-col items-center flex-shrink-0">
+    <div
+      class="w-12 h-12 rounded-xl flex items-center justify-center
+             bg-violet-600/15 border border-violet-600/30 text-violet-400
+             font-bold text-sm z-10"
+    >
+      {number}
+    </div>
+    {!isLast && (
+      <div class="w-px flex-1 mt-2 bg-gradient-to-b from-violet-600/30 to-transparent min-h-[3rem]"></div>
+    )}
+  </div>
+
+  <!-- Contenido -->
+  <div class="pb-10">
+    <h3 class="text-lg font-semibold text-white mb-2">{title}</h3>
+    <p class="text-slate-400 text-sm leading-relaxed">{description}</p>
+  </div>
+</div>

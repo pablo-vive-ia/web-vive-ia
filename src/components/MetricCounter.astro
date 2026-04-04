@@ -1,0 +1,41 @@
+---
+interface Props {
+  value: number;
+  label: string;
+  prefix?: string;
+  suffix?: string;
+}
+const { value, label, prefix = '', suffix = '' } = Astro.props;
+---
+
+<div class="text-center" data-counter data-value={value}>
+  <div class="text-4xl md:text-5xl font-bold text-white mb-2">
+    {prefix}<span class="counter-value">0</span>{suffix}
+  </div>
+  <p class="text-slate-400 text-sm">{label}</p>
+</div>
+
+<script>
+  const counters = document.querySelectorAll('[data-counter]');
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        const el = entry.target as HTMLElement;
+        const target = parseInt(el.dataset.value ?? '0');
+        const span = el.querySelector('.counter-value');
+        if (!span) return;
+        let current = 0;
+        const step = Math.ceil(target / 60);
+        const timer = setInterval(() => {
+          current = Math.min(current + step, target);
+          span.textContent = current.toLocaleString('es-AR');
+          if (current >= target) clearInterval(timer);
+        }, 20);
+        observer.unobserve(el);
+      });
+    },
+    { threshold: 0.5 }
+  );
+  counters.forEach((c) => observer.observe(c));
+</script>

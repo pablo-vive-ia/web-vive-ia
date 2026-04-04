@@ -1,0 +1,462 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SectionBadge from '../components/SectionBadge.astro';
+
+const valores = [
+  {
+    image: '/images/tecnologia-con-porposito.png',
+    title: 'Tecnología con propósito',
+    description: 'La innovación solo vale si resuelve un problema real.',
+  },
+  {
+    image: '/images/orden-automatizacion.png',
+    title: 'Orden antes que automatización',
+    description: 'No automatizamos el caos; primero diseñamos el orden.',
+  },
+  {
+    image: '/images/eficiencia-humano.png',
+    title: 'Eficiencia con sentido humano',
+    description: 'Empatía en el diseño, precisión en la ejecución.',
+  },
+  {
+    image: '/images/impacto-real.png',
+    title: 'Impacto real',
+    description: 'Medimos nuestro éxito por los resultados tangibles de nuestros clientes.',
+  },
+  {
+    image: '/images/evolucion-constante.png',
+    title: 'Evolución constante',
+    description: 'En la frontera de la IA, el aprendizaje nunca se detiene.',
+  },
+];
+
+const proceso = [
+  {
+    number: '01',
+    title: 'Diagnóstico',
+    description: 'Entendemos tu flujo actual y detectamos cuellos de botella.',
+  },
+  {
+    number: '02',
+    title: 'Orden',
+    description: 'Optimizamos procesos antes de tocar una sola línea de código.',
+  },
+  {
+    number: '03',
+    title: 'Sistematización',
+    description: 'Creamos la infraestructura robusta que soportará la IA.',
+  },
+  {
+    number: '04',
+    title: 'Automatización con IA',
+    description: 'Desplegamos agentes inteligentes que ejecutan y aprenden.',
+  },
+];
+---
+
+<BaseLayout
+  title="Quiénes Somos — VIVE-IA"
+  description="Conocé a Pablo y Luciana Frisardi, fundadores de VIVE-IA. Estrategia, tecnología y propósito para transformar tu negocio."
+>
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!-- 1. HERO                                      -->
+  <!-- ═══════════════════════════════════════════ -->
+  <section class="relative min-h-[560px] flex items-center justify-center overflow-hidden bg-[#0A0A0F]">
+    <!-- Glow de fondo -->
+    <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
+      <div
+        class="w-[700px] h-[700px] rounded-full opacity-10 blur-3xl"
+        style="background: radial-gradient(circle, #7C3AED, transparent);"
+      ></div>
+    </div>
+    <!-- Grid decorativo -->
+    <div
+      class="absolute inset-0 opacity-[0.03]"
+      style="background-image: linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px); background-size: 60px 60px;"
+    ></div>
+
+    <div class="relative z-10 text-center px-4 sm:px-6" data-aos="fade-up">
+      <SectionBadge text="Nuestra historia" />
+      <h1
+        class="text-[clamp(2.8rem,7vw,5.5rem)] font-bold tracking-tight text-white mb-6"
+      >
+        Quiénes Somos
+      </h1>
+      <p class="text-slate-400 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed">
+        Arquitectos de eficiencia. Visionarios de la automatización.<br class="hidden md:block" />
+        Impulsores del potencial humano a través de la IA.
+      </p>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!-- 2. SOMOS VIVE-IA                             -->
+  <!-- ═══════════════════════════════════════════ -->
+  <section class="py-24 px-4 sm:px-6 lg:px-8 bg-[#0D0D14]">
+    <div class="max-w-7xl mx-auto">
+      <div class="grid md:grid-cols-2 gap-16 items-center">
+
+        <div data-aos="fade-right" class="flex flex-col items-center text-center">
+          <SectionBadge text="Nuestra esencia" />
+          <h2 class="text-[clamp(2rem,4vw,3rem)] font-semibold text-white leading-tight mb-6">
+            Somos VIVE-IA
+          </h2>
+          <img
+            src="/images/logo-transparent.png"
+            alt="Logo VIVE-IA"
+            class="mx-auto block h-32 w-auto object-contain mt-6"
+            loading="lazy"
+          />
+        </div>
+
+        <div data-aos="fade-left" data-aos-delay="100">
+          <p class="text-slate-400 text-lg leading-relaxed">
+            Nacimos de la convicción de que la inteligencia artificial no es solo una herramienta
+            tecnológica, sino un catalizador de libertad creativa. En VIVE-IA, transformamos la
+            fricción operativa en fluidez estratégica, permitiendo que las empresas respiren,
+            innoven y crezcan sin las ataduras de las tareas repetitivas.
+          </p>
+          <p class="text-slate-400 text-lg leading-relaxed mt-6">
+            No llegamos con soluciones predefinidas. Escuchamos, entendemos y diseñamos sistemas
+            a medida que resuelven los problemas reales de tu negocio — con tecnología que tiene
+            propósito.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!-- 3. MANIFIESTO                                -->
+  <!-- ═══════════════════════════════════════════ -->
+  <section class="relative py-32 px-4 sm:px-6 overflow-hidden" style="background: #070709;">
+    <!-- Glow central -->
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] rounded-full blur-[120px] pointer-events-none"
+         style="background: radial-gradient(circle, rgba(124,58,237,0.08), transparent 70%);"></div>
+
+    <div class="max-w-4xl mx-auto text-center relative z-10" data-aos="fade-up">
+      <!-- Línea decorativa -->
+      <div class="inline-block w-12 h-px bg-violet-500 mb-12 opacity-60"></div>
+
+      <blockquote class="text-[clamp(1.6rem,4vw,3rem)] font-light italic text-white leading-tight mb-10">
+        "No reemplazamos personas.{' '}
+        <span
+          class="font-bold not-italic"
+          style="background: linear-gradient(135deg, #A855F7 0%, #06B6D4 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;"
+        >
+          Liberamos su potencial.
+        </span>
+        {' '}Nuestra misión es devolverle al humano el tiempo para ser humano, mientras la
+        tecnología se encarga de lo predecible."
+      </blockquote>
+
+      <p class="text-slate-600 text-sm tracking-widest uppercase">Manifiesto VIVE-IA</p>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!-- 4. PROPÓSITO / MISIÓN / VISIÓN               -->
+  <!-- ═══════════════════════════════════════════ -->
+  <section class="py-24 px-4 sm:px-6 lg:px-8 bg-[#0A0A0F]">
+    <div class="max-w-7xl mx-auto">
+      <div class="text-center mb-16" data-aos="fade-up">
+        <SectionBadge text="Lo que nos mueve" />
+        <h2 class="text-[clamp(2rem,4vw,3rem)] font-semibold text-white">
+          Propósito, Misión y Visión
+        </h2>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-6">
+
+        <!-- Propósito -->
+        <div
+          data-aos="fade-up"
+          data-aos-delay="0"
+          class="rounded-2xl bg-[#111118] border border-white/[0.06]
+                 hover:border-violet-600/30 hover:-translate-y-1
+                 transition-all duration-300 backdrop-blur-sm overflow-hidden"
+        >
+          <img src="/images/proposito.png" alt="Propósito VIVE-IA"
+               class="w-full h-28 object-cover rounded-t-xl" loading="lazy" />
+          <div class="p-10">
+            <h3 class="text-white font-bold text-2xl mb-4">Propósito</h3>
+            <p class="text-slate-400 leading-relaxed">
+              Democratizar el acceso a la alta automatización, permitiendo que organizaciones
+              de todo tamaño operen con la eficiencia de los líderes globales.
+            </p>
+          </div>
+        </div>
+
+        <!-- Misión -->
+        <div
+          data-aos="fade-up"
+          data-aos-delay="120"
+          class="rounded-2xl bg-[#111118] border border-white/[0.06]
+                 hover:border-violet-600/30 hover:-translate-y-1
+                 transition-all duration-300 backdrop-blur-sm overflow-hidden"
+        >
+          <img src="/images/mision.png" alt="Misión VIVE-IA"
+               class="w-full h-28 object-cover rounded-t-xl" loading="lazy" />
+          <div class="p-10">
+            <h3 class="text-white font-bold text-2xl mb-4">Misión</h3>
+            <p class="text-slate-400 leading-relaxed">
+              Diseñar e implementar sistemas inteligentes que eliminen el ruido operativo,
+              permitiendo a los líderes enfocarse en lo que realmente importa.
+            </p>
+          </div>
+        </div>
+
+        <!-- Visión -->
+        <div
+          data-aos="fade-up"
+          data-aos-delay="240"
+          class="rounded-2xl bg-[#111118] border border-white/[0.06]
+                 hover:border-violet-600/30 hover:-translate-y-1
+                 transition-all duration-300 backdrop-blur-sm overflow-hidden"
+        >
+          <img src="/images/vision.png" alt="Visión VIVE-IA"
+               class="w-full h-28 object-cover rounded-t-xl" loading="lazy" />
+          <div class="p-10">
+            <h3 class="text-white font-bold text-2xl mb-4">Visión</h3>
+            <p class="text-slate-400 leading-relaxed">
+              Ser el referente indiscutido en la integración ética y eficiente de IA,
+              construyendo un futuro donde el trabajo sea sinónimo de creación.
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!-- 5. VALORES                                   -->
+  <!-- ═══════════════════════════════════════════ -->
+  <section class="py-24 px-4 sm:px-6 lg:px-8 bg-[#0D0D14]">
+    <div class="max-w-7xl mx-auto">
+      <div class="text-center mb-16" data-aos="fade-up">
+        <SectionBadge text="Lo que nos define" />
+        <h2 class="text-[clamp(2rem,4vw,3rem)] font-semibold text-white">
+          Nuestros Valores
+        </h2>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
+        {valores.map((valor, i) => (
+          <div
+            data-aos="fade-up"
+            data-aos-delay={String(i * 80)}
+            class="group p-8 rounded-2xl bg-[#111118] border border-white/[0.06]
+                   hover:border-violet-600/30 hover:bg-[#111118]/80
+                   transition-all duration-300"
+          >
+            <img
+              src={valor.image}
+              alt={valor.title}
+              class="w-16 h-16 object-cover rounded-lg mb-4 group-hover:scale-110 transition-transform duration-300 origin-left"
+              loading="lazy"
+            />
+            <h4 class="text-white font-semibold mb-2 text-sm leading-snug">{valor.title}</h4>
+            <p class="text-slate-500 text-sm leading-relaxed">{valor.description}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!-- 6. PROCESO DIFERENCIAL (horizontal)          -->
+  <!-- ═══════════════════════════════════════════ -->
+  <section class="py-24 px-4 sm:px-6 lg:px-8 bg-[#0A0A0F] overflow-hidden">
+    <div class="max-w-7xl mx-auto">
+      <div class="text-center mb-20" data-aos="fade-up">
+        <SectionBadge text="Nuestro enfoque" />
+        <h2 class="text-[clamp(2rem,4vw,3rem)] font-semibold text-white mb-4">
+          Nuestra Metodología
+        </h2>
+        <p class="text-slate-400 text-lg max-w-xl mx-auto">
+          Un proceso probado que prioriza el orden antes que la tecnología.
+        </p>
+      </div>
+
+      <!-- Pasos horizontales -->
+      <div class="relative">
+        <!-- Línea conectora (desktop) -->
+        <div class="absolute top-8 left-0 right-0 h-px hidden lg:block"
+             style="background: linear-gradient(90deg, transparent 0%, rgba(124,58,237,0.4) 20%, rgba(124,58,237,0.4) 80%, transparent 100%);">
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 relative">
+          {proceso.map((step, i) => (
+            <div
+              data-aos="fade-up"
+              data-aos-delay={String(i * 100)}
+              class="group relative flex flex-col items-center lg:items-start text-center lg:text-left"
+            >
+              <!-- Número -->
+              <div
+                class={`w-16 h-16 rounded-full flex items-center justify-center
+                        border font-bold text-sm mb-6 relative z-10
+                        bg-[#0A0A0F] transition-all duration-300
+                        ${i === 3
+                          ? 'border-violet-400/50 text-violet-400 group-hover:border-violet-400 group-hover:bg-violet-600/10'
+                          : 'border-violet-600/40 text-violet-400 group-hover:border-violet-500 group-hover:bg-violet-600/10'
+                        }`}
+              >
+                {step.number}
+              </div>
+              <h4 class="text-white font-bold text-xl mb-3">{step.title}</h4>
+              <p class="text-slate-400 text-sm leading-relaxed">{step.description}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!-- 7. EQUIPO (bios completas)                   -->
+  <!-- ═══════════════════════════════════════════ -->
+  <section class="py-24 px-4 sm:px-6 lg:px-8 bg-[#0D0D14]">
+    <div class="max-w-7xl mx-auto">
+      <div class="text-center mb-16" data-aos="fade-up">
+        <SectionBadge text="Las personas detrás" />
+        <h2 class="text-[clamp(2rem,4vw,3rem)] font-semibold text-white mb-4">
+          El Equipo
+        </h2>
+        <p class="text-slate-400 text-lg max-w-xl mx-auto">
+          Más de 38 años de experiencia combinada en tecnología y negocios, al servicio de tu crecimiento.
+        </p>
+      </div>
+
+      <div class="flex flex-col gap-6 max-w-4xl mx-auto">
+
+        <!-- Pablo -->
+        <div
+          data-aos="fade-up"
+          class="group flex flex-col sm:flex-row items-center sm:items-start gap-8 p-10 rounded-2xl
+                 bg-[#111118] border border-white/[0.06]
+                 hover:border-violet-600/30 hover:shadow-[0_0_40px_rgba(124,58,237,0.08)]
+                 transition-all duration-300"
+        >
+          <img
+            src="/images/pablo-frisardi.png"
+            alt="Pablo Frisardi, Cofundador VIVE-IA"
+            width="160"
+            height="160"
+            class="w-40 h-40 rounded-full object-cover flex-shrink-0 ring-2 ring-violet-500/30"
+            style="object-position: center 10%;"
+            loading="lazy"
+          />
+          <div class="text-center sm:text-left">
+            <h3 class="text-white font-bold text-2xl mb-1">Pablo Frisardi</h3>
+            <p class="text-violet-400 text-sm font-medium mb-4">Cofundador · IA & Automatización</p>
+            <p class="text-slate-400 text-sm leading-relaxed mb-4">
+              Con más de 20 años en tecnología, Pablo es el arquitecto técnico detrás de cada solución
+              de VIVE-IA. Especialista en inteligencia artificial, automatización de procesos e
+              integración de sistemas complejos, ha liderado proyectos de transformación digital en
+              empresas de múltiples industrias.
+            </p>
+            <p class="text-slate-400 text-sm leading-relaxed">
+              Su enfoque diferencial radica en traducir la complejidad tecnológica en sistemas simples,
+              robustos y escalables. Para Pablo, la mejor automatización es la que nadie nota porque
+              simplemente funciona — 24 horas al día, todos los días.
+            </p>
+          </div>
+        </div>
+
+        <!-- Luciana -->
+        <div
+          data-aos="fade-up"
+          data-aos-delay="100"
+          class="group flex flex-col sm:flex-row items-center sm:items-start gap-8 p-10 rounded-2xl
+                 bg-[#111118] border border-white/[0.06]
+                 hover:border-violet-600/30 hover:shadow-[0_0_40px_rgba(124,58,237,0.08)]
+                 transition-all duration-300"
+        >
+          <img
+            src="/images/luciana-frisardi.jpg"
+            alt="Luciana Frisardi, Cofundadora VIVE-IA"
+            width="160"
+            height="160"
+            class="w-40 h-40 rounded-full object-cover object-top flex-shrink-0 ring-2 ring-violet-500/30"
+            loading="lazy"
+          />
+          <div class="text-center sm:text-left">
+            <h3 class="text-white font-bold text-2xl mb-1">Luciana Frisardi</h3>
+            <p class="text-violet-400 text-sm font-medium mb-4">Cofundadora · Estrategia & Negocios</p>
+            <p class="text-slate-400 text-sm leading-relaxed mb-4">
+              Con más de 18 años asesorando empresas en procesos de transformación y crecimiento
+              estratégico, Luciana es la brújula que conecta la tecnología con los objetivos reales
+              de cada negocio. Su experiencia abarca múltiples industrias, desde pymes hasta
+              organizaciones de mayor escala.
+            </p>
+            <p class="text-slate-400 text-sm leading-relaxed">
+              Su mirada estratégica garantiza que cada automatización no sea solo eficiente, sino
+              que tenga impacto medible en la operación y en los resultados. Luciana asegura que
+              la IA se implemente con propósito, no por moda.
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!-- 8. CTA FINAL                                 -->
+  <!-- ═══════════════════════════════════════════ -->
+  <section class="relative py-28 px-4 sm:px-6 lg:px-8 overflow-hidden text-center"
+           style="background: linear-gradient(135deg, #3b0764 0%, #1e1b4b 40%, #0f172a 100%);">
+    <!-- Glow superior -->
+    <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] rounded-full blur-[100px] pointer-events-none opacity-40"
+         style="background: radial-gradient(circle, rgba(124,58,237,0.6), transparent 70%);"></div>
+
+    <div class="relative z-10 max-w-3xl mx-auto" data-aos="fade-up">
+      <SectionBadge text="Siguiente paso" />
+      <h2 class="text-[clamp(1.8rem,4vw,2.8rem)] font-bold text-white mb-4 mt-2">
+        ¿Tu negocio está listo para automatizar?
+      </h2>
+      <p class="text-slate-300 text-lg mb-10 max-w-xl mx-auto leading-relaxed">
+        Agendá una sesión de diagnóstico y descubrí cómo la IA puede transformar
+        tu operación diaria.
+      </p>
+
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+        <a
+          href="/contacto"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center gap-2 px-8 py-3.5 rounded-lg font-semibold text-white
+                 bg-violet-600 hover:bg-violet-500
+                 shadow-[0_0_20px_rgba(124,58,237,0.4)] hover:shadow-[0_0_30px_rgba(124,58,237,0.6)]
+                 transition-all duration-300"
+        >
+          Agendar diagnóstico gratuito
+        </a>
+        <a
+          href="https://wa.me/5492665258874"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center gap-2 px-8 py-3.5 rounded-lg font-semibold text-white
+                 bg-[#25D366] hover:bg-[#1ebe5a]
+                 transition-all duration-300"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white" class="w-5 h-5">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+          </svg>
+          Escribir por WhatsApp
+        </a>
+      </div>
+    </div>
+  </section>
+
+</BaseLayout>

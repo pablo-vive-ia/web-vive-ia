@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Quiénes Somos | VIVE-IA</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "on-secondary-fixed-variant": "#004e5c",
+              "surface-container": "#1f1f25",
+              "surface-container-low": "#1b1b20",
+              "inverse-primary": "#732ee4",
+              "inverse-surface": "#e4e1e9",
+              "on-surface-variant": "#ccc3d8",
+              "primary-container": "#7c3aed",
+              "on-tertiary": "#4f2500",
+              "tertiary-fixed-dim": "#ffb784",
+              "on-primary-fixed-variant": "#5a00c6",
+              "surface-container-lowest": "#0e0e13",
+              "secondary": "#4cd7f6",
+              "on-background": "#e4e1e9",
+              "surface-dim": "#131318",
+              "primary": "#d2bbff",
+              "on-primary-fixed": "#25005a",
+              "on-surface": "#e4e1e9",
+              "on-error": "#690005",
+              "inverse-on-surface": "#303036",
+              "tertiary-container": "#a15100",
+              "secondary-fixed-dim": "#4cd7f6",
+              "surface-tint": "#d2bbff",
+              "surface-container-highest": "#35343a",
+              "on-tertiary-fixed-variant": "#713700",
+              "primary-fixed": "#eaddff",
+              "tertiary": "#ffb784",
+              "error-container": "#93000a",
+              "primary-fixed-dim": "#d2bbff",
+              "on-primary": "#3f008e",
+              "on-secondary": "#003640",
+              "secondary-fixed": "#acedff",
+              "on-tertiary-fixed": "#301400",
+              "surface-variant": "#35343a",
+              "on-primary-container": "#ede0ff",
+              "on-error-container": "#ffdad6",
+              "surface": "#131318",
+              "outline": "#958da1",
+              "on-tertiary-container": "#ffe0cd",
+              "on-secondary-fixed": "#001f26",
+              "tertiary-fixed": "#ffdcc6",
+              "surface-container-high": "#2a292f",
+              "surface-bright": "#39383e",
+              "error": "#ffb4ab",
+              "background": "#131318",
+              "on-secondary-container": "#00424e",
+              "secondary-container": "#03b5d3",
+              "outline-variant": "#4a4455"
+            },
+            fontFamily: {
+              "headline": ["Inter"],
+              "body": ["Inter"],
+              "label": ["Inter"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        .glass-card {
+            background: rgba(31, 31, 37, 0.4);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(74, 68, 85, 0.2);
+        }
+        .text-glow {
+            text-shadow: 0 0 20px rgba(124, 58, 237, 0.4);
+        }
+        .radial-glow {
+            background: radial-gradient(circle at center, rgba(124, 58, 237, 0.15) 0%, transparent 70%);
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body selection:bg-primary-container/30">
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full z-50 bg-[#131318]/80 backdrop-blur-xl border-b border-white/5 shadow-2xl shadow-black/50">
+<div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+<span class="text-xl font-bold tracking-tight text-white">VIVE-IA</span>
+<div class="hidden md:flex items-center space-x-8">
+<a class="text-white/60 hover:text-white transition-colors" href="#">Inicio</a>
+<a class="text-[#7C3AED] font-medium border-b-2 border-[#7C3AED] pb-1" href="#">Quiénes Somos</a>
+<a class="text-white/60 hover:text-white transition-colors" href="#">Soluciones</a>
+<a class="text-white/60 hover:text-white transition-colors" href="#">Contacto</a>
+</div>
+<button class="bg-primary-container text-on-primary-container px-6 py-2.5 rounded-xl font-medium hover:bg-primary-container/90 active:scale-95 transition-all duration-300">
+                Agendar diagnóstico
+            </button>
+</div>
+</nav>
+<main class="pt-20">
+<!-- 1. Hero Section -->
+<section class="relative min-h-[614px] flex items-center justify-center overflow-hidden">
+<div class="absolute inset-0 radial-glow"></div>
+<div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1639322537228-f710d846310a?q=80&amp;w=2000')] bg-cover bg-center opacity-10" data-alt="Abstract neural network mesh with glowing nodes and interconnected lines on a dark obsidian background"></div>
+<div class="relative z-10 text-center px-6">
+<h1 class="text-6xl md:text-8xl font-bold tracking-tighter text-white mb-6">Quiénes Somos</h1>
+<p class="text-on-surface-variant text-lg md:text-xl max-w-2xl mx-auto">
+                    Arquitectos de eficiencia. Visionarios de la automatización. Impulsores del potencial humano a través de la IA.
+                </p>
+</div>
+</section>
+<!-- 2. Introduction -->
+<section class="py-24 max-w-7xl mx-auto px-6">
+<div class="grid md:grid-cols-2 gap-16 items-center">
+<div>
+<span class="text-secondary font-semibold tracking-widest text-xs uppercase mb-4 block">NUESTRA ESENCIA</span>
+<h2 class="text-4xl md:text-5xl font-bold text-white leading-tight mb-8">Somos VIVE-IA</h2>
+</div>
+<div>
+<p class="text-xl text-on-surface-variant leading-relaxed">
+                        Nacimos de la convicción de que la inteligencia artificial no es solo una herramienta tecnológica, sino un catalizador de libertad creativa. En VIVE-IA, transformamos la fricción operativa en fluidez estratégica, permitiendo que las empresas respiren, innoven y crezcan sin las ataduras de las tareas repetitivas.
+                    </p>
+</div>
+</div>
+</section>
+<!-- 3. Manifesto -->
+<section class="py-32 bg-surface-container-low relative overflow-hidden">
+<div class="max-w-5xl mx-auto px-6 text-center relative z-10">
+<div class="inline-block w-12 h-[1px] bg-primary mb-12"></div>
+<blockquote class="text-3xl md:text-6xl font-light italic text-white leading-tight mb-12">
+                    "No reemplazamos personas. <span class="text-primary font-bold not-italic">Liberamos su potencial.</span> Nuestra misión es devolverle al humano el tiempo para ser humano, mientras la tecnología se encarga de lo predecible."
+                </blockquote>
+<p class="text-on-surface-variant text-lg">Manifiesto VIVE-IA, 2024</p>
+</div>
+<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-primary/5 rounded-full blur-[120px]"></div>
+</section>
+<!-- 4. Purpose/Mission/Vision -->
+<section class="py-24 max-w-7xl mx-auto px-6">
+<div class="grid md:grid-cols-3 gap-8">
+<div class="glass-card p-10 rounded-xl">
+<span class="material-symbols-outlined text-primary mb-6 text-4xl">rocket_launch</span>
+<h3 class="text-2xl font-bold text-white mb-4">Propósito</h3>
+<p class="text-on-surface-variant leading-relaxed">Democratizar el acceso a la alta automatización, permitiendo que organizaciones de todo tamaño operen con la eficiencia de los líderes globales.</p>
+</div>
+<div class="glass-card p-10 rounded-xl">
+<span class="material-symbols-outlined text-secondary mb-6 text-4xl">visibility</span>
+<h3 class="text-2xl font-bold text-white mb-4">Misión</h3>
+<p class="text-on-surface-variant leading-relaxed">Diseñar e implementar sistemas inteligentes que eliminen el ruido operativo, permitiendo a los líderes enfocarse en lo que realmente importa.</p>
+</div>
+<div class="glass-card p-10 rounded-xl">
+<span class="material-symbols-outlined text-tertiary mb-6 text-4xl">auto_awesome</span>
+<h3 class="text-2xl font-bold text-white mb-4">Visión</h3>
+<p class="text-on-surface-variant leading-relaxed">Ser el referente indiscutido en la integración ética y eficiente de IA, construyendo un futuro donde el trabajo sea sinónimo de creación.</p>
+</div>
+</div>
+</section>
+<!-- 5. Values -->
+<section class="py-24 bg-surface-container-lowest">
+<div class="max-w-7xl mx-auto px-6">
+<h2 class="text-3xl font-bold text-white mb-16 text-center">Nuestros Valores</h2>
+<div class="grid grid-cols-1 md:grid-cols-5 gap-4">
+<div class="p-8 border border-white/5 rounded-xl hover:bg-surface-container-high transition-colors group">
+<span class="material-symbols-outlined text-primary mb-4 block group-hover:scale-110 transition-transform" data-weight="fill">bolt</span>
+<h4 class="text-white font-semibold mb-2">Tecnología con propósito</h4>
+<p class="text-on-surface-variant text-sm">La innovación solo vale si resuelve un problema real.</p>
+</div>
+<div class="p-8 border border-white/5 rounded-xl hover:bg-surface-container-high transition-colors group">
+<span class="material-symbols-outlined text-primary mb-4 block group-hover:scale-110 transition-transform">architecture</span>
+<h4 class="text-white font-semibold mb-2">Orden antes que automatización</h4>
+<p class="text-on-surface-variant text-sm">No automatizamos el caos; primero diseñamos el orden.</p>
+</div>
+<div class="p-8 border border-white/5 rounded-xl hover:bg-surface-container-high transition-colors group">
+<span class="material-symbols-outlined text-primary mb-4 block group-hover:scale-110 transition-transform">diversity_3</span>
+<h4 class="text-white font-semibold mb-2">Eficiencia con sentido humano</h4>
+<p class="text-on-surface-variant text-sm">Empatía en el diseño, precisión en la ejecución.</p>
+</div>
+<div class="p-8 border border-white/5 rounded-xl hover:bg-surface-container-high transition-colors group">
+<span class="material-symbols-outlined text-primary mb-4 block group-hover:scale-110 transition-transform">target</span>
+<h4 class="text-white font-semibold mb-2">Impacto real</h4>
+<p class="text-on-surface-variant text-sm">Medimos nuestro éxito por los resultados tangibles de nuestros clientes.</p>
+</div>
+<div class="p-8 border border-white/5 rounded-xl hover:bg-surface-container-high transition-colors group">
+<span class="material-symbols-outlined text-primary mb-4 block group-hover:scale-110 transition-transform">sync</span>
+<h4 class="text-white font-semibold mb-2">Evolución constante</h4>
+<p class="text-on-surface-variant text-sm">En la frontera de la IA, el aprendizaje nunca se detiene.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- 6. Process -->
+<section class="py-24 max-w-7xl mx-auto px-6 overflow-hidden">
+<h2 class="text-3xl font-bold text-white mb-20">Nuestra Metodología</h2>
+<div class="relative">
+<div class="absolute top-8 left-0 w-full h-[2px] bg-gradient-to-r from-primary to-secondary opacity-20 hidden md:block"></div>
+<div class="grid md:grid-cols-4 gap-12 relative">
+<div class="relative group">
+<div class="w-16 h-16 bg-surface-container rounded-full flex items-center justify-center border border-primary/30 mb-6 group-hover:border-primary transition-colors">
+<span class="text-primary font-bold">01</span>
+</div>
+<h4 class="text-xl font-bold text-white mb-2">Diagnóstico</h4>
+<p class="text-on-surface-variant text-sm">Entendemos tu flujo actual y detectamos cuellos de botella.</p>
+</div>
+<div class="relative group">
+<div class="w-16 h-16 bg-surface-container rounded-full flex items-center justify-center border border-primary/30 mb-6 group-hover:border-primary transition-colors">
+<span class="text-primary font-bold">02</span>
+</div>
+<h4 class="text-xl font-bold text-white mb-2">Orden</h4>
+<p class="text-on-surface-variant text-sm">Optimizamos procesos antes de tocar una sola línea de código.</p>
+</div>
+<div class="relative group">
+<div class="w-16 h-16 bg-surface-container rounded-full flex items-center justify-center border border-primary/30 mb-6 group-hover:border-primary transition-colors">
+<span class="text-primary font-bold">03</span>
+</div>
+<h4 class="text-xl font-bold text-white mb-2">Sistematización</h4>
+<p class="text-on-surface-variant text-sm">Creamos la infraestructura robusta que soportará la IA.</p>
+</div>
+<div class="relative group">
+<div class="w-16 h-16 bg-surface-container rounded-full flex items-center justify-center border border-secondary/30 mb-6 group-hover:border-secondary transition-colors">
+<span class="text-secondary font-bold">04</span>
+</div>
+<h4 class="text-xl font-bold text-white mb-2">Automatización con IA</h4>
+<p class="text-on-surface-variant text-sm">Desplegamos agentes inteligentes que ejecutan y aprenden.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- 7. Team Profiles -->
+<section class="py-24 bg-surface-container-low">
+<div class="max-w-7xl mx-auto px-6">
+<h2 class="text-4xl font-bold text-white mb-16">El Equipo</h2>
+<div class="grid md:grid-cols-2 gap-12">
+<div class="glass-card rounded-2xl overflow-hidden group">
+<div class="h-96 overflow-hidden relative">
+<img alt="Luciana Frisardi" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700" data-alt="Professional portrait of Luciana Frisardi, a confident female executive with a warm smile, wearing a dark blazer in a minimalist office setting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAYAroGWG2TZ6dHMHJDIDs2Rtx4A3I_q3t5Pq-VrMMNbT5WTksZJir4agJvhENkLeZuVCtqUS3EmFYjOKKZoIw1ORreO7_DrClJhwQcTmichM4LZuVZ7M21ezIZoqucf2Wq500AeltQ4tQLsfQYMDIlQ6b9hmhAwhppTdjl3FjuA4o2bRP0SUvyxLjhikEsZRqhT-vNiupYCQi_beVOGJqgKSZARBgxUZkyuHogXk4kL7VGzqy3w3V8NeLgO_-x_8ivdkRrYZ2f6JP2"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface-container to-transparent opacity-60"></div>
+</div>
+<div class="p-10">
+<h3 class="text-3xl font-bold text-white mb-2">Luciana Frisardi</h3>
+<p class="text-primary font-medium mb-6">Founder &amp; Strategy Lead</p>
+<p class="text-on-surface-variant leading-relaxed mb-6">
+                                Visionaria con más de 12 años de experiencia en transformación digital. Luciana lidera la intersección entre los objetivos de negocio y las capacidades de la IA, asegurando que cada automatización genere un valor estratégico medible.
+                            </p>
+<div class="flex gap-4">
+<a class="text-white/40 hover:text-white transition-colors" href="#">LinkedIn</a>
+</div>
+</div>
+</div>
+<div class="glass-card rounded-2xl overflow-hidden group">
+<div class="h-96 overflow-hidden relative">
+<img alt="Pablo Frisardi" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700" data-alt="Professional portrait of Pablo Frisardi, a technical male architect with a focused expression, wearing a navy sweater in a modern high-tech workspace" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC96bzDvtfmCFxGWFElMXwjNJz72TO9hVEVy7HTpEaYHYcY84jtUdikPKqtaDS6WMN2v9Id3Xa0cemft2e7NCFlOxEQPZ7V7H-Wwdg9TEMBE3RbVGYGT4KtXWozbxjq4L2-AaLinVnfoSYFMhwpLq6oxF20XJVSuTfQX4LvaVanrtXoH5Lvze59MXc5vgiZFpxsSwoitAl6CSuBnt6FJQaG_mDV3s9dr_w2W6rEV36RClIeTIpV1KrdMONJ_mN6JThfCimn0uHrJsNq"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface-container to-transparent opacity-60"></div>
+</div>
+<div class="p-10">
+<h3 class="text-3xl font-bold text-white mb-2">Pablo Frisardi</h3>
+<p class="text-secondary font-medium mb-6">Technical Architect</p>
+<p class="text-on-surface-variant leading-relaxed mb-6">
+                                El motor técnico detrás de VIVE-IA. Especialista en arquitecturas de datos escalables y LLMs personalizados. Pablo transforma desafíos tecnológicos complejos en sistemas invisibles y eficientes que funcionan 24/7.
+                            </p>
+<div class="flex gap-4">
+<a class="text-white/40 hover:text-white transition-colors" href="#">LinkedIn</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- 8. Final CTA -->
+<section class="py-24 px-6">
+<div class="max-w-5xl mx-auto glass-card rounded-[2rem] p-12 md:p-20 text-center relative overflow-hidden">
+<div class="absolute -top-24 -right-24 w-64 h-64 bg-primary-container/30 rounded-full blur-[80px]"></div>
+<div class="absolute -bottom-24 -left-24 w-64 h-64 bg-secondary/20 rounded-full blur-[80px]"></div>
+<div class="relative z-10">
+<h2 class="text-4xl md:text-5xl font-bold text-white mb-8">¿Tu negocio está listo para automatizar?</h2>
+<p class="text-on-surface-variant text-lg mb-12 max-w-2xl mx-auto">
+                        Agenda una sesión de diagnóstico inicial y descubre cómo la IA puede transformar tu operativa diaria.
+                    </p>
+<div class="flex flex-col md:flex-row items-center justify-center gap-4">
+<button class="w-full md:w-auto bg-primary-container text-on-primary-container px-10 py-4 rounded-xl font-bold hover:scale-105 transition-transform duration-300">
+                            Agendar diagnóstico
+                        </button>
+<button class="w-full md:w-auto border border-outline-variant text-white px-10 py-4 rounded-xl font-bold hover:bg-white/5 transition-colors">
+                            Escribir por WhatsApp
+                        </button>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-[#131318] w-full py-16 border-t border-white/5">
+<div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-12 font-['Inter'] text-sm leading-relaxed">
+<div class="col-span-1 md:col-span-1">
+<span class="text-lg font-bold text-white mb-4 block">VIVE-IA</span>
+<p class="text-white/40 mb-6">Elevando el potencial humano mediante automatización inteligente.</p>
+</div>
+<div>
+<h4 class="text-white font-semibold mb-6">Empresa</h4>
+<div class="flex flex-col space-y-4">
+<a class="text-white/40 hover:text-white transition-colors" href="#">Inicio</a>
+<a class="text-[#7C3AED]" href="#">Quiénes Somos</a>
+<a class="text-white/40 hover:text-white transition-colors" href="#">Soluciones</a>
+</div>
+</div>
+<div>
+<h4 class="text-white font-semibold mb-6">Legal</h4>
+<div class="flex flex-col space-y-4">
+<a class="text-white/40 hover:text-white transition-colors" href="#">Privacidad</a>
+<a class="text-white/40 hover:text-white transition-colors" href="#">Términos</a>
+</div>
+</div>
+<div>
+<h4 class="text-white font-semibold mb-6">Contacto</h4>
+<p class="text-white/40 mb-4">hola@vive-ia.com</p>
+<div class="flex space-x-4">
+<!-- Social icons would go here -->
+</div>
+</div>
+</div>
+<div class="max-w-7xl mx-auto px-6 pt-12 mt-12 border-t border-white/5 text-white/40 text-center">
+            © 2024 VIVE-IA. Todos los derechos reservados.
+        </div>
+</footer>
+<!-- WhatsApp FAB -->
+<a class="fixed bottom-8 right-8 z-50 w-14 h-14 bg-[#25D366] text-white rounded-full flex items-center justify-center shadow-2xl hover:scale-110 active:scale-95 transition-all duration-300" href="#">
+<svg class="w-7 h-7" fill="currentColor" viewbox="0 0 24 24">
+<path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L0 24l6.335-1.662c1.72.937 3.659 1.432 5.628 1.433h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"></path>
+</svg>
+</a>
+</body></html>

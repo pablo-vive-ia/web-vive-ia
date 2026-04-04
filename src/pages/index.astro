@@ -1,0 +1,766 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SectionBadge from '../components/SectionBadge.astro';
+import MetricCounter from '../components/MetricCounter.astro';
+import StepCard from '../components/StepCard.astro';
+
+const painPoints = [
+  'Respondés las mismas preguntas una y otra vez',
+  'Tus procesos dependen de personas clave que no pueden fallar',
+  'Perdés leads por falta de seguimiento a tiempo',
+  'Tu equipo gasta horas en tareas manuales y repetitivas',
+  'No tenés visibilidad en tiempo real de lo que pasa en tu negocio',
+  'El crecimiento genera más trabajo en vez de más libertad',
+];
+
+const steps = [
+  {
+    number: '01',
+    title: 'Diagnóstico',
+    description:
+      'Analizamos tu negocio en profundidad: procesos actuales, herramientas, cuellos de botella y oportunidades reales de automatización.',
+  },
+  {
+    number: '02',
+    title: 'Orden',
+    description:
+      'Antes de automatizar, ordenamos. Documentamos tus flujos, eliminamos ineficiencias y establecemos las bases del sistema.',
+  },
+  {
+    number: '03',
+    title: 'Sistematización',
+    description:
+      'Convertimos tus procesos en sistemas replicables: procedimientos claros, herramientas conectadas y equipos alineados.',
+  },
+  {
+    number: '04',
+    title: 'Automatización con IA',
+    description:
+      'Incorporamos agentes de inteligencia artificial que ejecutan tareas, responden, siguen y escalan tu operación sin intervención manual.',
+  },
+];
+
+const services = [
+  {
+    image: '/images/atencion-cliente.png',
+    title: 'Agentes de Atención al Cliente',
+    description:
+      'Respondé consultas las 24 horas, 7 días a la semana. Tus clientes siempre atendidos, sin aumentar tu equipo.',
+  },
+  {
+    image: '/images/ventas.png',
+    title: 'Agentes de Ventas',
+    description:
+      'Calificá leads, hacé seguimiento automatizado y convertí más oportunidades sin intervención manual.',
+  },
+  {
+    image: '/images/automatizacion.png',
+    title: 'Automatización de Procesos',
+    description:
+      'Eliminá las tareas repetitivas de tu operación. Tus procesos internos funcionando solos, sin errores humanos.',
+  },
+  {
+    image: '/images/integracion.png',
+    title: 'Integración de Sistemas',
+    description:
+      'Conectamos tus herramientas existentes para que trabajen juntas: CRM, e-commerce, formularios, WhatsApp y más.',
+  },
+  {
+    image: '/images/reportes.png',
+    title: 'Reportes y Análisis Automáticos',
+    description:
+      'Generá reportes de tu negocio en forma automática. Datos actualizados en tiempo real para decidir más rápido.',
+  },
+  {
+    image: '/images/e-commerce.png',
+    title: 'Agentes para E-commerce',
+    description:
+      'Recuperá carritos abandonados, gestioná consultas de productos y mejorá la experiencia post-compra.',
+    href: '/soluciones/ecommerce',
+  },
+  {
+    image: '/images/mentores.png',
+    title: 'Agentes para Mentores',
+    description:
+      'Escalá tu marca personal con IA. Automatizá la captación, el onboarding y el seguimiento de tus alumnos.',
+    href: '/soluciones/mentores-marcas-personales',
+  },
+];
+
+const benefits = [
+  'Tu equipo se enfoca en lo estratégico, no en lo operativo',
+  'Atención al cliente 24/7 sin aumentar costos',
+  'Procesos consistentes, sin errores y escalables',
+  'Seguimiento automático de leads y oportunidades',
+  'Integración con las herramientas que ya usás',
+  'Métricas y visibilidad en tiempo real',
+];
+
+const beforePoints = [
+  'Equipo desbordado de tareas repetitivas',
+  'Leads que se pierden por falta de seguimiento',
+  'Procesos que dependen de personas específicas',
+  'Atención al cliente limitada al horario laboral',
+  'Crecimiento que genera más caos, no más orden',
+];
+
+const afterPoints = [
+  'Equipo enfocado en lo que realmente genera valor',
+  'Seguimiento automático y sin fisuras de cada lead',
+  'Procesos documentados, automatizados y escalables',
+  'Atención disponible las 24 horas, todos los días',
+  'Crecimiento ordenado, predecible y sostenible',
+];
+---
+
+<BaseLayout
+  title="VIVE-IA — Automatizá tu negocio con Inteligencia Artificial"
+  description="Ordenamos, estructuramos y automatizamos tus procesos para que tu empresa crezca sin caos. Agencia IA en Argentina."
+>
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!-- 1. HERO                                      -->
+  <!-- ═══════════════════════════════════════════ -->
+  <section class="relative min-h-[92vh] flex items-center overflow-hidden">
+    <!-- Video de fondo -->
+    <div class="absolute inset-0 overflow-hidden z-0">
+      <iframe
+        src="https://www.youtube.com/embed/omr91fMMxk4?autoplay=1&mute=1&loop=1&playlist=omr91fMMxk4&controls=0&showinfo=0&rel=0&modestbranding=1&playsinline=1"
+        allow="autoplay; encrypted-media"
+        allowfullscreen
+        title="VIVE-IA video presentación"
+        class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2
+               pointer-events-none border-none"
+        style="width:100vw; height:56.25vw; min-height:100vh; min-width:177.77vh;"
+      ></iframe>
+    </div>
+
+    <!-- Overlay oscuro degradado -->
+    <div
+      class="absolute inset-0 z-10"
+      style="background: linear-gradient(135deg, rgba(10,10,15,0.88) 0%, rgba(10,10,15,0.72) 50%, rgba(10,10,15,0.88) 100%);"
+    ></div>
+
+    <!-- Partículas decorativas -->
+    <div class="absolute top-20 right-20 w-72 h-72 rounded-full opacity-10 blur-3xl z-10"
+         style="background: radial-gradient(circle, #7C3AED, transparent);"></div>
+    <div class="absolute bottom-20 left-10 w-56 h-56 rounded-full opacity-8 blur-3xl z-10"
+         style="background: radial-gradient(circle, #06B6D4, transparent);"></div>
+
+    <!-- Contenido hero -->
+    <div class="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full py-20">
+      <div class="max-w-3xl">
+        <div data-aos="fade-up">
+          <SectionBadge text="Agencia de IA en Argentina 🇦🇷" />
+        </div>
+
+        <h1
+          data-aos="fade-up"
+          data-aos-delay="100"
+          class="text-[clamp(2.5rem,6vw,5rem)] font-bold leading-[1.1] mb-6"
+          style="background: linear-gradient(135deg, #F8FAFC 0%, #A855F7 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;"
+        >
+          Automatizá tu negocio con inteligencia artificial
+        </h1>
+
+        <p
+          data-aos="fade-up"
+          data-aos-delay="200"
+          class="text-slate-300 text-xl leading-relaxed mb-10 max-w-xl"
+        >
+          Ordenamos, estructuramos y automatizamos tus procesos para que puedas crecer sin caos.
+        </p>
+
+        <div
+          data-aos="fade-up"
+          data-aos-delay="300"
+          class="flex flex-col sm:flex-row gap-4"
+        >
+          <a
+            href="/contacto"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center justify-center gap-2 px-7 py-4 rounded-lg font-semibold text-base
+                   bg-violet-600 hover:bg-violet-500 text-white
+                   shadow-[0_0_30px_rgba(124,58,237,0.4)] hover:shadow-[0_0_45px_rgba(124,58,237,0.6)]
+                   transition-all duration-300"
+          >
+            Agendar diagnóstico gratuito
+            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+            </svg>
+          </a>
+          <a
+            href="https://wa.me/5492665258874"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center justify-center gap-2 px-7 py-4 rounded-lg font-semibold text-base
+                   bg-[#25D366] hover:bg-[#1ebe5a] text-white
+                   transition-all duration-300"
+          >
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+            </svg>
+            Escribinos por WhatsApp
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Flecha scroll -->
+    <div class="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 animate-bounce">
+      <svg class="w-6 h-6 text-slate-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+      </svg>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!-- BANDA ESLÓGANES (ticker)                     -->
+  <!-- ═══════════════════════════════════════════ -->
+  <div
+    class="py-5 overflow-hidden"
+    style="background: linear-gradient(90deg, #0A0A0F 0%, #1A1A28 50%, #0A0A0F 100%); border-top:1px solid rgba(255,255,255,0.06); border-bottom:1px solid rgba(255,255,255,0.06);"
+  >
+    <div class="flex items-center" style="width: max-content; animation: ticker 35s linear infinite;">
+      <!-- Copia 1 -->
+      <div class="flex items-center gap-8 text-xl font-medium italic pr-24">
+        <span style="color:#A855F7;">✦</span>
+        <span class="text-white">VIVE la IA con propósito.</span>
+        <span style="color:#A855F7;" class="text-2xl">·</span>
+        <span style="color:#A855F7;">✦</span>
+        <span class="text-white">VIVE la transformación de tu negocio.</span>
+        <span style="color:#A855F7;" class="text-2xl">·</span>
+        <span style="color:#A855F7;">✦</span>
+        <span class="text-white">VIVE lo que tu empresa puede ser.</span>
+        <span style="color:#A855F7;" class="text-2xl">·</span>
+      </div>
+      <!-- Copia 2 (para loop sin corte) -->
+      <div class="flex items-center gap-8 text-xl font-medium italic pr-24">
+        <span style="color:#A855F7;">✦</span>
+        <span class="text-white">VIVE la IA con propósito.</span>
+        <span style="color:#A855F7;" class="text-2xl">·</span>
+        <span style="color:#A855F7;">✦</span>
+        <span class="text-white">VIVE la transformación de tu negocio.</span>
+        <span style="color:#A855F7;" class="text-2xl">·</span>
+        <span style="color:#A855F7;">✦</span>
+        <span class="text-white">VIVE lo que tu empresa puede ser.</span>
+        <span style="color:#A855F7;" class="text-2xl">·</span>
+      </div>
+    </div>
+  </div>
+
+  <style>
+    @keyframes ticker {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+  </style>
+
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!-- 2. PROBLEMA                                  -->
+  <!-- ═══════════════════════════════════════════ -->
+  <section class="py-24 px-4 sm:px-6 lg:px-8 bg-[#0A0A0F]">
+    <div class="max-w-7xl mx-auto">
+      <div class="max-w-2xl mx-auto text-center mb-16" data-aos="fade-up">
+        <SectionBadge text="¿Te suena familiar?" />
+        <h2 class="text-[clamp(2rem,4vw,3rem)] font-semibold text-white mb-4">
+          Si tu negocio crece…<br />
+          <span class="text-slate-400">¿también crece el caos?</span>
+        </h2>
+        <p class="text-slate-400 text-lg">
+          La mayoría de los negocios que escalan sin automatización terminan atrapados en su propio crecimiento.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-4xl mx-auto">
+        {painPoints.map((point, i) => (
+          <div
+            data-aos="fade-up"
+            data-aos-delay={String(i * 80)}
+            class="flex items-start gap-4 p-5 rounded-xl bg-[#111118] border border-white/[0.06]
+                   hover:border-red-500/20 transition-colors duration-300"
+          >
+            <span class="text-xl flex-shrink-0 mt-0.5">❌</span>
+            <p class="text-slate-300 text-sm leading-relaxed">{point}</p>
+          </div>
+        ))}
+      </div>
+
+      <!-- Cierre -->
+      <div class="text-center mt-16" data-aos="fade-up">
+        <p class="text-white text-2xl font-bold">
+          No te faltan clientes. Te falta estructura.
+        </p>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!-- 3. PROCESO (4 pasos)                         -->
+  <!-- ═══════════════════════════════════════════ -->
+  <section class="py-24 px-4 sm:px-6 lg:px-8 bg-[#0D0D14]">
+    <div class="max-w-7xl mx-auto">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
+
+        <!-- Texto izquierda -->
+        <div data-aos="fade-right">
+          <SectionBadge text="Nuestro enfoque" />
+          <h2 class="text-[clamp(2rem,4vw,3rem)] font-semibold text-white mb-6">
+            Transformamos tu operación<br />
+            <span style="background: linear-gradient(135deg, #A855F7 0%, #06B6D4 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">
+              en un sistema eficiente
+            </span>
+          </h2>
+          <p class="text-slate-400 text-lg leading-relaxed mb-8">
+            No tiramos tecnología al problema. Primero entendemos tu negocio, luego diseñamos la solución correcta y la implementamos sin interrumpir tu operación.
+          </p>
+          <a
+            href="/contacto"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 px-6 py-3 rounded-lg font-semibold
+                   border border-violet-600/60 text-violet-400 hover:bg-violet-600/10
+                   transition-all duration-300"
+          >
+            Empezar el diagnóstico
+          </a>
+        </div>
+
+        <!-- Steps derecha -->
+        <div data-aos="fade-left" data-aos-delay="100">
+          {steps.map((step, i) => (
+            <StepCard
+              number={step.number}
+              title={step.title}
+              description={step.description}
+              isLast={i === steps.length - 1}
+            />
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!-- 4. SERVICIOS (grid de cards)                 -->
+  <!-- ═══════════════════════════════════════════ -->
+  <section class="py-24 px-4 sm:px-6 lg:px-8 bg-[#0A0A0F]">
+    <div class="max-w-7xl mx-auto">
+      <div class="text-center mb-16" data-aos="fade-up">
+        <SectionBadge text="Servicios" />
+        <h2 class="text-[clamp(2rem,4vw,3rem)] font-semibold text-white mb-4">
+          Soluciones inteligentes para<br />negocios que quieren crecer
+        </h2>
+        <p class="text-slate-400 text-lg max-w-xl mx-auto">
+          Cada solución está adaptada a las necesidades reales de tu negocio, no a una plantilla genérica.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        {services.map((service, i) => (
+          service.href ? (
+            <a
+              href={service.href}
+              data-aos="fade-up"
+              data-aos-delay={String((i % 3) * 100)}
+              class={`group rounded-2xl bg-[#111118] border border-violet-600/20
+                     hover:border-violet-600/50 hover:-translate-y-1
+                     transition-all duration-300 backdrop-blur-sm overflow-hidden
+                     shadow-[0_0_20px_rgba(124,58,237,0.05)] hover:shadow-[0_0_30px_rgba(124,58,237,0.15)]`}
+            >
+              <img
+                src={service.image}
+                alt={service.title}
+                class="w-full h-24 object-cover rounded-t-xl"
+                loading="lazy"
+              />
+              <div class="p-6">
+                <h3 class="text-white font-semibold text-lg mb-3">
+                  {service.title}
+                </h3>
+                <p class="text-slate-400 text-sm leading-relaxed mb-4">{service.description}</p>
+                <span class="inline-flex items-center gap-1 text-violet-400 text-xs font-medium group-hover:gap-2 transition-all duration-300">
+                  Ver solución
+                  <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                  </svg>
+                </span>
+              </div>
+            </a>
+          ) : (
+            <div
+              data-aos="fade-up"
+              data-aos-delay={String((i % 3) * 100)}
+              class="group rounded-2xl bg-[#111118] border border-white/[0.06]
+                     hover:border-violet-600/30 hover:-translate-y-1
+                     transition-all duration-300 backdrop-blur-sm overflow-hidden"
+            >
+              <img
+                src={service.image}
+                alt={service.title}
+                class="w-full h-24 object-cover rounded-t-xl"
+                loading="lazy"
+              />
+              <div class="p-6">
+                <h3 class="text-white font-semibold text-lg mb-3">
+                  {service.title}
+                </h3>
+                <p class="text-slate-400 text-sm leading-relaxed">{service.description}</p>
+              </div>
+            </div>
+          )
+        ))}
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!-- 5. RESULTADOS + MÉTRICAS ANIMADAS            -->
+  <!-- ═══════════════════════════════════════════ -->
+  <section class="py-24 px-4 sm:px-6 lg:px-8 bg-[#0D0D14]">
+    <div class="max-w-7xl mx-auto">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+
+        <!-- Beneficios checklist -->
+        <div data-aos="fade-right">
+          <SectionBadge text="Resultados" />
+          <h2 class="text-[clamp(2rem,4vw,3rem)] font-semibold text-white mb-10">
+            Lo que cambia cuando automatizás bien
+          </h2>
+          <ul class="space-y-4">
+            {benefits.map((benefit, i) => (
+              <li
+                data-aos="fade-right"
+                data-aos-delay={String(i * 80)}
+                class="flex items-start gap-3"
+              >
+                <span class="flex-shrink-0 w-6 h-6 rounded-full bg-violet-600/20 border border-violet-600/40
+                             flex items-center justify-center mt-0.5">
+                  <svg class="w-3.5 h-3.5 text-violet-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                  </svg>
+                </span>
+                <span class="text-slate-300 text-sm leading-relaxed">{benefit}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <!-- Métricas animadas -->
+        <div data-aos="fade-left" data-aos-delay="100">
+          <div class="grid grid-cols-2 gap-6">
+            <div class="p-6 rounded-2xl bg-[#111118] border border-white/[0.06] text-center
+                        hover:border-violet-600/20 transition-colors duration-300">
+              <MetricCounter value={1150} prefix="+" suffix="%" label="ROI E-commerce" />
+            </div>
+            <div class="p-6 rounded-2xl bg-[#111118] border border-white/[0.06] text-center
+                        hover:border-violet-600/20 transition-colors duration-300">
+              <MetricCounter value={400} prefix="+" suffix="%" label="ROI Mentores" />
+            </div>
+            <div class="p-6 rounded-2xl bg-[#111118] border border-white/[0.06] text-center
+                        hover:border-violet-600/20 transition-colors duration-300">
+              <MetricCounter value={24} suffix="/7" label="Disponibilidad" />
+            </div>
+            <div class="p-6 rounded-2xl bg-[#111118] border border-white/[0.06] text-center
+                        hover:border-violet-600/20 transition-colors duration-300">
+              <MetricCounter value={6} suffix="hrs" label="Liberadas por semana" />
+            </div>
+          </div>
+
+          <!-- Aclaración -->
+          <p class="text-slate-600 text-xs text-center mt-4">
+            Resultados promedio observados en implementaciones con clientes.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!-- 6. DIFERENCIAL — Antes / Después             -->
+  <!-- ═══════════════════════════════════════════ -->
+  <section class="py-24 px-4 sm:px-6 lg:px-8 bg-[#0A0A0F]">
+    <div class="max-w-7xl mx-auto">
+      <div class="text-center mb-16" data-aos="fade-up">
+        <SectionBadge text="¿Por qué VIVE-IA?" />
+        <h2 class="text-[clamp(2rem,4vw,3rem)] font-semibold text-white mb-4">
+          No automatizamos caos
+        </h2>
+        <p class="text-slate-400 text-lg max-w-2xl mx-auto">
+          Antes de agregar tecnología, ordenamos tus procesos. Una automatización mal diseñada solo acelera el desorden.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+
+        <!-- Antes -->
+        <div data-aos="fade-right" class="p-8 rounded-2xl bg-[#111118] border border-red-900/30">
+          <div class="flex items-center gap-3 mb-6">
+            <span class="w-8 h-8 rounded-full bg-red-900/30 flex items-center justify-center text-red-400 text-sm font-bold">✗</span>
+            <h3 class="text-red-400 font-semibold text-lg">Sin VIVE-IA</h3>
+          </div>
+          <ul class="space-y-3">
+            {beforePoints.map((point) => (
+              <li class="flex items-start gap-3 text-sm text-slate-400">
+                <span class="text-red-500/60 mt-1 flex-shrink-0">—</span>
+                {point}
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <!-- Después -->
+        <div data-aos="fade-left" data-aos-delay="100"
+             class="p-8 rounded-2xl bg-[#111118] border border-violet-600/30
+                    shadow-[0_0_40px_rgba(124,58,237,0.08)]">
+          <div class="flex items-center gap-3 mb-6">
+            <span class="w-8 h-8 rounded-full bg-violet-600/20 flex items-center justify-center text-violet-400 text-sm font-bold">✓</span>
+            <h3 class="text-violet-400 font-semibold text-lg">Con VIVE-IA</h3>
+          </div>
+          <ul class="space-y-3">
+            {afterPoints.map((point) => (
+              <li class="flex items-start gap-3 text-sm text-slate-300">
+                <svg class="w-4 h-4 text-violet-500 mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                </svg>
+                {point}
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!-- 7. FILOSOFÍA                                 -->
+  <!-- ═══════════════════════════════════════════ -->
+  <section class="py-24 px-4 sm:px-6 lg:px-8 bg-[#0D0D14] relative overflow-hidden">
+    <!-- Fondo decorativo -->
+    <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
+      <div class="w-[600px] h-[600px] rounded-full opacity-5 blur-3xl"
+           style="background: radial-gradient(circle, #7C3AED, transparent);"></div>
+    </div>
+
+    <div class="max-w-4xl mx-auto text-center relative z-10" data-aos="fade-up">
+      <SectionBadge text="Nuestra filosofía" />
+      <h2 class="text-[clamp(2rem,4vw,3rem)] font-semibold text-white mb-6">
+        Tecnología con propósito
+      </h2>
+      <p class="text-slate-400 text-lg leading-relaxed max-w-2xl mx-auto mb-4">
+        Creemos que la tecnología, cuando se aplica bien, multiplica el talento humano. No automatizamos por automatizar: lo hacemos para que vos y tu equipo puedan dedicarse a lo que realmente importa.
+      </p>
+      <p class="text-white text-lg font-bold mb-12">
+        No reemplazamos personas. Liberamos su potencial.
+      </p>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-left">
+        {[
+          {
+            image: '/images/primero-orden.png',
+            title: 'Primero, el orden',
+            body: 'No automatizamos procesos rotos. Antes de implementar, entendemos tu negocio y lo estructuramos correctamente.',
+          },
+          {
+            image: '/images/siempre-a-medida.png',
+            title: 'Siempre a medida',
+            body: 'No usamos plantillas. Cada solución es diseñada específicamente para tu industria, tu equipo y tus objetivos.',
+          },
+          {
+            image: '/images/crecimiento-sostenible.png',
+            title: 'Crecimiento sostenible',
+            body: 'Construimos sistemas que escalan con vos. No soluciones de parche, sino infraestructura que dura.',
+          },
+        ].map((pillar, i) => (
+          <div
+            data-aos="fade-up"
+            data-aos-delay={String(i * 120)}
+            class="rounded-2xl bg-[#111118] border border-white/[0.06]
+                   hover:border-violet-600/20 transition-colors duration-300 overflow-hidden"
+          >
+            <img
+              src={pillar.image}
+              alt={pillar.title}
+              class="w-full h-24 object-cover rounded-t-xl"
+              loading="lazy"
+            />
+            <div class="p-6">
+              <h3 class="text-white font-semibold mb-3">{pillar.title}</h3>
+              <p class="text-slate-400 text-sm leading-relaxed">{pillar.body}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!-- 8. QUIÉNES SOMOS (resumido)                  -->
+  <!-- ═══════════════════════════════════════════ -->
+  <section class="py-24 px-4 sm:px-6 lg:px-8 bg-[#0A0A0F]">
+    <div class="max-w-7xl mx-auto">
+      <div class="text-center mb-16" data-aos="fade-up">
+        <SectionBadge text="El equipo" />
+        <h2 class="text-[clamp(2rem,4vw,3rem)] font-semibold text-white mb-4">
+          Estrategia y tecnología,<br />en el mismo equipo
+        </h2>
+        <p class="text-slate-400 text-lg max-w-xl mx-auto">
+          VIVE-IA nació de la combinación de más de 38 años de experiencia acumulada en tecnología y negocios.
+        </p>
+      </div>
+
+      <div class="flex flex-col gap-6 max-w-4xl mx-auto">
+        <!-- Pablo -->
+        <div
+          data-aos="fade-up"
+          class="group flex flex-col sm:flex-row items-center sm:items-start gap-6 p-10 rounded-2xl
+                 bg-[#111118] border border-white/[0.06]
+                 hover:border-violet-600/30 hover:shadow-[0_0_30px_rgba(124,58,237,0.08)]
+                 transition-all duration-300"
+        >
+          <img
+            src="/images/pablo-frisardi.png"
+            alt="Pablo Frisardi"
+            width="128"
+            height="128"
+            class="w-40 h-40 rounded-full object-cover flex-shrink-0 ring-2 ring-violet-500/30"
+            style="object-position: center 10%;"
+            loading="lazy"
+          />
+          <div class="text-center sm:text-left">
+            <h3 class="text-white font-semibold text-xl mb-1">Pablo Frisardi</h3>
+            <p class="text-violet-400 text-sm font-medium mb-3">Cofundador · IA & Automatización</p>
+            <p class="text-slate-400 text-sm leading-relaxed">
+              +20 años en tecnología. Especialista en inteligencia artificial, automatización de procesos e integración de sistemas. Transforma problemas complejos en soluciones simples y escalables.
+            </p>
+          </div>
+        </div>
+
+        <!-- Luciana -->
+        <div
+          data-aos="fade-up"
+          data-aos-delay="100"
+          class="group flex flex-col sm:flex-row items-center sm:items-start gap-6 p-10 rounded-2xl
+                 bg-[#111118] border border-white/[0.06]
+                 hover:border-violet-600/30 hover:shadow-[0_0_30px_rgba(124,58,237,0.08)]
+                 transition-all duration-300"
+        >
+          <img
+            src="/images/luciana-frisardi.jpg"
+            alt="Luciana Frisardi"
+            width="128"
+            height="128"
+            class="w-40 h-40 rounded-full object-cover object-top flex-shrink-0
+                   ring-2 ring-violet-500/30"
+            loading="lazy"
+          />
+          <div class="text-center sm:text-left">
+            <h3 class="text-white font-semibold text-xl mb-1">Luciana Frisardi</h3>
+            <p class="text-violet-400 text-sm font-medium mb-3">Cofundadora · Estrategia & Negocios</p>
+            <p class="text-slate-400 text-sm leading-relaxed">
+              +18 años asesorando empresas en transformación y crecimiento. Conecta la estrategia de negocio con la tecnología para que la automatización tenga impacto real y medible.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="text-center mt-10" data-aos="fade-up">
+        <a
+          href="/quienes-somos"
+          class="inline-flex items-center gap-2 text-slate-400 hover:text-white text-sm font-medium
+                 transition-colors duration-200"
+        >
+          Conocer más sobre el equipo
+          <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+          </svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!-- 9. CTA FINAL                                 -->
+  <!-- ═══════════════════════════════════════════ -->
+  <section class="py-24 px-4 sm:px-6 lg:px-8 bg-[#0D0D14] relative overflow-hidden">
+    <!-- Glow de fondo -->
+    <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
+      <div class="w-[700px] h-[400px] rounded-full opacity-[0.07] blur-3xl"
+           style="background: radial-gradient(ellipse, #7C3AED, #06B6D4, transparent);"></div>
+    </div>
+
+    <div class="max-w-3xl mx-auto text-center relative z-10" data-aos="fade-up">
+      <SectionBadge text="Siguiente paso" />
+      <h2 class="text-[clamp(2rem,4vw,3.5rem)] font-bold text-white mb-6">
+        ¿Tu negocio está listo para automatizar?
+      </h2>
+      <p class="text-slate-400 text-xl leading-relaxed mb-10">
+        Agendá un diagnóstico gratuito de 30 minutos.<br class="hidden sm:block" />
+        Sin compromiso. Te contamos qué podemos automatizar en tu negocio y cómo.
+      </p>
+
+      <div class="flex flex-col sm:flex-row gap-4 justify-center mb-8">
+        <a
+          href="/contacto"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-lg font-semibold text-lg
+                 bg-violet-600 hover:bg-violet-500 text-white
+                 shadow-[0_0_30px_rgba(124,58,237,0.4)] hover:shadow-[0_0_50px_rgba(124,58,237,0.6)]
+                 transition-all duration-300"
+        >
+          Agendar diagnóstico gratuito
+          <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+          </svg>
+        </a>
+        <a
+          href="https://wa.me/5492665258874"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-lg font-semibold text-lg
+                 bg-[#25D366] hover:bg-[#1ebe5a] text-white
+                 transition-all duration-300"
+        >
+          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+          </svg>
+          Escribinos ahora
+        </a>
+      </div>
+
+      <!-- Confianza -->
+      <div class="flex flex-wrap items-center justify-center gap-6 text-slate-600 text-sm">
+        <span class="flex items-center gap-2">
+          <svg class="w-4 h-4 text-violet-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+          </svg>
+          Sin compromiso
+        </span>
+        <span class="flex items-center gap-2">
+          <svg class="w-4 h-4 text-violet-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+          </svg>
+          Diagnóstico 100% gratuito
+        </span>
+        <span class="flex items-center gap-2">
+          <svg class="w-4 h-4 text-violet-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+          </svg>
+          Respuesta en menos de 24 hs
+        </span>
+      </div>
+    </div>
+  </section>
+
+</BaseLayout>
