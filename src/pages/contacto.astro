@@ -12,18 +12,20 @@ import SectionBadge from '../components/SectionBadge.astro';
   <!-- 1. HERO                                      -->
   <!-- ═══════════════════════════════════════════ -->
   <section class="relative px-4 sm:px-6 py-24 bg-[#0A0A0F] overflow-hidden">
-    <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
-      <div class="w-[600px] h-[600px] rounded-full opacity-10 blur-3xl"
-           style="background: radial-gradient(circle, #7C3AED, transparent);"></div>
-    </div>
 
-    <div class="max-w-3xl mx-auto text-center relative z-10 space-y-6" data-aos="fade-up">
+    <!-- Canvas 3D -->
+    <canvas id="canvas-contacto" class="absolute inset-0 w-full h-full" style="z-index:0;"></canvas>
+
+    <!-- Overlay suave -->
+    <div class="absolute inset-0 pointer-events-none" style="z-index:1; background: radial-gradient(ellipse at center, rgba(10,10,15,0.1) 0%, rgba(10,10,15,0.55) 100%);"></div>
+
+    <div class="max-w-3xl mx-auto text-center relative space-y-6" style="z-index:2;" data-aos="fade-up">
       <SectionBadge text="Hablemos del futuro" />
       <h1 class="text-[clamp(2.5rem,6vw,4.5rem)] font-bold tracking-tight text-white">
         ¿Listo para ordenar y{' '}
         <span style="background: linear-gradient(135deg, #A855F7 0%, #06B6D4 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">
           automatizar
-        </span>{' '}
+        </span><br />
         tu negocio?
       </h1>
       <p class="text-slate-400 text-lg max-w-2xl mx-auto leading-relaxed">
@@ -32,6 +34,167 @@ import SectionBadge from '../components/SectionBadge.astro';
       </p>
     </div>
   </section>
+
+  <script>
+    import * as THREE from 'three';
+
+    const canvasContacto = document.getElementById('canvas-contacto') as HTMLCanvasElement;
+    if (canvasContacto) {
+      const section = canvasContacto.parentElement!;
+      const rendererC = new THREE.WebGLRenderer({ canvas: canvasContacto, antialias: true, alpha: true });
+      rendererC.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+      rendererC.setClearColor(0x000000, 0);
+      rendererC.setSize(section.offsetWidth, section.offsetHeight);
+
+      const sceneC = new THREE.Scene();
+      const cameraC = new THREE.PerspectiveCamera(55, section.offsetWidth / section.offsetHeight, 0.1, 100);
+      cameraC.position.z = 5.5;
+
+      // — Esfera neuronal: nodos distribuidos sobre superficie de esfera —
+      const NODE_COUNT = 90;
+      const SPHERE_R = 2.2;
+      const CONNECT_DIST = 1.4;
+
+      // Distribución Fibonacci para nodos uniformes en esfera
+      const nodePositions: THREE.Vector3[] = [];
+      const flashPhases = new Float32Array(NODE_COUNT);
+      const flashSpeeds = new Float32Array(NODE_COUNT);
+
+      const golden = Math.PI * (3 - Math.sqrt(5));
+      for (let i = 0; i < NODE_COUNT; i++) {
+        const y = 1 - (i / (NODE_COUNT - 1)) * 2;
+        const r = Math.sqrt(1 - y * y);
+        const theta = golden * i;
+        nodePositions.push(new THREE.Vector3(
+          Math.cos(theta) * r * SPHERE_R,
+          y * SPHERE_R,
+          Math.sin(theta) * r * SPHERE_R,
+        ));
+        flashPhases[i] = Math.random() * Math.PI * 2;
+        flashSpeeds[i] = 0.4 + Math.random() * 0.9;
+      }
+
+      // Geometría de puntos con atributo flash
+      const flashAttrC = new THREE.BufferAttribute(new Float32Array(NODE_COUNT), 1);
+      const pointsGeoC = new THREE.BufferGeometry();
+      const posArrC = new Float32Array(NODE_COUNT * 3);
+      nodePositions.forEach((p, i) => {
+        posArrC[i * 3] = p.x; posArrC[i * 3 + 1] = p.y; posArrC[i * 3 + 2] = p.z;
+      });
+      pointsGeoC.setAttribute('position', new THREE.BufferAttribute(posArrC, 3));
+      pointsGeoC.setAttribute('flash', flashAttrC);
+
+      const pointsMatC = new THREE.ShaderMaterial({
+        transparent: true,
+        uniforms: { pointSize: { value: 5.0 * Math.min(window.devicePixelRatio, 2) } },
+        vertexShader: `
+          attribute float flash;
+          varying float vFlash;
+          varying vec3 vPos;
+          uniform float pointSize;
+          void main() {
+            vFlash = flash;
+            vPos = position;
+            vec4 mv = modelViewMatrix * vec4(position, 1.0);
+            gl_PointSize = pointSize * (1.0 + 0.5 * flash);
+            gl_Position = projectionMatrix * mv;
+          }
+        `,
+        fragmentShader: `
+          varying float vFlash;
+          varying vec3 vPos;
+          void main() {
+            float d = length(gl_PointCoord - vec2(0.5));
+            if (d > 0.5) discard;
+            float yN = (vPos.y + 2.2) / 4.4;
+            vec3 cA = vec3(0.486, 0.227, 0.929); // violet
+            vec3 cB = vec3(0.024, 0.714, 0.831); // cyan
+            vec3 col = mix(cA, cB, clamp(yN, 0.0, 1.0));
+            float alpha = (0.4 + 0.45 * vFlash) * (1.0 - smoothstep(0.3, 0.5, d));
+            gl_FragColor = vec4(col, alpha);
+          }
+        `,
+      });
+      const pointsMeshC = new THREE.Points(pointsGeoC, pointsMatC);
+      sceneC.add(pointsMeshC);
+
+      // — Líneas de conexión —
+      const linesMatC = new THREE.LineBasicMaterial({ color: 0x7C3AED, transparent: true, opacity: 0.1 });
+      const linesGeoC = new THREE.BufferGeometry();
+      const linesArrC = new Float32Array(NODE_COUNT * NODE_COUNT * 6);
+      linesGeoC.setAttribute('position', new THREE.BufferAttribute(linesArrC, 3));
+      const linesMeshC = new THREE.LineSegments(linesGeoC, linesMatC);
+      sceneC.add(linesMeshC);
+
+      // — Glow central (esfera interior transparente) —
+      const glowGeo = new THREE.SphereGeometry(1.0, 32, 32);
+      const glowMat = new THREE.MeshBasicMaterial({
+        color: 0x7C3AED,
+        transparent: true,
+        opacity: 0.03,
+        side: THREE.BackSide,
+      });
+      sceneC.add(new THREE.Mesh(glowGeo, glowMat));
+
+      // Grupo que rota
+      const groupC = new THREE.Group();
+      groupC.add(pointsMeshC);
+      groupC.add(linesMeshC);
+      sceneC.add(groupC);
+      sceneC.remove(pointsMeshC);
+      sceneC.remove(linesMeshC);
+
+      function updateLinesC() {
+        const arr = linesGeoC.attributes.position.array as Float32Array;
+        let idx = 0;
+        for (let i = 0; i < NODE_COUNT; i++) {
+          for (let j = i + 1; j < NODE_COUNT; j++) {
+            const dist = nodePositions[i].distanceTo(nodePositions[j]);
+            if (dist < CONNECT_DIST) {
+              arr[idx++] = nodePositions[i].x; arr[idx++] = nodePositions[i].y; arr[idx++] = nodePositions[i].z;
+              arr[idx++] = nodePositions[j].x; arr[idx++] = nodePositions[j].y; arr[idx++] = nodePositions[j].z;
+            }
+          }
+        }
+        while (idx < arr.length) arr[idx++] = 0;
+        linesGeoC.attributes.position.needsUpdate = true;
+        linesGeoC.setDrawRange(0, idx / 3);
+      }
+
+      // Calcular líneas una sola vez (nodos fijos en la esfera)
+      updateLinesC();
+
+      const startC = performance.now();
+
+      function animateC() {
+        requestAnimationFrame(animateC);
+        const t = (performance.now() - startC) / 1000;
+
+        // Flash por nodo
+        const fArr = flashAttrC.array as Float32Array;
+        for (let i = 0; i < NODE_COUNT; i++) {
+          fArr[i] = Math.max(0, Math.sin(t * flashSpeeds[i] + flashPhases[i]));
+        }
+        flashAttrC.needsUpdate = true;
+
+        // Rotación lenta y elegante
+        groupC.rotation.y = t * 0.12;
+        groupC.rotation.x = Math.sin(t * 0.07) * 0.18;
+
+        rendererC.render(sceneC, cameraC);
+      }
+
+      animateC();
+
+      window.addEventListener('resize', () => {
+        const w = section.offsetWidth;
+        const h = section.offsetHeight;
+        rendererC.setSize(w, h);
+        cameraC.aspect = w / h;
+        cameraC.updateProjectionMatrix();
+      });
+    }
+  </script>
 
 
   <!-- ═══════════════════════════════════════════ -->
@@ -79,7 +242,7 @@ import SectionBadge from '../components/SectionBadge.astro';
           <form id="contact-form" class="space-y-6" novalidate>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div class="space-y-2">
-                <label class="text-xs font-semibold uppercase tracking-wider text-slate-500">
+                <label class="text-xs font-semibold uppercase tracking-wider text-slate-300">
                   Apellido y nombre <span class="text-red-400">*</span>
                 </label>
                 <input
@@ -94,7 +257,7 @@ import SectionBadge from '../components/SectionBadge.astro';
                 />
               </div>
               <div class="space-y-2">
-                <label class="text-xs font-semibold uppercase tracking-wider text-slate-500">
+                <label class="text-xs font-semibold uppercase tracking-wider text-slate-300">
                   Empresa / Proyecto <span class="text-red-400">*</span>
                 </label>
                 <input
@@ -112,7 +275,7 @@ import SectionBadge from '../components/SectionBadge.astro';
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div class="space-y-2">
-                <label class="text-xs font-semibold uppercase tracking-wider text-slate-500">
+                <label class="text-xs font-semibold uppercase tracking-wider text-slate-300">
                   Correo electrónico <span class="text-red-400">*</span>
                 </label>
                 <input
@@ -127,7 +290,7 @@ import SectionBadge from '../components/SectionBadge.astro';
                 />
               </div>
               <div class="space-y-2">
-                <label class="text-xs font-semibold uppercase tracking-wider text-slate-500">
+                <label class="text-xs font-semibold uppercase tracking-wider text-slate-300">
                   Teléfono de contacto <span class="text-red-400">*</span>
                 </label>
                 <input
@@ -145,7 +308,7 @@ import SectionBadge from '../components/SectionBadge.astro';
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div class="space-y-2">
-                <label class="text-xs font-semibold uppercase tracking-wider text-slate-500">
+                <label class="text-xs font-semibold uppercase tracking-wider text-slate-300">
                   Tu presupuesto <span class="text-red-400">*</span>
                 </label>
                 <select
@@ -164,7 +327,7 @@ import SectionBadge from '../components/SectionBadge.astro';
                 </select>
               </div>
               <div class="space-y-2">
-                <label class="text-xs font-semibold uppercase tracking-wider text-slate-500">
+                <label class="text-xs font-semibold uppercase tracking-wider text-slate-300">
                   Tu red social
                 </label>
                 <input
@@ -180,7 +343,7 @@ import SectionBadge from '../components/SectionBadge.astro';
             </div>
 
             <div class="space-y-2">
-              <label class="text-xs font-semibold uppercase tracking-wider text-slate-500">
+              <label class="text-xs font-semibold uppercase tracking-wider text-slate-300">
                 ¿Qué te gustaría automatizar? <span class="text-red-400">*</span>
               </label>
               <textarea
