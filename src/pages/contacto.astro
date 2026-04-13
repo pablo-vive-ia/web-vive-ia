@@ -6,6 +6,13 @@ import SectionBadge from '../components/SectionBadge.astro';
 <BaseLayout
   title="Contacto — VIVE-IA"
   description="Agendá tu diagnóstico gratuito y descubrí cómo automatizar tu negocio con inteligencia artificial."
+  schema={{
+    '@context': 'https://schema.org',
+    '@type': 'ContactPage',
+    name: 'Contacto — VIVE-IA',
+    url: 'https://vive-ia.com/contacto',
+    description: 'Contactate con VIVE-IA para agendar tu diagnóstico gratuito de automatización con IA.',
+  }}
 >
 
   <!-- ═══════════════════════════════════════════ -->
@@ -249,6 +256,7 @@ import SectionBadge from '../components/SectionBadge.astro';
                   type="text"
                   name="nombre"
                   required
+                  maxlength="100"
                   placeholder="Ej. Juan Pérez"
                   class="w-full bg-[#0A0A0F] border border-white/[0.08] rounded-xl px-4 py-3
                          text-slate-200 placeholder-slate-600
@@ -264,6 +272,7 @@ import SectionBadge from '../components/SectionBadge.astro';
                   type="text"
                   name="empresa"
                   required
+                  maxlength="120"
                   placeholder="Nombre de tu negocio"
                   class="w-full bg-[#0A0A0F] border border-white/[0.08] rounded-xl px-4 py-3
                          text-slate-200 placeholder-slate-600
@@ -282,6 +291,8 @@ import SectionBadge from '../components/SectionBadge.astro';
                   type="email"
                   name="email"
                   required
+                  maxlength="254"
+                  autocomplete="email"
                   placeholder="juan@empresa.com"
                   class="w-full bg-[#0A0A0F] border border-white/[0.08] rounded-xl px-4 py-3
                          text-slate-200 placeholder-slate-600
@@ -297,6 +308,9 @@ import SectionBadge from '../components/SectionBadge.astro';
                   type="tel"
                   name="telefono"
                   required
+                  maxlength="20"
+                  pattern="[\+\d\s\-\(\)]{7,20}"
+                  autocomplete="tel"
                   placeholder="+54 9 ..."
                   class="w-full bg-[#0A0A0F] border border-white/[0.08] rounded-xl px-4 py-3
                          text-slate-200 placeholder-slate-600
@@ -320,10 +334,10 @@ import SectionBadge from '../components/SectionBadge.astro';
                          outline-none transition-all duration-200 appearance-none"
                 >
                   <option value="">Seleccioná tu presupuesto...</option>
-                  <option>Hasta USD 500</option>
-                  <option>USD 500 - 1.000</option>
-                  <option>USD 1.000 - 3.000</option>
-                  <option>Más de USD 3.000</option>
+                  <option value="hasta-500">Hasta USD 500</option>
+                  <option value="500-1000">USD 500 - 1.000</option>
+                  <option value="1000-3000">USD 1.000 - 3.000</option>
+                  <option value="mas-3000">Más de USD 3.000</option>
                 </select>
               </div>
               <div class="space-y-2">
@@ -333,6 +347,7 @@ import SectionBadge from '../components/SectionBadge.astro';
                 <input
                   type="text"
                   name="red_social"
+                  maxlength="80"
                   placeholder="Ej. @vive_ia"
                   class="w-full bg-[#0A0A0F] border border-white/[0.08] rounded-xl px-4 py-3
                          text-slate-200 placeholder-slate-600
@@ -350,6 +365,7 @@ import SectionBadge from '../components/SectionBadge.astro';
                 name="mensaje"
                 required
                 rows="4"
+                maxlength="2000"
                 placeholder="Describí brevemente el proceso que querés optimizar..."
                 class="w-full bg-[#0A0A0F] border border-white/[0.08] rounded-xl px-4 py-3
                        text-slate-200 placeholder-slate-600
@@ -372,7 +388,6 @@ import SectionBadge from '../components/SectionBadge.astro';
               ✓ Mensaje enviado. Te contactaremos en menos de 24 horas.
             </div>
             <div id="form-error" class="hidden p-4 rounded-xl bg-red-900/20 border border-red-500/30 text-red-400 text-sm text-center">
-              Ocurrió un error. Escribinos por WhatsApp y lo resolvemos.
             </div>
           </form>
         </div>
@@ -483,26 +498,97 @@ import SectionBadge from '../components/SectionBadge.astro';
 </BaseLayout>
 
 <script>
+  // ── Utilidades de sanitización ──────────────────────────────────────────
+  /** Elimina tags HTML/SVG y recorta espacios */
+  function stripTags(value: string): string {
+    return value.replace(/<[^>]*>/g, '').trim();
+  }
+
+  /** Trunca a maxLen caracteres después de stripTags */
+  function sanitize(value: string, maxLen: number): string {
+    return stripTags(value).slice(0, maxLen);
+  }
+
+  // ── Validadores ─────────────────────────────────────────────────────────
+  const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+  const PHONE_RE = /^[\+\d\s\-\(\)]{7,20}$/;
+  const PRESUPUESTO_ALLOWED = new Set(['hasta-500', '500-1000', '1000-3000', 'mas-3000']);
+
+  function validateForm(d: Record<string, string>): string | null {
+    if (!d.nombre)     return 'El campo Nombre es obligatorio.';
+    if (!d.empresa)    return 'El campo Empresa es obligatorio.';
+    if (!d.email)      return 'El campo Email es obligatorio.';
+    if (!EMAIL_RE.test(d.email))  return 'El formato del email no es válido.';
+    if (!d.telefono)   return 'El campo Teléfono es obligatorio.';
+    if (!PHONE_RE.test(d.telefono)) return 'El teléfono solo puede contener dígitos, +, espacios, guiones o paréntesis.';
+    if (!d.presupuesto || !PRESUPUESTO_ALLOWED.has(d.presupuesto))
+                       return 'Seleccioná un rango de presupuesto válido.';
+    if (!d.mensaje)    return 'Contanos brevemente qué querés automatizar.';
+    return null;
+  }
+
+  // ── Lógica de submit ────────────────────────────────────────────────────
   const form = document.getElementById('contact-form') as HTMLFormElement | null;
+  const submitBtn = form?.querySelector('button[type="submit"]') as HTMLButtonElement | null;
+
   form?.addEventListener('submit', async (e) => {
     e.preventDefault();
-    const data = Object.fromEntries(new FormData(form));
+
     const successEl = document.getElementById('form-success');
-    const errorEl = document.getElementById('form-error');
+    const errorEl   = document.getElementById('form-error');
+    successEl?.classList.add('hidden');
+    errorEl?.classList.add('hidden');
+
+    const raw = Object.fromEntries(new FormData(form)) as Record<string, string>;
+
+    // Sanitizar cada campo
+    const payload = {
+      nombre:      sanitize(raw.nombre     ?? '', 100),
+      empresa:     sanitize(raw.empresa    ?? '', 120),
+      email:       sanitize(raw.email      ?? '', 254).toLowerCase(),
+      telefono:    sanitize(raw.telefono   ?? '', 20),
+      presupuesto: sanitize(raw.presupuesto ?? '', 20),
+      red_social:  sanitize(raw.red_social ?? '', 80),
+      mensaje:     sanitize(raw.mensaje    ?? '', 2000),
+    };
+
+    // Validar
+    const validationError = validateForm(payload);
+    if (validationError) {
+      if (errorEl) {
+        errorEl.textContent = validationError;
+        errorEl.classList.remove('hidden');
+      }
+      return;
+    }
+
+    // Prevenir doble envío
+    if (submitBtn) {
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Enviando...';
+    }
 
     try {
-      const { nombre, empresa, email, telefono, presupuesto, red_social, mensaje } = data as Record<string, string>;
-      await fetch('https://n8n.vive-ia.com/webhook/contacto-vive-ia', {
+      const res = await fetch('https://n8n.vive-ia.com/webhook/contacto-vive-ia', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ nombre, empresa, email, telefono, presupuesto, red_social, mensaje }),
+        body: JSON.stringify(payload),
       });
+
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+
       successEl?.classList.remove('hidden');
-      errorEl?.classList.add('hidden');
       form.reset();
     } catch {
-      errorEl?.classList.remove('hidden');
-      successEl?.classList.add('hidden');
+      if (errorEl) {
+        errorEl.textContent = 'Ocurrió un error. Escribinos por WhatsApp y lo resolvemos.';
+        errorEl.classList.remove('hidden');
+      }
+    } finally {
+      if (submitBtn) {
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Quiero automatizar mi negocio';
+      }
     }
   });
 </script>

@@ -20,52 +20,21 @@
 </style>
 
 <script>
-  const FALLBACK = 'Ordenamos, estructuramos y automatizamos tus procesos para que puedas crecer sin caos.';
-  const PROMPT = 'Generá UNA sola frase impactante, en español rioplatense, de máximo 15 palabras, para el subtítulo de una agencia de automatización con inteligencia artificial llamada VIVE-IA que trabaja con empresas en Argentina. La frase debe transmitir transformación, orden y crecimiento. Solo devolvé la frase, sin comillas, sin puntos finales, sin explicaciones.';
+  const PHRASE = 'Ordenamos, estructuramos y automatizamos tus procesos para que puedas crecer sin caos.';
   const DELAY_MS = 38;
 
-  async function fetchPhrase(): Promise<string> {
-    const key = import.meta.env.PUBLIC_GEMINI_API_KEY;
-    if (!key) return FALLBACK;
+  const phraseSpan = document.getElementById('phrase-text') as HTMLElement;
+  const cursorSpan = document.getElementById('cursor') as HTMLElement;
 
-    const res = await fetch(
-      `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${key}`,
-      {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          contents: [{ parts: [{ text: PROMPT }] }],
-          generationConfig: { temperature: 0.95, maxOutputTokens: 60 },
-        }),
-      }
-    );
-
-    if (!res.ok) return FALLBACK;
-
-    const data = await res.json();
-    const text: string = data?.candidates?.[0]?.content?.parts?.[0]?.text ?? '';
-    return text.trim() || FALLBACK;
-  }
-
-  function typewrite(text: string, spanEl: HTMLElement, cursorEl: HTMLElement): void {
+  if (phraseSpan && cursorSpan) {
     let i = 0;
     const timer = setInterval(() => {
-      spanEl.textContent += text[i];
+      phraseSpan.textContent += PHRASE[i];
       i++;
-      if (i >= text.length) {
+      if (i >= PHRASE.length) {
         clearInterval(timer);
-        cursorEl.style.display = 'none';
+        cursorSpan.style.display = 'none';
       }
     }, DELAY_MS);
   }
-
-  (async () => {
-    const phraseSpan = document.getElementById('phrase-text') as HTMLElement;
-    const cursorSpan = document.getElementById('cursor') as HTMLElement;
-
-    if (!phraseSpan || !cursorSpan) return;
-
-    const phrase = await fetchPhrase().catch(() => FALLBACK);
-    typewrite(phrase, phraseSpan, cursorSpan);
-  })();
 </script>
