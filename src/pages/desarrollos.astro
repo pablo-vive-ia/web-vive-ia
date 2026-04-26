@@ -1,0 +1,385 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const pageSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  name: 'Desarrollos personalizados — VIVE-IA',
+  provider: { '@type': 'Organization', name: 'VIVE-IA', url: 'https://vive-ia.com' },
+  description: 'Páginas web, landing pages y aplicaciones web a medida para empresas en LATAM.',
+  url: 'https://vive-ia.com/desarrollos',
+  areaServed: { '@type': 'Country', name: 'Argentina' },
+  serviceType: 'Desarrollo Web y Aplicaciones con Inteligencia Artificial',
+};
+
+const services = [
+  {
+    image: '/images/webs_icon.png',
+    imageAlt: 'Sitios web corporativos',
+    title: 'Sitios web corporativos',
+    desc: 'Tu presencia digital profesional. Diseño único, rápido, optimizado para SEO y adaptado a todos los dispositivos.',
+    border: 'border-violet-600/20',
+  },
+  {
+    image: '/images/Landing-page.png',
+    imageAlt: 'Landing pages de alta conversión',
+    title: 'Landing pages de alta conversión',
+    desc: 'Páginas diseñadas para vender. Estructura persuasiva, orientada a resultados y lista para campañas publicitarias.',
+    border: 'border-cyan-500/20',
+  },
+  {
+    image: '/images/aplicaciones.png',
+    imageAlt: 'Aplicaciones web a medida',
+    title: 'Aplicaciones web a medida',
+    desc: 'Dashboards, portales de clientes, CRMs o herramientas internas. Desarrolladas con tecnologías modernas y escalables.',
+    border: 'border-violet-500/20',
+  },
+  {
+    image: '/images/automatizaciones.png',
+    imageAlt: 'Integraciones con IA',
+    title: 'Integraciones con IA',
+    desc: 'Sumamos inteligencia artificial a tu sitio o app: agentes conversacionales, automatizaciones, generación de contenido y más.',
+    border: 'border-fuchsia-500/20',
+  },
+];
+
+const portfolio = [
+  {
+    tag: 'Sitio corporativo',
+    title: 'Webs Modernas',
+    desc: 'Sitio web corporativo con red neuronal animada (Three.js), integración con Gemini AI y formulario conectado a n8n.',
+    accent: 'bg-violet-500/20 text-violet-300',
+    image: '/images/webs.png',
+    imageAlt: 'Webs modernas',
+    link: null,
+  },
+  {
+    tag: 'Landing page',
+    title: 'Modo Campeón',
+    desc: 'Landing page de alta conversión para infoproducto. Integración con Hotmart, ticker animado, diseño 100% orientado a ventas.',
+    accent: 'bg-cyan-500/20 text-cyan-300',
+    image: '/images/modo-campeon.png',
+    imageAlt: 'Modo Campeón',
+    link: 'https://modocampeon.store',
+  },
+  {
+    tag: 'App a medida',
+    title: 'Aplicación Personalizada',
+    desc: 'Aplicación web interna para gestión de agencia: dashboard, CRM, clientes, proyectos, facturación y calendario.',
+    accent: 'bg-fuchsia-500/20 text-fuchsia-300',
+    image: '/images/app-perso.png',
+    imageAlt: 'Aplicación personalizada',
+    link: null,
+  },
+];
+---
+
+<BaseLayout
+  title="Desarrollos personalizados — VIVE-IA"
+  description="Creamos páginas web, landing pages y aplicaciones web adaptadas exactamente a lo que necesitás. Sin templates genéricos, sin soluciones enlatadas."
+  schema={pageSchema}
+>
+
+  <!-- ── Hero ── -->
+  <section class="relative py-24 md:py-32 overflow-hidden">
+    <canvas id="shader-bg" class="absolute inset-0 w-full h-full z-0"></canvas>
+    <!-- Velo oscuro para asegurar legibilidad del texto sobre el shader -->
+    <div class="absolute inset-0 bg-gradient-to-b from-black/30 via-transparent to-[#0A0A0F] z-[1] pointer-events-none"></div>
+
+    <div class="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <span
+        class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-violet-600/10 border border-violet-600/30 text-violet-400 text-sm font-medium mb-6"
+        data-aos="fade-down"
+      >
+        Desarrollo a medida
+      </span>
+
+      <h1
+        class="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6"
+        style="background: linear-gradient(135deg, #F8FAFC 0%, #A855F7 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;"
+        data-aos="fade-up"
+        data-aos-delay="100"
+      >
+        Desarrollos personalizados<br />para tu negocio
+      </h1>
+
+      <p
+        class="text-slate-400 text-xl leading-relaxed max-w-2xl mx-auto"
+        data-aos="fade-up"
+        data-aos-delay="200"
+      >
+        Creamos páginas web, landing pages y aplicaciones web adaptadas exactamente a lo que necesitás.
+        Sin templates genéricos, sin soluciones enlatadas.
+      </p>
+    </div>
+  </section>
+
+  <!-- ── Servicios ── -->
+  <section class="py-20 md:py-28">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16" data-aos="fade-up">
+        <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-violet-600/10 border border-violet-600/30 text-violet-400 text-sm font-medium mb-4">
+          Lo que hacemos
+        </span>
+        <h2 class="text-3xl md:text-4xl font-bold text-slate-50">
+          Cada proyecto, construido desde cero
+        </h2>
+        <p class="mt-4 text-slate-400 max-w-xl mx-auto">
+          No usamos plantillas. Cada producto que entregamos está pensado y construido para tu negocio específico.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {services.map((s, i) => (
+          <div
+            class={`overflow-hidden rounded-2xl border ${s.border} bg-[#111118] hover:-translate-y-1 transition-transform duration-300`}
+            data-aos="fade-up"
+            data-aos-delay={String(i * 100)}
+          >
+            <div class="w-full h-48 overflow-hidden">
+              <img
+                src={s.image}
+                alt={s.imageAlt}
+                class="w-full h-full object-cover"
+                loading="lazy"
+              />
+            </div>
+            <div class="p-8">
+              <h3 class="text-xl font-semibold text-slate-100 mb-3">{s.title}</h3>
+              <p class="text-slate-400 leading-relaxed">{s.desc}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Portfolio ── -->
+  <section class="py-20 md:py-28 bg-[#111118]/50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16" data-aos="fade-up">
+        <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-violet-600/10 border border-violet-600/30 text-violet-400 text-sm font-medium mb-4">
+          Proyectos
+        </span>
+        <h2 class="text-3xl md:text-4xl font-bold text-slate-50">
+          Algunos de nuestros trabajos
+        </h2>
+        <p class="mt-4 text-slate-400 max-w-xl mx-auto">
+          Cada proyecto resuelve un problema real con tecnología bien aplicada.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        {portfolio.map((p, i) => (
+          <div
+            class="flex flex-col rounded-2xl overflow-hidden border border-white/[0.08] bg-[#111118] hover:-translate-y-1 transition-transform duration-300"
+            data-aos="fade-up"
+            data-aos-delay={String(i * 120)}
+          >
+            <!-- Preview con imagen real -->
+            <div class="relative h-48 overflow-hidden">
+              <img
+                src={p.image}
+                alt={p.imageAlt}
+                class="w-full h-full object-cover"
+                loading="lazy"
+                width="400"
+                height="192"
+              />
+              <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+              <span class={`absolute bottom-3 left-3 z-10 text-xs font-semibold px-3 py-1 rounded-full ${p.accent}`}>
+                {p.tag}
+              </span>
+            </div>
+
+            <!-- Contenido -->
+            <div class="flex flex-col flex-1 p-6">
+              <h3 class="text-lg font-semibold text-slate-100 mb-2">{p.title}</h3>
+              <p class="text-slate-400 text-sm leading-relaxed flex-1">{p.desc}</p>
+              {p.link && (
+                <a
+                  href={p.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="mt-4 inline-flex items-center gap-1.5 text-sm text-violet-400 hover:text-violet-300 font-medium transition-colors"
+                >
+                  Ver proyecto
+                  <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                  </svg>
+                </a>
+              )}
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ── CTA final ── -->
+  <section class="py-24 md:py-32 relative overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-t from-violet-950/20 via-transparent to-transparent pointer-events-none"></div>
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-violet-600/8 rounded-full blur-3xl pointer-events-none"></div>
+
+    <div class="relative max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h2
+        class="text-3xl md:text-4xl font-bold text-slate-50 mb-4"
+        data-aos="fade-up"
+      >
+        ¿Tenés un proyecto en mente?
+      </h2>
+      <p
+        class="text-slate-400 text-lg mb-10"
+        data-aos="fade-up"
+        data-aos-delay="100"
+      >
+        Contanos qué necesitás y te proponemos la solución más eficiente para tu negocio.
+      </p>
+
+      <div
+        class="flex flex-col sm:flex-row items-center justify-center gap-4"
+        data-aos="fade-up"
+        data-aos-delay="200"
+      >
+        <a
+          href="https://cal.com/demo-vive-ia-fuz5y7/30min?user=demo-vive-ia-fuz5y7"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center gap-2 px-8 py-4 rounded-xl font-semibold text-white
+                 bg-violet-600 hover:bg-violet-500
+                 shadow-[0_0_30px_rgba(124,58,237,0.35)] hover:shadow-[0_0_40px_rgba(124,58,237,0.55)]
+                 transition-all duration-300"
+        >
+          Agendar una llamada
+          <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+          </svg>
+        </a>
+
+        <a
+          href="https://wa.me/5492665258874"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center gap-2 px-8 py-4 rounded-xl font-semibold
+                 bg-[#25D366] hover:bg-[#1ebe5a] text-white
+                 transition-all duration-300"
+        >
+          <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+          </svg>
+          Escribinos por WhatsApp
+        </a>
+      </div>
+    </div>
+  </section>
+
+</BaseLayout>
+
+<script>
+  const canvas = document.getElementById('shader-bg') as HTMLCanvasElement | null;
+  if (canvas) {
+    const gl = canvas.getContext('webgl2');
+    if (gl) {
+      const vertSrc = `#version 300 es
+precision highp float;
+in vec4 position;
+void main(){ gl_Position = position; }`;
+
+      const fragSrc = `#version 300 es
+precision highp float;
+out vec4 O;
+uniform vec2 resolution;
+uniform float time;
+#define FC gl_FragCoord.xy
+#define T time
+#define R resolution
+#define MN min(R.x,R.y)
+
+float rnd(vec2 p) {
+  p = fract(p * vec2(12.9898, 78.233));
+  p += dot(p, p + 34.56);
+  return fract(p.x * p.y);
+}
+
+float noise(in vec2 p) {
+  vec2 i = floor(p), f = fract(p), u = f*f*(3.-2.*f);
+  float a=rnd(i), b=rnd(i+vec2(1,0)), c=rnd(i+vec2(0,1)), d=rnd(i+1.);
+  return mix(mix(a,b,u.x), mix(c,d,u.x), u.y);
+}
+
+float fbm(vec2 p) {
+  float t=.0, a=1.;
+  mat2 m = mat2(1.,-.5,.2,1.2);
+  for(int i=0; i<5; i++) { t+=a*noise(p); p*=2.*m; a*=.5; }
+  return t;
+}
+
+float clouds(vec2 p) {
+  float d=1., t=.0;
+  for(float i=.0; i<3.; i++) {
+    float a = d*fbm(i*10.+p.x*.2+.2*(1.+i)*p.y+d+i*i+p);
+    t = mix(t,d,a); d=a; p*=2./(i+1.);
+  }
+  return t;
+}
+void main(void) {
+  vec2 uv=(FC-.5*R)/MN, st=uv*vec2(2,1);
+  vec3 col=vec3(0);
+  float bg=clouds(vec2(st.x+T*.3,-st.y));
+  uv*=1.-.3*(sin(T*.2)*.5+.5);
+  for(float i=1.; i<12.; i++) {
+    uv+=.1*cos(i*vec2(.1+.01*i,.8)+i*i+T*.4+.1*uv.x);
+    vec2 p=uv;
+    float d=length(p);
+    col+=.00125/d*(cos(sin(i)*vec3(2,1,3))+1.);
+    float b=noise(i+p+bg*1.731);
+    col+=.002*b/length(max(p,vec2(b*p.x*.02,p.y)));
+    col=mix(col,vec3(bg*.05,bg*.03,bg*.15),d);
+  }
+  col *= 0.6;
+  O=vec4(col,1);
+}`;
+
+      function compileShader(gl: WebGL2RenderingContext, type: number, src: string) {
+        const s = gl.createShader(type)!;
+        gl.shaderSource(s, src);
+        gl.compileShader(s);
+        return s;
+      }
+
+      const prog = gl.createProgram()!;
+      gl.attachShader(prog, compileShader(gl, gl.VERTEX_SHADER, vertSrc));
+      gl.attachShader(prog, compileShader(gl, gl.FRAGMENT_SHADER, fragSrc));
+      gl.linkProgram(prog);
+      gl.useProgram(prog);
+
+      const buf = gl.createBuffer();
+      gl.bindBuffer(gl.ARRAY_BUFFER, buf);
+      gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1,1,-1,-1,1,1,1,-1]), gl.STATIC_DRAW);
+
+      const pos = gl.getAttribLocation(prog, 'position');
+      gl.enableVertexAttribArray(pos);
+      gl.vertexAttribPointer(pos, 2, gl.FLOAT, false, 0, 0);
+
+      const uRes = gl.getUniformLocation(prog, 'resolution');
+      const uTime = gl.getUniformLocation(prog, 'time');
+
+      const ctx = gl;
+      function resize() {
+        canvas!.width = canvas!.offsetWidth;
+        canvas!.height = canvas!.offsetHeight;
+        ctx.viewport(0, 0, canvas!.width, canvas!.height);
+      }
+      resize();
+      window.addEventListener('resize', resize);
+
+      function loop(now: number) {
+        ctx.uniform2f(uRes, canvas!.width, canvas!.height);
+        ctx.uniform1f(uTime, now * 0.001);
+        ctx.drawArrays(ctx.TRIANGLE_STRIP, 0, 4);
+        requestAnimationFrame(loop);
+      }
+      requestAnimationFrame(loop);
+    }
+  }
+</script>

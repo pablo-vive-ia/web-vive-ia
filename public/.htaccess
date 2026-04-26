@@ -1,0 +1,28 @@
+<IfModule mod_headers.c>
+
+  # ── Prevent MIME-type sniffing ──────────────────────────────────────────
+  # Evita que el browser interprete un archivo como un tipo diferente al declarado.
+  Header always set X-Content-Type-Options "nosniff"
+
+  # ── Clickjacking protection ─────────────────────────────────────────────
+  # Impide que el sitio sea embebido en un <iframe> de otro dominio.
+  Header always set X-Frame-Options "SAMEORIGIN"
+
+  # ── Referrer policy ─────────────────────────────────────────────────────
+  # Solo envía el origen (sin path) en requests cross-origin.
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+
+  # ── Permissions policy ──────────────────────────────────────────────────
+  # Desactiva APIs del browser que el sitio no necesita.
+  Header always set Permissions-Policy "camera=(), microphone=(), geolocation=(), payment=(), usb=(), interest-cohort=()"
+
+  # ── HSTS ────────────────────────────────────────────────────────────────
+  # Fuerza HTTPS durante 1 año. Solo activo si el certificado SSL está configurado.
+  Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains"
+
+  # ── Content Security Policy ─────────────────────────────────────────────
+  # Restringe de dónde se pueden cargar recursos. 'unsafe-inline' es necesario
+  # porque el sitio usa <script> y style= inline (Three.js, AOS, formulario).
+  Header always set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline' cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline' fonts.googleapis.com cdnjs.cloudflare.com; font-src 'self' fonts.gstatic.com; img-src 'self' data: blob:; media-src 'self'; frame-src https://www.youtube.com; connect-src 'self' https://n8n.vive-ia.com; object-src 'none'; base-uri 'self'; form-action 'self';"
+
+</IfModule>
