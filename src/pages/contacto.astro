@@ -6,13 +6,60 @@ import SectionBadge from '../components/SectionBadge.astro';
 <BaseLayout
   title="Contacto — VIVE-IA"
   description="Agendá tu diagnóstico gratuito y descubrí cómo automatizar tu negocio con inteligencia artificial."
-  schema={{
-    '@context': 'https://schema.org',
-    '@type': 'ContactPage',
-    name: 'Contacto — VIVE-IA',
-    url: 'https://vive-ia.com/contacto',
-    description: 'Contactate con VIVE-IA para agendar tu diagnóstico gratuito de automatización con IA.',
-  }}
+  schema={[
+    {
+      '@context': 'https://schema.org',
+      '@type': 'ContactPage',
+      name: 'Contacto — VIVE-IA',
+      url: 'https://vive-ia.com/contacto',
+      description: 'Contactate con VIVE-IA para agendar tu diagnóstico gratuito de automatización con IA.',
+      breadcrumb: {
+        '@type': 'BreadcrumbList',
+        itemListElement: [
+          { '@type': 'ListItem', position: 1, name: 'Inicio', item: 'https://vive-ia.com' },
+          { '@type': 'ListItem', position: 2, name: 'Contacto', item: 'https://vive-ia.com/contacto' },
+        ],
+      },
+    },
+    {
+      '@context': 'https://schema.org',
+      '@type': 'FAQPage',
+      mainEntity: [
+        {
+          '@type': 'Question',
+          name: '¿Qué incluye el diagnóstico gratuito de VIVE-IA?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'El diagnóstico gratuito es una reunión de 30 minutos donde analizamos tu negocio, identificamos los principales cuellos de botella y oportunidades de automatización, y proponemos un plan de acción concreto. Sin compromiso.',
+          },
+        },
+        {
+          '@type': 'Question',
+          name: '¿Cuánto demoran en responder después de completar el formulario?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'VIVE-IA responde todos los mensajes dentro de las 24 horas hábiles. En la mayoría de los casos la respuesta es en el mismo día.',
+          },
+        },
+        {
+          '@type': 'Question',
+          name: '¿VIVE-IA trabaja con empresas de toda LATAM?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'Sí. VIVE-IA trabaja con empresas de Argentina, Chile, Colombia, México, Uruguay, Perú y toda Latinoamérica. Todas las reuniones son virtuales.',
+          },
+        },
+        {
+          '@type': 'Question',
+          name: '¿Hay contratos de permanencia o compromisos mínimos?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'No. VIVE-IA no exige contratos de permanencia. Trabajamos con total transparencia y el cliente puede discontinuar el servicio cuando lo desee.',
+          },
+        },
+      ],
+    },
+  ]}
 >
 
   <!-- ═══════════════════════════════════════════ -->

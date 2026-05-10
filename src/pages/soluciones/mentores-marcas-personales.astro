@@ -119,16 +119,101 @@ const planes = [
 <BaseLayout
   title="Agentes IA para Mentores y Marcas Personales — VIVE-IA"
   description="Escalá tu negocio con inteligencia artificial. Automatizá la atención, recuperá leads y liberá tiempo valioso."
-  schema={{
-    '@context': 'https://schema.org',
-    '@type': 'Service',
-    name: 'Agente IA para Mentores y Marcas Personales',
-    provider: { '@type': 'Organization', name: 'VIVE-IA', url: 'https://vive-ia.com' },
-    description: 'Escalá tu marca personal con inteligencia artificial. Automatizá la captación, la atención y el seguimiento de leads.',
-    url: 'https://vive-ia.com/soluciones/mentores-marcas-personales',
-    areaServed: { '@type': 'Country', name: 'Argentina' },
-    serviceType: 'Automatización con Inteligencia Artificial',
-  }}
+  schema={[
+    {
+      '@context': 'https://schema.org',
+      '@type': 'Service',
+      name: 'Agente IA para Mentores y Marcas Personales',
+      provider: { '@type': 'Organization', name: 'VIVE-IA', url: 'https://vive-ia.com' },
+      description: 'Escalá tu marca personal con inteligencia artificial. Automatizá la captación, la atención y el seguimiento de leads.',
+      url: 'https://vive-ia.com/soluciones/mentores-marcas-personales',
+      areaServed: [
+        { '@type': 'Country', name: 'Argentina' },
+        { '@type': 'Country', name: 'Chile' },
+        { '@type': 'Country', name: 'Colombia' },
+        { '@type': 'Country', name: 'México' },
+        { '@type': 'Country', name: 'Uruguay' },
+        { '@type': 'Country', name: 'Perú' },
+      ],
+      serviceType: 'Automatización con Inteligencia Artificial',
+      hasOfferCatalog: {
+        '@type': 'OfferCatalog',
+        name: 'Planes de Agente IA para Mentores',
+        itemListElement: [
+          {
+            '@type': 'Offer',
+            name: 'Plan Bronce',
+            description: 'Agente básico de atención y derivación de consultas para mentores y coaches.',
+          },
+          {
+            '@type': 'Offer',
+            name: 'Plan Plata',
+            description: 'Agente avanzado con calificación de leads, seguimiento automático y recomendación de programas.',
+          },
+          {
+            '@type': 'Offer',
+            name: 'Plan Oro',
+            description: 'IA conversacional personalizada con automatización completa de embudos, nurturing y soporte prioritario.',
+          },
+        ],
+      },
+    },
+    {
+      '@context': 'https://schema.org',
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Inicio', item: 'https://vive-ia.com' },
+        { '@type': 'ListItem', position: 2, name: 'Soluciones', item: 'https://vive-ia.com/soluciones' },
+        { '@type': 'ListItem', position: 3, name: 'Agentes para Mentores', item: 'https://vive-ia.com/soluciones/mentores-marcas-personales' },
+      ],
+    },
+    {
+      '@context': 'https://schema.org',
+      '@type': 'FAQPage',
+      mainEntity: [
+        {
+          '@type': 'Question',
+          name: '¿Cómo automatiza VIVE-IA la captación de leads para mentores?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'El agente IA responde automáticamente a los DMs de Instagram y WhatsApp, califica a los leads según sus necesidades y presupuesto, y agenda reuniones o demos con el mentor sin intervención manual.',
+          },
+        },
+        {
+          '@type': 'Question',
+          name: '¿Con qué plataformas de cursos se integra el agente de VIVE-IA?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'El agente se integra con Hotmart, Teachable, Kajabi, Systeme.io y otras plataformas populares para la venta de cursos y programas de mentoría en LATAM.',
+          },
+        },
+        {
+          '@type': 'Question',
+          name: '¿El agente mantiene la voz y el tono de mi marca personal?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'Sí. El agente se entrena específicamente con el lenguaje, valores y estilo de comunicación de cada mentor. Los clientes no perciben diferencia entre la respuesta del agente y la comunicación directa del mentor.',
+          },
+        },
+        {
+          '@type': 'Question',
+          name: '¿El agente funciona en Instagram y WhatsApp al mismo tiempo?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'Sí. El agente opera simultáneamente en WhatsApp Business, Instagram Direct y otras plataformas, manteniendo el mismo contexto de conversación en todos los canales.',
+          },
+        },
+        {
+          '@type': 'Question',
+          name: '¿Cuánto tiempo libera el agente IA para un mentor?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'En promedio, los mentores que implementan el agente de VIVE-IA recuperan entre 4 y 8 horas semanales de atención manual, pudiendo dedicarlas a crear contenido y mejorar sus programas.',
+          },
+        },
+      ],
+    },
+  ]}
 >
 
   <!-- ═══════════════════════════════════════════ -->

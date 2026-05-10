@@ -57,6 +57,44 @@ const proceso = [
 <BaseLayout
   title="Quiénes Somos — VIVE-IA"
   description="Conocé a Pablo y Luciana Frisardi, fundadores de VIVE-IA. Estrategia, tecnología y propósito para transformar tu negocio."
+  schema={[
+    {
+      '@context': 'https://schema.org',
+      '@type': 'AboutPage',
+      name: 'Quiénes Somos — VIVE-IA',
+      url: 'https://vive-ia.com/quienes-somos',
+      description: 'VIVE-IA es una agencia argentina de automatización con IA fundada por Pablo y Luciana Frisardi. Transformamos negocios de LATAM con tecnología inteligente.',
+      inLanguage: 'es',
+      about: { '@type': 'Organization', name: 'VIVE-IA', url: 'https://vive-ia.com' },
+      breadcrumb: {
+        '@type': 'BreadcrumbList',
+        itemListElement: [
+          { '@type': 'ListItem', position: 1, name: 'Inicio', item: 'https://vive-ia.com' },
+          { '@type': 'ListItem', position: 2, name: 'Quiénes Somos', item: 'https://vive-ia.com/quienes-somos' },
+        ],
+      },
+    },
+    {
+      '@context': 'https://schema.org',
+      '@type': 'Person',
+      name: 'Pablo Frisardi',
+      jobTitle: 'Cofundador y especialista en IA y automatización',
+      worksFor: { '@type': 'Organization', name: 'VIVE-IA', url: 'https://vive-ia.com' },
+      description: 'Especialista en inteligencia artificial y automatización con más de 20 años de experiencia en tecnología. Cofundador de VIVE-IA, agencia de automatización con IA para LATAM.',
+      knowsAbout: ['Inteligencia Artificial', 'Automatización de procesos', 'n8n', 'WhatsApp Business API', 'Desarrollo web'],
+      nationality: { '@type': 'Country', name: 'Argentina' },
+    },
+    {
+      '@context': 'https://schema.org',
+      '@type': 'Person',
+      name: 'Luciana Frisardi',
+      jobTitle: 'Cofundadora y asesora empresarial estratégica',
+      worksFor: { '@type': 'Organization', name: 'VIVE-IA', url: 'https://vive-ia.com' },
+      description: 'Asesora empresarial y estratégica con más de 18 años de experiencia en negocios. Cofundadora de VIVE-IA, especialista en estrategia comercial y crecimiento para empresas de LATAM.',
+      knowsAbout: ['Estrategia empresarial', 'Ventas', 'Growth marketing', 'LATAM'],
+      nationality: { '@type': 'Country', name: 'Argentina' },
+    },
+  ]}
 >
 
   <!-- ═══════════════════════════════════════════ -->

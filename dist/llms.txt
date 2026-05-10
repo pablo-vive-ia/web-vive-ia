@@ -1,0 +1,52 @@
+# VIVE-IA
+
+> Agencia argentina especializada en automatización de procesos con inteligencia artificial para empresas de LATAM.
+
+VIVE-IA transforma negocios de e-commerce, mentores y marcas personales ordenando, sistematizando y automatizando sus procesos con IA. No automatizamos el caos; primero diseñamos el orden.
+
+## Servicios principales
+
+- [Agentes IA para E-commerce](https://vive-ia.com/soluciones/ecommerce): Recuperación de carritos abandonados, atención 24/7, venta sugestiva inteligente y gestión de logística automática para tiendas Tienda Nube, WooCommerce y Shopify.
+- [Agentes IA para Mentores y Marcas Personales](https://vive-ia.com/soluciones/mentores-marcas-personales): Captación y calificación automática de leads en Instagram y WhatsApp, nurturing de prospectos y onboarding de alumnos.
+- [Desarrollos personalizados](https://vive-ia.com/desarrollos): Sitios web corporativos, landing pages y aplicaciones web con IA integrada para empresas de LATAM.
+
+## Metodología
+
+VIVE-IA trabaja en 4 etapas: (1) Diagnóstico del negocio, (2) Orden de procesos, (3) Sistematización, (4) Automatización con IA.
+
+## Equipo fundador
+
+- Pablo Frisardi — Cofundador, especialista en IA y automatización con más de 20 años en tecnología.
+- Luciana Frisardi — Cofundadora, asesora empresarial y estratégica con más de 18 años en negocios.
+
+## Empresa
+
+- Sede: Argentina
+- Mercado: Latinoamérica (Argentina, Chile, Colombia, México, Uruguay, Perú y más)
+- Idioma: Español
+- Email: contacto@vive-ia.com
+- WhatsApp: +54 9 266 525-8874
+- Instagram: https://www.instagram.com/vive_ia
+
+## Páginas
+
+- [Inicio](https://vive-ia.com)
+- [Quiénes Somos](https://vive-ia.com/quienes-somos)
+- [Agentes para E-commerce](https://vive-ia.com/soluciones/ecommerce)
+- [Agentes para Mentores](https://vive-ia.com/soluciones/mentores-marcas-personales)
+- [Desarrollos](https://vive-ia.com/desarrollos)
+- [Contacto](https://vive-ia.com/contacto)
+
+## Preguntas frecuentes
+
+**¿Qué es VIVE-IA?**
+VIVE-IA es una agencia argentina especializada en automatización con inteligencia artificial. Ayuda a empresas de e-commerce, mentores y marcas personales a crecer sin caos.
+
+**¿En qué países opera VIVE-IA?**
+Opera en toda Latinoamérica: Argentina, Chile, Colombia, México, Uruguay, Perú y más.
+
+**¿Cuánto tarda implementar un agente IA?**
+Entre 7 y 15 días hábiles, dependiendo de la complejidad del negocio.
+
+**¿Con qué plataformas trabaja VIVE-IA?**
+WhatsApp Business, Instagram, Tienda Nube, WooCommerce, Shopify, MercadoPago, Hotmart, Teachable, Kajabi y más.

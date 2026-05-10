@@ -125,16 +125,101 @@ const planes = [
 <BaseLayout
   title="Agentes IA para E-commerce — VIVE-IA"
   description="Automatizá tu tienda online con agentes conversacionales. Recuperá carritos, mejorá la atención y vendé más las 24hs."
-  schema={{
-    '@context': 'https://schema.org',
-    '@type': 'Service',
-    name: 'Agente IA para E-commerce',
-    provider: { '@type': 'Organization', name: 'VIVE-IA', url: 'https://vive-ia.com' },
-    description: 'Automatizá tu tienda online con agentes conversacionales. Recuperá carritos abandonados, mejorá la atención y vendé más las 24hs.',
-    url: 'https://vive-ia.com/soluciones/ecommerce',
-    areaServed: { '@type': 'Country', name: 'Argentina' },
-    serviceType: 'Automatización con Inteligencia Artificial',
-  }}
+  schema={[
+    {
+      '@context': 'https://schema.org',
+      '@type': 'Service',
+      name: 'Agente IA para E-commerce',
+      provider: { '@type': 'Organization', name: 'VIVE-IA', url: 'https://vive-ia.com' },
+      description: 'Automatizá tu tienda online con agentes conversacionales. Recuperá carritos abandonados, mejorá la atención y vendé más las 24hs.',
+      url: 'https://vive-ia.com/soluciones/ecommerce',
+      areaServed: [
+        { '@type': 'Country', name: 'Argentina' },
+        { '@type': 'Country', name: 'Chile' },
+        { '@type': 'Country', name: 'Colombia' },
+        { '@type': 'Country', name: 'México' },
+        { '@type': 'Country', name: 'Uruguay' },
+        { '@type': 'Country', name: 'Perú' },
+      ],
+      serviceType: 'Automatización con Inteligencia Artificial',
+      hasOfferCatalog: {
+        '@type': 'OfferCatalog',
+        name: 'Planes de Agente IA para E-commerce',
+        itemListElement: [
+          {
+            '@type': 'Offer',
+            name: 'Plan Bronce',
+            description: 'Agente básico de atención al cliente y consultas de productos para e-commerce.',
+          },
+          {
+            '@type': 'Offer',
+            name: 'Plan Plata',
+            description: 'Agente avanzado con asesoramiento personalizado, calificación de clientes y reportes de conversión.',
+          },
+          {
+            '@type': 'Offer',
+            name: 'Plan Oro',
+            description: 'IA conversacional de última generación con recuperación de carritos, automatización de embudos y remarketing post-compra.',
+          },
+        ],
+      },
+    },
+    {
+      '@context': 'https://schema.org',
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Inicio', item: 'https://vive-ia.com' },
+        { '@type': 'ListItem', position: 2, name: 'Soluciones', item: 'https://vive-ia.com/soluciones' },
+        { '@type': 'ListItem', position: 3, name: 'Agentes para E-commerce', item: 'https://vive-ia.com/soluciones/ecommerce' },
+      ],
+    },
+    {
+      '@context': 'https://schema.org',
+      '@type': 'FAQPage',
+      mainEntity: [
+        {
+          '@type': 'Question',
+          name: '¿Cómo ayuda un agente IA a recuperar carritos abandonados?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'El agente detecta cuando un cliente deja el carrito sin comprar y envía mensajes automáticos por WhatsApp o Instagram con recordatorios, incentivos personalizados y asistencia para completar la compra, aumentando la tasa de recuperación hasta un 30%.',
+          },
+        },
+        {
+          '@type': 'Question',
+          name: '¿Con qué plataformas de e-commerce se integra el agente de VIVE-IA?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'El agente de VIVE-IA se integra con Tienda Nube, WooCommerce, Shopify, MercadoShops y otras plataformas populares en LATAM. También se conecta con MercadoPago, WhatsApp Business y los principales canales de comunicación.',
+          },
+        },
+        {
+          '@type': 'Question',
+          name: '¿Cuánto tiempo tarda la implementación del agente para e-commerce?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'La implementación tarda entre 7 y 15 días hábiles, incluyendo diagnóstico, configuración, entrenamiento del agente con el catálogo y las integraciones necesarias.',
+          },
+        },
+        {
+          '@type': 'Question',
+          name: '¿El agente puede manejar consultas sobre stock y estado de pedidos?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'Sí. El agente se conecta en tiempo real con tu plataforma de e-commerce para responder consultas de stock, estado de pedidos, tiempos de entrega y más, sin intervención humana.',
+          },
+        },
+        {
+          '@type': 'Question',
+          name: '¿Qué pasa si el agente no sabe responder una pregunta?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'El agente identifica automáticamente cuando una consulta supera su capacidad de respuesta y la deriva a un agente humano con todo el contexto de la conversación, garantizando una experiencia fluida para el cliente.',
+          },
+        },
+      ],
+    },
+  ]}
 >
 
   <!-- ═══════════════════════════════════════════ -->

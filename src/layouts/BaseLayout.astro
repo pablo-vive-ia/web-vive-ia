@@ -9,7 +9,7 @@ interface Props {
   description?: string;
   ogImage?: string;
   canonicalURL?: string | URL;
-  schema?: object;
+  schema?: object | object[];
 }
 
 const {
@@ -20,6 +20,8 @@ const {
   schema,
 } = Astro.props;
 
+const extraSchemas = Array.isArray(schema) ? schema : schema ? [schema] : [];
+
 const canonicalHref = typeof canonicalURL === 'string' ? canonicalURL : canonicalURL.href;
 const ogImageAbsolute = ogImage.startsWith('http') ? ogImage : `https://vive-ia.com${ogImage}`;
 
@@ -29,15 +31,37 @@ const organizationSchema = {
   name: 'VIVE-IA',
   url: 'https://vive-ia.com',
   logo: 'https://vive-ia.com/images/logo-transparent.png',
-  description: 'Agencia argentina especializada en automatización de procesos con inteligencia artificial.',
+  description: 'Agencia argentina especializada en automatización de procesos con inteligencia artificial para empresas de e-commerce, mentores y marcas personales en LATAM.',
+  foundingDate: '2024',
+  founders: [
+    { '@type': 'Person', name: 'Pablo Frisardi', jobTitle: 'Cofundador y especialista en IA' },
+    { '@type': 'Person', name: 'Luciana Frisardi', jobTitle: 'Cofundadora y asesora empresarial' },
+  ],
   address: { '@type': 'PostalAddress', addressCountry: 'AR' },
+  areaServed: [
+    { '@type': 'Country', name: 'Argentina' },
+    { '@type': 'Country', name: 'Chile' },
+    { '@type': 'Country', name: 'Colombia' },
+    { '@type': 'Country', name: 'México' },
+    { '@type': 'Country', name: 'Uruguay' },
+    { '@type': 'Country', name: 'Perú' },
+  ],
   contactPoint: {
     '@type': 'ContactPoint',
     telephone: '+54-9-266-525-8874',
+    email: 'contacto@vive-ia.com',
     contactType: 'customer service',
-    areaServed: 'AR',
+    areaServed: ['AR', 'CL', 'CO', 'MX', 'UY', 'PE'],
     availableLanguage: 'Spanish',
   },
+  knowsAbout: [
+    'Automatización de procesos con IA',
+    'Agentes conversacionales',
+    'WhatsApp Business API',
+    'E-commerce',
+    'n8n',
+    'Inteligencia Artificial',
+  ],
   sameAs: [
     'https://www.instagram.com/vive_ia',
     'https://www.youtube.com/@ViveIA-AgenciadeAutomatizaci%C3%B3n',
@@ -100,7 +124,9 @@ const websiteSchema = {
     <!-- JSON-LD Structured Data -->
     <script is:inline type="application/ld+json" set:html={JSON.stringify(organizationSchema)} />
     <script is:inline type="application/ld+json" set:html={JSON.stringify(websiteSchema)} />
-    {schema && <script is:inline type="application/ld+json" set:html={JSON.stringify(schema)} />}
+    {extraSchemas.map((s) => (
+      <script is:inline type="application/ld+json" set:html={JSON.stringify(s)} />
+    ))}
   </head>
   <body class="bg-brand-bg text-text-primary font-sans antialiased">
 
