@@ -213,19 +213,17 @@ const afterPoints = [
     const overlay = document.getElementById('intro-overlay');
     const video = document.getElementById('intro-video') as HTMLVideoElement;
 
-    video.addEventListener('ended', () => {
-      overlay!.style.transition = 'opacity 0.8s ease';
-      overlay!.style.opacity = '0';
-      setTimeout(() => overlay!.remove(), 800);
-    });
+    function dismissOverlay() {
+      if (!overlay?.isConnected) return;
+      overlay.style.transition = 'opacity 0.8s ease';
+      overlay.style.opacity = '0';
+      setTimeout(() => overlay?.remove(), 800);
+    }
 
-    setTimeout(() => {
-      if (overlay?.isConnected) {
-        overlay.style.transition = 'opacity 0.8s ease';
-        overlay.style.opacity = '0';
-        setTimeout(() => overlay.remove(), 800);
-      }
-    }, 5000);
+    video.addEventListener('ended', dismissOverlay);
+    video.addEventListener('error', dismissOverlay);
+
+    setTimeout(dismissOverlay, 5000);
   </script>
 
   <!-- ═══════════════════════════════════════════ -->
