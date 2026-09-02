@@ -3,7 +3,7 @@
 Este archivo guía a Claude Code en el desarrollo del sitio web de VIVE-IA.
 Leé este archivo completo antes de tocar cualquier archivo del proyecto.
 
-> Última revisión a fondo: 2026-09-01, contra el estado real del código y del
+> Última revisión a fondo: 2026-09-02, contra el estado real del código y del
 > deploy (no contra lo que decía una versión vieja de este mismo archivo).
 
 ---
@@ -82,17 +82,27 @@ web_vive_ia/
 │   │                                Se deja solo por si algún día se sirve
 │   │                                el mismo dist/ desde Apache. La config
 │   │                                real de headers vive en nginx.conf.
-│   ├── scripts/aos-init.js       ← AOS.init() externo (para poder sacar
-│   │                                'unsafe-inline' de script-src en la CSP)
+│   ├── scripts/aos-init.js       ← AOS.init() externo, no inline (ver nota
+│   │                                de CSP más abajo — igual quedó con
+│   │                                'unsafe-inline', pero este sigue siendo
+│   │                                el patrón correcto para scripts nuevos)
 │   ├── video/
 │   └── images/                   ← todo en .webp
 │
 ├── src/
+│   ├── lib/
+│   │   └── contactForm.ts       ← sanitización/validación/POST del form de
+│   │                                contacto — un solo punto de verdad
+│   │                                compartido entre contacto.astro (DOM +
+│   │                                honeypot) y BaseLayout.astro (tool WebMCP)
 │   ├── styles/
 │   │   └── global.css           ← @theme de Tailwind 4 (colores, fuente) — es
 │   │                                el reemplazo de tailwind.config.mjs
 │   ├── layouts/
-│   │   └── BaseLayout.astro     ← head, JSON-LD, Header/Footer/WhatsAppFAB, AOS
+│   │   └── BaseLayout.astro     ← head, JSON-LD, Header/Footer/WhatsAppFAB,
+│   │                                AOS init, tool WebMCP submit_contact_form
+│   │                                (registrada acá, no en contacto.astro,
+│   │                                para que esté disponible en todo el sitio)
 │   ├── components/
 │   │   ├── Header.astro         ← nav + dropdown "Soluciones" (hover + teclado)
 │   │   ├── Footer.astro
@@ -218,9 +228,11 @@ YouTube:              https://www.youtube.com/@ViveIA-AgenciadeAutomatizaci%C3%B
 Formulario webhook:  https://n8n.vive-ia.com/webhook/contacto-vive-ia
 ```
 
-### Formulario de contacto (`contacto.astro`, no un componente separado)
+### Formulario de contacto
 
-Vive directo en `src/pages/contacto.astro` (no existe `ContactForm.astro`). Sanitiza (`stripTags` + truncado por campo), valida en el cliente, tiene un **honeypot** (`name="website"`, oculto, si llega completo se descarta el submit sin avisarle al bot) y postea al webhook de n8n de arriba.
+La lógica de sanitización/validación/POST vive en `src/lib/contactForm.ts` (`sanitizePayload`, `validateContactForm`, `postContactPayload`) — **un solo punto de verdad**, no la dupliques. La usan dos lugares distintos:
+- `src/pages/contacto.astro` — el DOM real del form, con el submit humano y el **honeypot** (`name="website"`, oculto; si llega completo se descarta el submit sin avisarle al bot).
+- `src/layouts/BaseLayout.astro` — la tool de WebMCP `submit_contact_form` (ver abajo), registrada ahí (no en `contacto.astro`) para que esté disponible en **todas** las páginas, no solo en `/contacto`.
 
 **Campos reales:**
 - `nombre` — text, required, maxLength 100
@@ -231,19 +243,21 @@ Vive directo en `src/pages/contacto.astro` (no existe `ContactForm.astro`). Sani
 - `red_social` — text, opcional, maxLength 80
 - `mensaje` — textarea, required, maxLength 2000
 
-La lógica de envío está factorizada en una función `submitPayload()` compartida entre el submit humano y la tool de WebMCP (`submit_contact_form`, ver abajo) — si tocás el flujo de envío, tocalo ahí, no dupliques.
-
 ### Agent readiness (implementado — no re-hacer sin releer esto)
 
-El sitio pasó una ronda de "agent-ready" auditando contra checks tipo isitagentready.com. De los ~14 puntos posibles, **solo 3 aplican** a un sitio de marketing sin API/auth/pagos, y ya están implementados:
+El sitio pasó por varias rondas de "agent-ready" auditando contra checks tipo isitagentready.com. De los ~14 puntos posibles, **solo 3 aplican** a un sitio de marketing sin API/auth/pagos, y ya están implementados:
 
 - **`llms.txt`** (`public/llms.txt`) — resumen de VIVE-IA para LLMs.
 - **`Link` header en el home** (`nginx.conf`) — `</llms.txt>; rel="service-doc"`, solo en `/`.
 - **Content Signals en `robots.txt`** — `Content-Signal: search=yes, ai-input=yes, ai-train=no` en cada bloque de user-agent (repetido en cada uno: un bot que matchea su propio bloque no hereda del `*`).
 - **Markdown for Agents** — `scripts/generate-markdown.mjs` genera un `.md` por página en `dist/` durante el build; `nginx.conf` lo sirve con `Content-Type: text/markdown` cuando el request trae `Accept: text/markdown`. Si agregás una página nueva, sumala también a `PAGES` en ese script y a los `rewrite` de `nginx.conf`.
-- **WebMCP** — `contacto.astro` registra la tool `submit_contact_form` vía `document.modelContext.registerTool()` (con feature-detection; hoy ningún browser la soporta en producción, es a futuro).
+- **WebMCP** — `BaseLayout.astro` registra la tool `submit_contact_form` vía `document.modelContext.registerTool()` (con feature-detection; hoy ningún browser la soporta en producción, es a futuro), disponible en las 7 páginas del sitio. Usa `src/lib/contactForm.ts`; si el DOM del form existe en la página actual (`/contacto`) refleja los valores ahí antes de enviar, si no, envía igual sin tocar el DOM.
 
-**Deliberadamente NO implementado** (y no lo hagas sin una razón de negocio real): API catalog, OAuth/OIDC discovery, OAuth Protected Resource Metadata, `auth.md`, MCP Server Card, Agent Skills index, ARD manifest, x402, MPP, UCP, ACP. Son specs para sitios con API pública, auth de terceros, servidor MCP o checkout/pagos — VIVE-IA no tiene nada de eso. Publicar esos archivos igual sería metadata falsa (endpoints de auth/pago que no existen), no "estar más agent-ready".
+**Deliberadamente NO implementado, y ya se preguntó/confirmó varias veces — no lo reabras sin un motivo de negocio real nuevo:** API catalog, OAuth/OIDC discovery, OAuth Protected Resource Metadata, `auth.md`, MCP Server Card, Agent Skills index, ARD manifest, x402, MPP, UCP, ACP. Son specs para sitios con API pública, auth de terceros, servidor MCP o checkout/pagos — VIVE-IA no tiene nada de eso. Publicar esos archivos igual sería metadata falsa (endpoints de auth/pago que no existen), no "estar más agent-ready". Si el scanner los sigue marcando en rojo, es esperado — no implementarlos fue una decisión, no un olvido. Solo reabrir esto si VIVE-OS (u otro proyecto) termina exponiendo una API pública real, auth de terceros o cobro por uso.
+
+### ⚠️ CSP y JSON-LD — no saques `'unsafe-inline'` de `script-src` sin este contexto
+
+`nginx.conf` tiene `script-src 'self' 'unsafe-inline' cdnjs.cloudflare.com`. En algún momento se sacó `'unsafe-inline'` asumiendo que los `<script type="application/ld+json">` de `BaseLayout.astro` quedaban exentos de la CSP por no ser un tipo ejecutable — **error**: Chrome evalúa esos bloques contra `script-src` al parsear el HTML, antes de fijarse que el `type` no es ejecutable, y los bloquea. Eso rompió el render de **todas** las páginas en Chrome (Firefox es más laxo en ese orden, por eso "andaba" ahí y tardó en detectarse). Si en algún momento se quiere volver a sacar `'unsafe-inline'`, hay que resolver el JSON-LD con hashes `sha256-` por bloque (serían distintos por página, ya que el schema varía) o externalizarlo — no alcanza con sacar la keyword y asumir que el `type` alcanza. Probar siempre en Chrome antes de dar un cambio de CSP por bueno, no solo en Firefox.
 
 ---
 
@@ -408,7 +422,7 @@ COPY nginx.conf /etc/nginx/conf.d/default.conf
 EXPOSE 80
 ```
 
-`nginx.conf` reemplaza el `default.conf` stock de la imagen y agrega: headers de seguridad (`X-Content-Type-Options`, `X-Frame-Options`, `Referrer-Policy`, `Permissions-Policy`, HSTS), la CSP, bloqueo de dotfiles, el `Link` header del home, y la negociación de Markdown for Agents (ver sección de arriba). TLS se termina en el reverse proxy de Easypanel (Traefik) — el contenedor solo habla HTTP puertas adentro, los headers viajan igual porque el proxy los reenvía.
+`nginx.conf` reemplaza el `default.conf` stock de la imagen y agrega: headers de seguridad (`X-Content-Type-Options`, `X-Frame-Options`, `Referrer-Policy`, `Permissions-Policy`, HSTS), la CSP (ver nota de JSON-LD arriba), bloqueo de dotfiles (con excepción explícita para `/.well-known/`, que es un namespace público estándar — RFC 8615 — no un archivo oculto; sin esa excepción cualquier ruta ahí abajo daba 403 en vez del 404 normal), el `Link` header del home, y la negociación de Markdown for Agents (ver sección de arriba). TLS se termina en el reverse proxy de Easypanel (Traefik) — el contenedor solo habla HTTP puertas adentro, los headers viajan igual porque el proxy los reenvía.
 
 **Reglas de esta sección (del `CLAUDE.md` global, aplicadas acá):**
 - No cambiar este workflow de deploy sin confirmación explícita de Pablo.
