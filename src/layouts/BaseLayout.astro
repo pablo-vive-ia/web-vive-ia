@@ -144,5 +144,72 @@ const websiteSchema = {
       is:inline
     ></script>
     <script src="/scripts/aos-init.js" is:inline></script>
+
+    <!-- WebMCP: expone el envío del formulario de contacto como tool para
+         agentes, en TODO el sitio (no solo /contacto) — un agente no
+         debería tener que "saber" a qué página navegar para dejar un lead.
+         Spec en desarrollo (WebMachineLearning CG), sin soporte estable en
+         ningún browser todavía; el feature-detection hace que esto sea un
+         no-op donde no exista. -->
+    <script>
+      import { sanitizePayload, validateContactForm, postContactPayload, CONTACT_TOOL_INPUT_SCHEMA } from '../lib/contactForm';
+
+      declare global {
+        interface Document {
+          modelContext?: {
+            registerTool: (tool: Record<string, unknown>) => void | Promise<void>;
+          };
+        }
+      }
+
+      if (typeof document.modelContext?.registerTool === 'function') {
+        document.modelContext.registerTool({
+          name: 'submit_contact_form',
+          title: 'Enviar formulario de contacto de VIVE-IA',
+          description:
+            'Completa y envía el formulario de contacto de VIVE-IA para solicitar un diagnóstico gratuito de automatización con IA. Usalo cuando el usuario pida contactar, agendar una llamada o dejar sus datos, desde cualquier página del sitio.',
+          inputSchema: CONTACT_TOOL_INPUT_SCHEMA,
+          annotations: {
+            readOnlyHint: false,
+            untrustedContentHint: false,
+          },
+          execute: async (input: Record<string, string>) => {
+            const payload = sanitizePayload(input ?? {});
+
+            const validationError = validateContactForm(payload);
+            if (validationError) {
+              return { ok: false, message: validationError };
+            }
+
+            // Si estamos en /contacto, reflejar los valores en el formulario
+            // visible antes de enviar, para que un humano mirando la pantalla
+            // vea exactamente qué se mandó. En cualquier otra página no hay
+            // DOM que reflejar — el envío igual funciona.
+            const form = document.getElementById('contact-form') as HTMLFormElement | null;
+            if (form) {
+              for (const [key, value] of Object.entries(payload)) {
+                const field = form.elements.namedItem(key) as HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement | null;
+                if (field) field.value = value;
+              }
+            }
+
+            const result = await postContactPayload(payload);
+
+            const successEl = document.getElementById('form-success');
+            const errorEl = document.getElementById('form-error');
+            if (result.ok) {
+              successEl?.classList.remove('hidden');
+              errorEl?.classList.add('hidden');
+              form?.reset();
+            } else if (errorEl) {
+              errorEl.textContent = result.message;
+              errorEl.classList.remove('hidden');
+            }
+
+            return result;
+          },
+        });
+      }
+    </script>
   </body>
 </html>
