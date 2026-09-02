@@ -1,3 +1,22 @@
+# ⚠️ INERTE EN PRODUCCIÓN: el sitio corre en un VPS con Docker + nginx
+# (ver Dockerfile / nginx.conf en la raíz del repo), no en Apache. nginx no
+# lee .htaccess bajo ninguna circunstancia — este archivo no hace nada en
+# vive-ia.com. Toda la config real de headers está en nginx.conf; este
+# archivo se deja solo por si algún día se sirve el mismo dist/ desde un
+# host Apache (ej. Hostinger, como decía una versión vieja de este CLAUDE.md).
+# Si tocás seguridad de headers, tocá nginx.conf, no este archivo.
+
+# ── Marca de home para el Link header de agent discovery (ver abajo) ───────
+# Se usa mod_rewrite (en vez de <If>) por compatibilidad más amplia con
+# hosting compartido: casi todos los Apache lo tienen habilitado, y setear
+# una env var + condicionar el Header con env= es el patrón estándar.
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteCond %{REQUEST_URI} ^/$ [OR]
+  RewriteCond %{REQUEST_URI} ^/index\.html$
+  RewriteRule ^ - [E=IS_HOMEPAGE:1]
+</IfModule>
+
 <IfModule mod_headers.c>
 
   # ── Prevent MIME-type sniffing ──────────────────────────────────────────
@@ -21,8 +40,19 @@
   Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains"
 
   # ── Content Security Policy ─────────────────────────────────────────────
-  # Restringe de dónde se pueden cargar recursos. 'unsafe-inline' es necesario
-  # porque el sitio usa <script> y style= inline (Three.js, AOS, formulario).
-  Header always set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline' cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline' fonts.googleapis.com cdnjs.cloudflare.com; font-src 'self' fonts.gstatic.com; img-src 'self' data: blob:; media-src 'self'; frame-src https://www.youtube.com; connect-src 'self' https://n8n.vive-ia.com; object-src 'none'; base-uri 'self'; form-action 'self';"
+  # Restringe de dónde se pueden cargar recursos.
+  # script-src NO lleva 'unsafe-inline': todos los <script> del sitio son
+  # externos same-origin (bundle de Astro/Vite) o de cdnjs.cloudflare.com.
+  # Los bloques <script type="application/ld+json"> (JSON-LD) no ejecutan
+  # como JS, así que no están sujetos a script-src y no necesitan excepción.
+  # style-src sí mantiene 'unsafe-inline' porque el sitio usa style="" inline
+  # y gradientes de texto en varias secciones (deuda pendiente de refactor).
+  Header always set Content-Security-Policy "default-src 'self'; script-src 'self' cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline' fonts.googleapis.com cdnjs.cloudflare.com; font-src 'self' fonts.gstatic.com; img-src 'self' data: blob:; media-src 'self'; frame-src https://www.youtube.com; connect-src 'self' https://n8n.vive-ia.com; object-src 'none'; base-uri 'self'; form-action 'self';"
+
+  # ── Link header para descubrimiento por agentes IA (RFC 8288 / RFC 9727) ─
+  # Solo en el home (env=IS_HOMEPAGE, seteado arriba): apunta a llms.txt, el
+  # resumen de VIVE-IA pensado para que agentes/LLMs lo lean. Usamos
+  # rel="service-doc" y no "api-catalog" porque no exponemos una API pública.
+  Header always set Link "</llms.txt>; rel=\"service-doc\"" env=IS_HOMEPAGE
 
 </IfModule>

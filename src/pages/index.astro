@@ -535,7 +535,7 @@ const afterPoints = [
           </div>
 
           <!-- Aclaración -->
-          <p class="text-slate-600 text-xs text-center mt-4">
+          <p class="text-slate-400 text-xs text-center mt-4">
             Resultados promedio observados en implementaciones con clientes.
           </p>
         </div>
@@ -710,8 +710,15 @@ const afterPoints = [
 
       const clock = new THREE.Clock();
 
+      // Accesibilidad y performance: pausar el loop cuando la sección no está
+      // visible y respetar la preferencia de "reduced motion" del usuario.
+      const reduceMotionNC = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      let isVisibleNC = true;
+      let rafIdNC: number | null = null;
+
       function animateNC() {
-        requestAnimationFrame(animateNC);
+        if (!isVisibleNC) { rafIdNC = null; return; }
+        rafIdNC = requestAnimationFrame(animateNC);
         const t = clock.getElapsedTime();
 
         // Actualizar destello por nodo (sin wave con fase y velocidad individual)
@@ -742,7 +749,17 @@ const afterPoints = [
         rendererNC.render(sceneNC, cameraNC);
       }
 
-      animateNC();
+      if (reduceMotionNC) {
+        // Un solo frame estático: nada de animación continua.
+        rendererNC.render(sceneNC, cameraNC);
+      } else {
+        const observerNC = new IntersectionObserver((entries) => {
+          isVisibleNC = entries[0]?.isIntersecting ?? true;
+          if (isVisibleNC && rafIdNC === null) rafIdNC = requestAnimationFrame(animateNC);
+        }, { threshold: 0 });
+        observerNC.observe(canvasNoCaos);
+        rafIdNC = requestAnimationFrame(animateNC);
+      }
 
       // Resize
       window.addEventListener('resize', () => {
@@ -960,7 +977,7 @@ const afterPoints = [
       </div>
 
       <!-- Confianza -->
-      <div class="flex flex-wrap items-center justify-center gap-6 text-slate-600 text-sm">
+      <div class="flex flex-wrap items-center justify-center gap-6 text-slate-400 text-sm">
         <span class="flex items-center gap-2">
           <svg class="w-4 h-4 text-violet-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
             <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />

@@ -220,8 +220,15 @@ import SectionBadge from '../components/SectionBadge.astro';
 
       const startC = performance.now();
 
+      // Accesibilidad y performance: pausar el loop cuando la sección no está
+      // visible y respetar la preferencia de "reduced motion" del usuario.
+      const reduceMotionC = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      let isVisibleC = true;
+      let rafIdC: number | null = null;
+
       function animateC() {
-        requestAnimationFrame(animateC);
+        if (!isVisibleC) { rafIdC = null; return; }
+        rafIdC = requestAnimationFrame(animateC);
         const t = (performance.now() - startC) / 1000;
 
         // Flash por nodo
@@ -238,7 +245,17 @@ import SectionBadge from '../components/SectionBadge.astro';
         rendererC.render(sceneC, cameraC);
       }
 
-      animateC();
+      if (reduceMotionC) {
+        // Un solo frame estático: nada de animación continua.
+        rendererC.render(sceneC, cameraC);
+      } else {
+        const observerC = new IntersectionObserver((entries) => {
+          isVisibleC = entries[0]?.isIntersecting ?? true;
+          if (isVisibleC && rafIdC === null) rafIdC = requestAnimationFrame(animateC);
+        }, { threshold: 0 });
+        observerC.observe(canvasContacto);
+        rafIdC = requestAnimationFrame(animateC);
+      }
 
       window.addEventListener('resize', () => {
         const w = section.offsetWidth;
@@ -294,13 +311,21 @@ import SectionBadge from '../components/SectionBadge.astro';
           </div>
 
           <form id="contact-form" class="space-y-6" novalidate>
+            <!-- Honeypot anti-spam: invisible para personas, tentador para bots.
+                 Si llega completo, el submit se descarta en silencio. -->
+            <div style="position:absolute; left:-9999px; top:auto; width:1px; height:1px; overflow:hidden;" aria-hidden="true">
+              <label for="website">No completar este campo</label>
+              <input type="text" id="website" name="website" tabindex="-1" autocomplete="off" />
+            </div>
+
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div class="space-y-2">
-                <label class="text-xs font-semibold uppercase tracking-wider text-slate-300">
+                <label for="nombre" class="text-xs font-semibold uppercase tracking-wider text-slate-300">
                   Apellido y nombre <span class="text-red-400">*</span>
                 </label>
                 <input
                   type="text"
+                  id="nombre"
                   name="nombre"
                   required
                   maxlength="100"
@@ -312,11 +337,12 @@ import SectionBadge from '../components/SectionBadge.astro';
                 />
               </div>
               <div class="space-y-2">
-                <label class="text-xs font-semibold uppercase tracking-wider text-slate-300">
+                <label for="empresa" class="text-xs font-semibold uppercase tracking-wider text-slate-300">
                   Empresa / Proyecto <span class="text-red-400">*</span>
                 </label>
                 <input
                   type="text"
+                  id="empresa"
                   name="empresa"
                   required
                   maxlength="120"
@@ -331,11 +357,12 @@ import SectionBadge from '../components/SectionBadge.astro';
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div class="space-y-2">
-                <label class="text-xs font-semibold uppercase tracking-wider text-slate-300">
+                <label for="email" class="text-xs font-semibold uppercase tracking-wider text-slate-300">
                   Correo electrónico <span class="text-red-400">*</span>
                 </label>
                 <input
                   type="email"
+                  id="email"
                   name="email"
                   required
                   maxlength="254"
@@ -348,11 +375,12 @@ import SectionBadge from '../components/SectionBadge.astro';
                 />
               </div>
               <div class="space-y-2">
-                <label class="text-xs font-semibold uppercase tracking-wider text-slate-300">
+                <label for="telefono" class="text-xs font-semibold uppercase tracking-wider text-slate-300">
                   Teléfono de contacto <span class="text-red-400">*</span>
                 </label>
                 <input
                   type="tel"
+                  id="telefono"
                   name="telefono"
                   required
                   maxlength="20"
@@ -369,10 +397,11 @@ import SectionBadge from '../components/SectionBadge.astro';
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div class="space-y-2">
-                <label class="text-xs font-semibold uppercase tracking-wider text-slate-300">
+                <label for="presupuesto" class="text-xs font-semibold uppercase tracking-wider text-slate-300">
                   Tu presupuesto <span class="text-red-400">*</span>
                 </label>
                 <select
+                  id="presupuesto"
                   name="presupuesto"
                   required
                   class="w-full bg-[#0A0A0F] border border-white/[0.08] rounded-xl px-4 py-3
@@ -388,11 +417,12 @@ import SectionBadge from '../components/SectionBadge.astro';
                 </select>
               </div>
               <div class="space-y-2">
-                <label class="text-xs font-semibold uppercase tracking-wider text-slate-300">
+                <label for="red_social" class="text-xs font-semibold uppercase tracking-wider text-slate-300">
                   Tu red social
                 </label>
                 <input
                   type="text"
+                  id="red_social"
                   name="red_social"
                   maxlength="80"
                   placeholder="Ej. @vive_ia"
@@ -405,10 +435,11 @@ import SectionBadge from '../components/SectionBadge.astro';
             </div>
 
             <div class="space-y-2">
-              <label class="text-xs font-semibold uppercase tracking-wider text-slate-300">
+              <label for="mensaje" class="text-xs font-semibold uppercase tracking-wider text-slate-300">
                 ¿Qué te gustaría automatizar? <span class="text-red-400">*</span>
               </label>
               <textarea
+                id="mensaje"
                 name="mensaje"
                 required
                 rows="4"
@@ -471,7 +502,7 @@ import SectionBadge from '../components/SectionBadge.astro';
                   </div>
                   <div>
                     <p class="text-white font-medium">{step.label}</p>
-                    <p class="text-slate-500 text-sm mt-0.5">{step.detail}</p>
+                    <p class="text-slate-400 text-sm mt-0.5">{step.detail}</p>
                   </div>
                 </li>
               ))}
@@ -574,42 +605,43 @@ import SectionBadge from '../components/SectionBadge.astro';
     return null;
   }
 
+  type ContactPayload = {
+    nombre: string;
+    empresa: string;
+    email: string;
+    telefono: string;
+    presupuesto: string;
+    red_social: string;
+    mensaje: string;
+  };
+
+  function sanitizePayload(raw: Record<string, string>): ContactPayload {
+    return {
+      nombre:      sanitize(raw.nombre      ?? '', 100),
+      empresa:     sanitize(raw.empresa     ?? '', 120),
+      email:       sanitize(raw.email       ?? '', 254).toLowerCase(),
+      telefono:    sanitize(raw.telefono    ?? '', 20),
+      presupuesto: sanitize(raw.presupuesto ?? '', 20),
+      red_social:  sanitize(raw.red_social  ?? '', 80),
+      mensaje:     sanitize(raw.mensaje     ?? '', 2000),
+    };
+  }
+
   // ── Lógica de submit ────────────────────────────────────────────────────
   const form = document.getElementById('contact-form') as HTMLFormElement | null;
   const submitBtn = form?.querySelector('button[type="submit"]') as HTMLButtonElement | null;
+  const successEl = document.getElementById('form-success');
+  const errorEl   = document.getElementById('form-error');
 
-  form?.addEventListener('submit', async (e) => {
-    e.preventDefault();
-
-    const successEl = document.getElementById('form-success');
-    const errorEl   = document.getElementById('form-error');
+  /**
+   * Envía el payload ya sanitizado y validado al webhook de n8n, actualizando
+   * la UI del formulario. La usan tanto el submit "humano" como la tool de
+   * WebMCP, así los dos caminos comparten un único punto de verdad.
+   */
+  async function submitPayload(payload: ContactPayload): Promise<{ ok: boolean; message: string }> {
     successEl?.classList.add('hidden');
     errorEl?.classList.add('hidden');
 
-    const raw = Object.fromEntries(new FormData(form)) as Record<string, string>;
-
-    // Sanitizar cada campo
-    const payload = {
-      nombre:      sanitize(raw.nombre     ?? '', 100),
-      empresa:     sanitize(raw.empresa    ?? '', 120),
-      email:       sanitize(raw.email      ?? '', 254).toLowerCase(),
-      telefono:    sanitize(raw.telefono   ?? '', 20),
-      presupuesto: sanitize(raw.presupuesto ?? '', 20),
-      red_social:  sanitize(raw.red_social ?? '', 80),
-      mensaje:     sanitize(raw.mensaje    ?? '', 2000),
-    };
-
-    // Validar
-    const validationError = validateForm(payload);
-    if (validationError) {
-      if (errorEl) {
-        errorEl.textContent = validationError;
-        errorEl.classList.remove('hidden');
-      }
-      return;
-    }
-
-    // Prevenir doble envío
     if (submitBtn) {
       submitBtn.disabled = true;
       submitBtn.textContent = 'Enviando...';
@@ -625,17 +657,110 @@ import SectionBadge from '../components/SectionBadge.astro';
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
 
       successEl?.classList.remove('hidden');
-      form.reset();
+      form?.reset();
+      return { ok: true, message: 'Mensaje enviado. Te contactaremos en menos de 24 horas.' };
     } catch {
+      const message = 'Ocurrió un error. Escribinos por WhatsApp y lo resolvemos.';
       if (errorEl) {
-        errorEl.textContent = 'Ocurrió un error. Escribinos por WhatsApp y lo resolvemos.';
+        errorEl.textContent = message;
         errorEl.classList.remove('hidden');
       }
+      return { ok: false, message };
     } finally {
       if (submitBtn) {
         submitBtn.disabled = false;
         submitBtn.textContent = 'Quiero automatizar mi negocio';
       }
     }
+  }
+
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    const raw = Object.fromEntries(new FormData(form)) as Record<string, string>;
+
+    // Honeypot: si un bot completó el campo trampa, simulamos éxito sin
+    // enviar nada al webhook. No delatamos que fue detectado.
+    if (raw.website) {
+      successEl?.classList.remove('hidden');
+      form.reset();
+      return;
+    }
+
+    const payload = sanitizePayload(raw);
+    const validationError = validateForm(payload);
+    if (validationError) {
+      if (errorEl) {
+        errorEl.textContent = validationError;
+        errorEl.classList.remove('hidden');
+      }
+      return;
+    }
+
+    await submitPayload(payload);
   });
+
+  // ── WebMCP: expone el envío del formulario como tool para agentes ────────
+  // Spec en desarrollo (WebMachineLearning CG) — sin soporte estable en
+  // ningún browser todavía, por eso el feature-detection. Cuando un agente
+  // (navegador con IA integrada) la invoque, completa el formulario visible
+  // y lo envía por el mismo camino que un envío humano, para que quien esté
+  // mirando la pantalla vea exactamente qué se mandó.
+  declare global {
+    interface Document {
+      modelContext?: {
+        registerTool: (tool: Record<string, unknown>) => void | Promise<void>;
+      };
+    }
+  }
+
+  if (typeof document.modelContext?.registerTool === 'function') {
+    document.modelContext.registerTool({
+      name: 'submit_contact_form',
+      title: 'Enviar formulario de contacto de VIVE-IA',
+      description:
+        'Completa y envía el formulario de contacto de VIVE-IA para solicitar un diagnóstico gratuito de automatización con IA. Usalo cuando el usuario pida contactar, agendar una llamada o dejar sus datos.',
+      inputSchema: {
+        type: 'object',
+        properties: {
+          nombre: { type: 'string', maxLength: 100, description: 'Nombre y apellido de la persona de contacto.' },
+          empresa: { type: 'string', maxLength: 120, description: 'Nombre de la empresa o proyecto.' },
+          email: { type: 'string', format: 'email', maxLength: 254, description: 'Email de contacto.' },
+          telefono: { type: 'string', maxLength: 20, description: 'Teléfono de contacto, idealmente con código de país.' },
+          presupuesto: {
+            type: 'string',
+            enum: ['hasta-500', '500-1000', '1000-3000', 'mas-3000'],
+            description:
+              'Rango de presupuesto mensual en USD: hasta-500 (Hasta USD 500), 500-1000 (USD 500 a 1.000), 1000-3000 (USD 1.000 a 3.000), mas-3000 (Más de USD 3.000).',
+          },
+          red_social: { type: 'string', maxLength: 80, description: 'Usuario de red social, opcional. Ej: @vive_ia.' },
+          mensaje: { type: 'string', maxLength: 2000, description: 'Breve descripción de qué proceso quiere automatizar.' },
+        },
+        required: ['nombre', 'empresa', 'email', 'telefono', 'presupuesto', 'mensaje'],
+      },
+      annotations: {
+        readOnlyHint: false,
+        untrustedContentHint: false,
+      },
+      execute: async (input: Record<string, string>) => {
+        const payload = sanitizePayload(input ?? {});
+
+        const validationError = validateForm(payload);
+        if (validationError) {
+          return { ok: false, message: validationError };
+        }
+
+        // Reflejar los valores en el formulario visible antes de enviar, para
+        // que un humano mirando la pantalla vea exactamente qué se mandó.
+        if (form) {
+          for (const [key, value] of Object.entries(payload)) {
+            const field = form.elements.namedItem(key) as HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement | null;
+            if (field) field.value = value;
+          }
+        }
+
+        return submitPayload(payload);
+      },
+    });
+  }
 </script>

@@ -137,18 +137,12 @@ const websiteSchema = {
     <Footer />
     <WhatsAppFAB />
 
-    <!-- AOS init -->
+    <!-- AOS init: script externo (no inline) para poder correr la CSP sin
+         'unsafe-inline' en script-src. Ver public/scripts/aos-init.js -->
     <script
       src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"
       is:inline
     ></script>
-    <script is:inline>
-      AOS.init({
-        duration: 700,
-        easing: 'ease-out-cubic',
-        once: true,
-        offset: 60,
-      });
-    </script>
+    <script src="/scripts/aos-init.js" is:inline></script>
   </body>
 </html>

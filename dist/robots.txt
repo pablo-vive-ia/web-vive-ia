@@ -1,23 +1,34 @@
 User-agent: *
 Allow: /
+Content-Signal: search=yes, ai-input=yes, ai-train=no
 
-# Bots de IA — permitidos explícitamente para GEO
+# Bots de IA — permitidos explícitamente para GEO. search=yes/ai-input=yes:
+# está bien que te lean, citen y usen como contexto en respuestas. ai-train=no:
+# no autorizamos usar el contenido del sitio como dataset de entrenamiento.
+# (Content Signals — https://contentsignals.org — es una señal, no un
+# bloqueo técnico: depende de que cada bot la respete.)
 User-agent: GPTBot
 Allow: /
+Content-Signal: search=yes, ai-input=yes, ai-train=no
 
 User-agent: Google-Extended
 Allow: /
+Content-Signal: search=yes, ai-input=yes, ai-train=no
 
 User-agent: anthropic-ai
 Allow: /
+Content-Signal: search=yes, ai-input=yes, ai-train=no
 
 User-agent: PerplexityBot
 Allow: /
+Content-Signal: search=yes, ai-input=yes, ai-train=no
 
 User-agent: cohere-ai
 Allow: /
+Content-Signal: search=yes, ai-input=yes, ai-train=no
 
 User-agent: ClaudeBot
 Allow: /
+Content-Signal: search=yes, ai-input=yes, ai-train=no
 
 Sitemap: https://vive-ia.com/sitemap-index.xml
