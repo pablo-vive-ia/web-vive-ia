@@ -14,7 +14,7 @@ export type ContactPayload = {
   mensaje: string;
 };
 
-const WEBHOOK_URL = 'https://n8n.vive-ia.com/webhook/contacto-vive-ia';
+const WEBHOOK_URL = 'https://n8n.vive-ia.com/webhook/wh/vive-ia/contacto';
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 const PHONE_RE = /^[\+\d\s\-\(\)]{7,20}$/;

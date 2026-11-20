@@ -225,7 +225,7 @@ WhatsApp:            https://wa.me/5492665258874   (único número usado en todo
 Email:               contacto@vive-ia.com
 Instagram:           https://www.instagram.com/vive_ia
 YouTube:              https://www.youtube.com/@ViveIA-AgenciadeAutomatizaci%C3%B3n
-Formulario webhook:  https://n8n.vive-ia.com/webhook/contacto-vive-ia
+Formulario webhook:  https://n8n.vive-ia.com/webhook/wh/vive-ia/contacto
 ```
 
 ### Formulario de contacto
@@ -419,7 +419,7 @@ npm run deploy:hostinger -- --push   # además git push origin hostinger
 - Videos con `youtube-nocookie.com`, `sandbox` y `referrerpolicy`. JSON-LD con `safeJson()` en `BaseLayout.astro`.
 - Sin JS el contenido se ve (`html:not(.js) [data-aos]` en `global.css`).
 - Imágenes: los PNG originales están en `originales/imagenes/` (no se publican); los WebP de `public/images` están al tamaño que se muestran (2x escritorio, 3x celular). Todo `<img>` lleva `width`/`height`: las de ruta fija en el código y las dinámicas con `imgSize()` (`src/lib/imageSize.ts`, medidas de `scripts/image-sizes.mjs`, que corre en cada build). Si sumás una imagen, solo ponela en `public/images`.
-- Formulario: honeypot + tiempo mínimo de 3 s + corte a los 15 s. La URL del webhook es pública: validación, límite por IP y CORS van en el workflow de n8n.
+- Formulario: honeypot + tiempo mínimo de 3 s + corte a los 15 s. La URL del webhook es pública: la protección vive en el workflow de n8n "VIVE-IA - Formulario de Contacto v2" (solo JSON con `Origin` de vive-ia.com, CORS, sin bots, 3 envíos por IP cada 10 min, 10 por IP al día, 2 por email al día, 20 por hora en total; aviso a Telegram al cortar). Si se cambia el dominio, actualizar el `onlyRunIf` del webhook.
 
 ## 🚀 Respaldo — DigitalOcean + Easypanel + Docker + nginx
 
