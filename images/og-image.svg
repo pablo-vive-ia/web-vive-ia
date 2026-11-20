@@ -1,0 +1,117 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <!-- Fondo principal -->
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0A0A0F"/>
+      <stop offset="100%" style="stop-color:#111118"/>
+    </linearGradient>
+
+    <!-- Gradiente texto VIVE-IA -->
+    <linearGradient id="titleGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#F8FAFC"/>
+      <stop offset="100%" style="stop-color:#A855F7"/>
+    </linearGradient>
+
+    <!-- Gradiente acento cyan -->
+    <linearGradient id="accentGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#A855F7"/>
+      <stop offset="100%" style="stop-color:#06B6D4"/>
+    </linearGradient>
+
+    <!-- Glow blob -->
+    <radialGradient id="blob1" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" style="stop-color:#7C3AED;stop-opacity:0.35"/>
+      <stop offset="100%" style="stop-color:#7C3AED;stop-opacity:0"/>
+    </radialGradient>
+    <radialGradient id="blob2" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" style="stop-color:#06B6D4;stop-opacity:0.25"/>
+      <stop offset="100%" style="stop-color:#06B6D4;stop-opacity:0"/>
+    </radialGradient>
+
+    <!-- Filtro blur para blobs -->
+    <filter id="blur1"><feGaussianBlur stdDeviation="60"/></filter>
+    <filter id="blur2"><feGaussianBlur stdDeviation="50"/></filter>
+  </defs>
+
+  <!-- Fondo -->
+  <rect width="1200" height="630" fill="url(#bg)"/>
+
+  <!-- Blob violeta (superior derecho) -->
+  <ellipse cx="950" cy="120" rx="340" ry="280" fill="url(#blob1)" filter="url(#blur1)"/>
+
+  <!-- Blob cyan (inferior izquierdo) -->
+  <ellipse cx="200" cy="520" rx="280" ry="220" fill="url(#blob2)" filter="url(#blur2)"/>
+
+  <!-- Grid decorativo (líneas sutiles) -->
+  <g opacity="0.04" stroke="#A855F7" stroke-width="1">
+    <line x1="0" y1="105" x2="1200" y2="105"/>
+    <line x1="0" y1="210" x2="1200" y2="210"/>
+    <line x1="0" y1="315" x2="1200" y2="315"/>
+    <line x1="0" y1="420" x2="1200" y2="420"/>
+    <line x1="0" y1="525" x2="1200" y2="525"/>
+    <line x1="150" y1="0" x2="150" y2="630"/>
+    <line x1="400" y1="0" x2="400" y2="630"/>
+    <line x1="650" y1="0" x2="650" y2="630"/>
+    <line x1="900" y1="0" x2="900" y2="630"/>
+    <line x1="1100" y1="0" x2="1100" y2="630"/>
+  </g>
+
+  <!-- Nodos de red neuronal decorativos (derecha) -->
+  <g opacity="0.18">
+    <!-- nodos -->
+    <circle cx="980" cy="200" r="5" fill="#A855F7"/>
+    <circle cx="1060" cy="280" r="4" fill="#06B6D4"/>
+    <circle cx="1110" cy="180" r="6" fill="#A855F7"/>
+    <circle cx="1050" cy="140" r="3" fill="#06B6D4"/>
+    <circle cx="1140" cy="350" r="4" fill="#A855F7"/>
+    <circle cx="1020" cy="390" r="5" fill="#06B6D4"/>
+    <circle cx="1090" cy="440" r="3" fill="#A855F7"/>
+    <circle cx="1160" cy="260" r="4" fill="#06B6D4"/>
+    <!-- conexiones -->
+    <line x1="980" y1="200" x2="1060" y2="280" stroke="#7C3AED" stroke-width="1"/>
+    <line x1="1060" y1="280" x2="1110" y2="180" stroke="#7C3AED" stroke-width="1"/>
+    <line x1="1110" y1="180" x2="1050" y2="140" stroke="#06B6D4" stroke-width="1"/>
+    <line x1="1050" y1="140" x2="980" y2="200" stroke="#7C3AED" stroke-width="1"/>
+    <line x1="1060" y1="280" x2="1140" y2="350" stroke="#06B6D4" stroke-width="1"/>
+    <line x1="1140" y1="350" x2="1020" y2="390" stroke="#7C3AED" stroke-width="1"/>
+    <line x1="1020" y1="390" x2="1090" y2="440" stroke="#06B6D4" stroke-width="1"/>
+    <line x1="1110" y1="180" x2="1160" y2="260" stroke="#7C3AED" stroke-width="1"/>
+    <line x1="1160" y1="260" x2="1140" y2="350" stroke="#06B6D4" stroke-width="1"/>
+  </g>
+
+  <!-- Borde superior gradiente -->
+  <rect x="80" y="0" width="400" height="3" rx="2" fill="url(#accentGrad)"/>
+
+  <!-- Badge "Agencia IA · Argentina" -->
+  <rect x="80" y="72" width="248" height="34" rx="17" fill="none" stroke="#7C3AED" stroke-width="1.5" opacity="0.6"/>
+  <text x="204" y="95" font-family="'Inter', 'Helvetica Neue', Arial, sans-serif" font-size="14" font-weight="600" fill="#A855F7" text-anchor="middle" letter-spacing="1">Agencia IA · Argentina</text>
+
+  <!-- VIVE-IA — título principal -->
+  <text x="80" y="240" font-family="'Inter', 'Helvetica Neue', Arial, sans-serif" font-size="112" font-weight="800" fill="url(#titleGrad)" letter-spacing="-2">VIVE-IA</text>
+
+  <!-- Línea separadora acento -->
+  <rect x="80" y="262" width="520" height="3" rx="2" fill="url(#accentGrad)" opacity="0.7"/>
+
+  <!-- Tagline -->
+  <text x="80" y="320" font-family="'Inter', 'Helvetica Neue', Arial, sans-serif" font-size="28" font-weight="400" fill="#94A3B8" letter-spacing="0">Automatizá tu negocio con</text>
+  <text x="80" y="360" font-family="'Inter', 'Helvetica Neue', Arial, sans-serif" font-size="28" font-weight="700" fill="#F8FAFC" letter-spacing="0">Inteligencia Artificial</text>
+
+  <!-- Tres props de valor -->
+  <g font-family="'Inter', 'Helvetica Neue', Arial, sans-serif" font-size="16" fill="#475569">
+    <!-- ítem 1 -->
+    <circle cx="93" cy="432" r="4" fill="#7C3AED"/>
+    <text x="108" y="437" fill="#94A3B8">Ordenamos tus procesos</text>
+
+    <!-- ítem 2 -->
+    <circle cx="93" cy="470" r="4" fill="#A855F7"/>
+    <text x="108" y="475" fill="#94A3B8">Estructuramos tu operación</text>
+
+    <!-- ítem 3 -->
+    <circle cx="93" cy="508" r="4" fill="#06B6D4"/>
+    <text x="108" y="513" fill="#94A3B8">Automatizamos con IA</text>
+  </g>
+
+  <!-- URL / dominio -->
+  <text x="80" y="586" font-family="'Inter', 'Helvetica Neue', Arial, sans-serif" font-size="18" font-weight="500" fill="#475569" letter-spacing="1">vive-ia.com</text>
+
+</svg>
