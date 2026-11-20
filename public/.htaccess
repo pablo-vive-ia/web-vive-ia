@@ -69,8 +69,8 @@ DirectoryIndex index.html
   Header always set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data: blob:; media-src 'self'; frame-src https://www.youtube-nocookie.com; connect-src 'self' https://n8n.vive-ia.com; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'self'; upgrade-insecure-requests"
 
   # Agent discovery: solo en el home
-  Header always set Link "</llms.txt>; rel=\"service-doc\"" env=IS_HOMEPAGE
-  Header always set Link "</llms.txt>; rel=\"service-doc\"" env=REDIRECT_IS_HOMEPAGE
+  Header always set Link "</llms.txt>; rel=service-doc" env=IS_HOMEPAGE
+  Header always set Link "</llms.txt>; rel=service-doc" env=REDIRECT_IS_HOMEPAGE
 
   # ── Caché ───────────────────────────────────────────────────────────────────
   # Todos los .js y .css salen de /_astro/ con hash en el nombre: se pueden cachear un año
