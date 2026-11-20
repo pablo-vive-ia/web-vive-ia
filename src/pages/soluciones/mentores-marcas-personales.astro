@@ -1,4 +1,5 @@
 ---
+import { imgSize } from '../../lib/imageSize';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import SectionBadge from '../../components/SectionBadge.astro';
 import MetricCounter from '../../components/MetricCounter.astro';
@@ -224,7 +225,10 @@ const planes = [
     <div class="absolute inset-0 flex items-center justify-center z-0 pointer-events-none">
       <div class="relative w-[280px] h-[498px] rounded-3xl overflow-hidden opacity-70">
         <iframe
-          src="https://www.youtube.com/embed/grPCcGV1WNs?autoplay=1&mute=1&loop=1&playlist=grPCcGV1WNs&controls=0&showinfo=0&rel=0&modestbranding=1&playsinline=1"
+        referrerpolicy="strict-origin-when-cross-origin"
+        sandbox="allow-scripts allow-same-origin allow-presentation"
+        loading="eager"
+          src="https://www.youtube-nocookie.com/embed/grPCcGV1WNs?autoplay=1&mute=1&loop=1&playlist=grPCcGV1WNs&controls=0&showinfo=0&rel=0&modestbranding=1&playsinline=1"
           allow="autoplay; encrypted-media"
           allowfullscreen
           title="VIVE-IA Mentores"
@@ -311,7 +315,7 @@ const planes = [
                    hover:border-red-900/40 transition-all duration-300 overflow-hidden"
           >
             <img
-              src={p.image}
+              src={p.image} {...imgSize(p.image)}
               alt={p.title}
               class="w-full h-28 object-cover object-center rounded-t-xl"
               loading="lazy"
@@ -425,7 +429,7 @@ const planes = [
         <div data-aos="fade-up" data-aos-delay="0"
              class="p-8 rounded-2xl bg-[#111118] border border-white/[0.06]
                     hover:border-violet-600/30 hover:-translate-y-1 transition-all duration-300">
-          <img
+          <img width="290" height="125"
             src="/images/base-conocimientos.webp"
             alt="Entrenado con tu contenido"
             class="w-24 h-24 object-contain mb-4"
@@ -441,7 +445,7 @@ const planes = [
         <div data-aos="fade-up" data-aos-delay="120"
              class="p-8 rounded-2xl bg-[#111118] border border-white/[0.06]
                     hover:border-violet-600/30 hover:-translate-y-1 transition-all duration-300">
-          <img
+          <img width="290" height="123"
             src="/images/tono-de-voz.webp"
             alt="Tono y personalidad coherentes"
             class="w-24 h-24 object-contain mb-4"
@@ -457,7 +461,7 @@ const planes = [
         <div data-aos="fade-up" data-aos-delay="240"
              class="p-8 rounded-2xl bg-[#111118] border border-white/[0.06]
                     hover:border-violet-600/30 hover:-translate-y-1 transition-all duration-300">
-          <img
+          <img width="290" height="171"
             src="/images/cierre-automatico.webp"
             alt="Optimización basada en datos"
             class="w-24 h-24 object-contain mb-4"
@@ -498,7 +502,7 @@ const planes = [
           class="group p-8 rounded-2xl bg-[#111118] border border-violet-600/20
                  hover:border-violet-600/40 transition-all duration-300"
         >
-          <img src="/images/ventas-conversion.webp" alt="Ventas y Conversión" class="w-16 h-16 object-contain mb-4" loading="lazy" />
+          <img width="200" height="172" src="/images/ventas-conversion.webp" alt="Ventas y Conversión" class="w-16 h-16 object-contain mb-4" loading="lazy" />
           <h3 class="text-white font-bold text-2xl mb-4">Ventas y Conversión</h3>
           <p class="text-slate-400 leading-relaxed mb-6">
             El agente califica cada lead que te escribe, presenta tu programa en función
@@ -521,7 +525,7 @@ const planes = [
           class="group p-8 rounded-2xl bg-[#111118] border border-cyan-600/20
                  hover:border-cyan-600/40 transition-all duration-300"
         >
-          <img src="/images/atencion-comu.webp" alt="Atención a tu Comunidad" class="w-16 h-16 object-contain mb-4" loading="lazy" />
+          <img width="200" height="192" src="/images/atencion-comu.webp" alt="Atención a tu Comunidad" class="w-16 h-16 object-contain mb-4" loading="lazy" />
           <h3 class="text-white font-bold text-2xl mb-4">Atención a tu Comunidad</h3>
           <p class="text-slate-400 leading-relaxed mb-6">
             Alumnos con dudas, seguidores con preguntas, nuevos interesados que necesitan
@@ -544,7 +548,7 @@ const planes = [
           class="group p-8 rounded-2xl bg-[#111118] border border-violet-600/20
                  hover:border-violet-600/40 transition-all duration-300"
         >
-          <img src="/images/mentor-ia.webp" alt="Agente Mentorizado" class="w-16 h-16 object-contain mb-4" loading="lazy" />
+          <img width="200" height="177" src="/images/mentor-ia.webp" alt="Agente Mentorizado" class="w-16 h-16 object-contain mb-4" loading="lazy" />
           <h3 class="text-white font-bold text-2xl mb-4">Agente Mentorizado</h3>
           <p class="text-slate-400 leading-relaxed mb-6">
             Convertí tu conocimiento en un asistente disponible 24/7. Creamos agentes entrenados
@@ -587,7 +591,7 @@ const planes = [
                    hover:border-violet-600/20 transition-all duration-300 overflow-hidden"
           >
             <img
-              src={b.image}
+              src={b.image} {...imgSize(b.image)}
               alt={b.title}
               class="w-full h-28 object-cover object-center rounded-t-xl"
               loading="lazy"
@@ -655,7 +659,7 @@ const planes = [
             )}
 
             <img
-              src={plan.logo}
+              src={plan.logo} {...imgSize(plan.logo)}
               alt={`Plan ${plan.nombre}`}
               class="h-28 w-auto object-contain mx-auto mb-6"
               loading="lazy"

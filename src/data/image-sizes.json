@@ -1,0 +1,226 @@
+{
+  "/images/Landing-page.webp": {
+    "width": 1660,
+    "height": 578
+  },
+  "/images/aplicaciones.webp": {
+    "width": 1410,
+    "height": 578
+  },
+  "/images/app-perso.webp": {
+    "width": 1440,
+    "height": 454
+  },
+  "/images/atencion-cliente.webp": {
+    "width": 1070,
+    "height": 747
+  },
+  "/images/atencion-comu.webp": {
+    "width": 200,
+    "height": 192
+  },
+  "/images/automatizacion.webp": {
+    "width": 1070,
+    "height": 762
+  },
+  "/images/automatizaciones.webp": {
+    "width": 1190,
+    "height": 831
+  },
+  "/images/baja-retencion.webp": {
+    "width": 1080,
+    "height": 338
+  },
+  "/images/base-conocimientos.webp": {
+    "width": 290,
+    "height": 125
+  },
+  "/images/carrito-abandonado.webp": {
+    "width": 1070,
+    "height": 459
+  },
+  "/images/cierre-automatico.webp": {
+    "width": 290,
+    "height": 171
+  },
+  "/images/crecimiento-sostenible.webp": {
+    "width": 1070,
+    "height": 507
+  },
+  "/images/data-analisis.webp": {
+    "width": 1070,
+    "height": 398
+  },
+  "/images/diagnostico.webp": {
+    "width": 150,
+    "height": 150
+  },
+  "/images/e-commerce.webp": {
+    "width": 1070,
+    "height": 750
+  },
+  "/images/eficiencia-humano.webp": {
+    "width": 357,
+    "height": 423
+  },
+  "/images/escala.webp": {
+    "width": 1260,
+    "height": 448
+  },
+  "/images/escalabilidad.webp": {
+    "width": 1070,
+    "height": 361
+  },
+  "/images/evolucion-constante.webp": {
+    "width": 376,
+    "height": 264
+  },
+  "/images/falta-integracion.webp": {
+    "width": 1110,
+    "height": 338
+  },
+  "/images/impacto-real.webp": {
+    "width": 418,
+    "height": 377
+  },
+  "/images/integracion.webp": {
+    "width": 1070,
+    "height": 747
+  },
+  "/images/leads-seguimiento.webp": {
+    "width": 1540,
+    "height": 336
+  },
+  "/images/logo-bronce.webp": {
+    "width": 1024,
+    "height": 1024
+  },
+  "/images/logo-oro.webp": {
+    "width": 1024,
+    "height": 1024
+  },
+  "/images/logo-plata.webp": {
+    "width": 1024,
+    "height": 1024
+  },
+  "/images/logo-transparent.webp": {
+    "width": 390,
+    "height": 390
+  },
+  "/images/luciana-frisardi.webp": {
+    "width": 540,
+    "height": 720
+  },
+  "/images/mentor-ia.webp": {
+    "width": 200,
+    "height": 177
+  },
+  "/images/mentores.webp": {
+    "width": 235,
+    "height": 172
+  },
+  "/images/mision.webp": {
+    "width": 1070,
+    "height": 465
+  },
+  "/images/modo-campeon.webp": {
+    "width": 1440,
+    "height": 771
+  },
+  "/images/multilenguaje.webp": {
+    "width": 1070,
+    "height": 439
+  },
+  "/images/og-image.jpg": {
+    "width": 1200,
+    "height": 630
+  },
+  "/images/og-image.svg": {
+    "width": 1200,
+    "height": 630
+  },
+  "/images/omnicanalidad.webp": {
+    "width": 1070,
+    "height": 380
+  },
+  "/images/orden-automatizacion.webp": {
+    "width": 447,
+    "height": 300
+  },
+  "/images/pablo-frisardi.webp": {
+    "width": 490,
+    "height": 329
+  },
+  "/images/primero-orden.webp": {
+    "width": 1070,
+    "height": 448
+  },
+  "/images/proposito.webp": {
+    "width": 1070,
+    "height": 405
+  },
+  "/images/reportes.webp": {
+    "width": 1070,
+    "height": 743
+  },
+  "/images/responder-dm.webp": {
+    "width": 1370,
+    "height": 338
+  },
+  "/images/respuesta-24.webp": {
+    "width": 150,
+    "height": 150
+  },
+  "/images/seguridad.webp": {
+    "width": 1070,
+    "height": 413
+  },
+  "/images/setup.webp": {
+    "width": 1070,
+    "height": 367
+  },
+  "/images/siempre-a-medida.webp": {
+    "width": 1070,
+    "height": 406
+  },
+  "/images/sin-compromiso.webp": {
+    "width": 150,
+    "height": 150
+  },
+  "/images/soporte-lento.webp": {
+    "width": 1170,
+    "height": 339
+  },
+  "/images/tareas-manuales.webp": {
+    "width": 1120,
+    "height": 338
+  },
+  "/images/tecnologia-con-porposito.webp": {
+    "width": 200,
+    "height": 145
+  },
+  "/images/tono-de-voz.webp": {
+    "width": 290,
+    "height": 123
+  },
+  "/images/ventas-conversion.webp": {
+    "width": 200,
+    "height": 172
+  },
+  "/images/ventas.webp": {
+    "width": 1070,
+    "height": 745
+  },
+  "/images/vision.webp": {
+    "width": 1070,
+    "height": 419
+  },
+  "/images/webs.webp": {
+    "width": 1252,
+    "height": 775
+  },
+  "/images/webs_icon.webp": {
+    "width": 1410,
+    "height": 578
+  }
+}

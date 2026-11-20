@@ -1,4 +1,5 @@
 ---
+import { imgSize } from '../../lib/imageSize';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import SectionBadge from '../../components/SectionBadge.astro';
 import MetricCounter from '../../components/MetricCounter.astro';
@@ -230,7 +231,10 @@ const planes = [
     <div class="absolute inset-0 flex items-center justify-center z-0 pointer-events-none">
       <div class="relative w-[280px] h-[498px] rounded-3xl overflow-hidden opacity-70">
         <iframe
-          src="https://www.youtube.com/embed/CGhpnVBpw_8?autoplay=1&mute=1&loop=1&playlist=CGhpnVBpw_8&controls=0&showinfo=0&rel=0&modestbranding=1&playsinline=1"
+        referrerpolicy="strict-origin-when-cross-origin"
+        sandbox="allow-scripts allow-same-origin allow-presentation"
+        loading="eager"
+          src="https://www.youtube-nocookie.com/embed/CGhpnVBpw_8?autoplay=1&mute=1&loop=1&playlist=CGhpnVBpw_8&controls=0&showinfo=0&rel=0&modestbranding=1&playsinline=1"
           allow="autoplay; encrypted-media"
           allowfullscreen
           title="VIVE-IA E-commerce"
@@ -317,7 +321,7 @@ const planes = [
                    hover:border-red-900/40 transition-all duration-300 overflow-hidden"
           >
             <img
-              src={p.image}
+              src={p.image} {...imgSize(p.image)}
               alt={p.title}
               class="w-full h-28 object-cover object-center rounded-t-xl"
               loading="lazy"
@@ -505,7 +509,7 @@ const planes = [
                    hover:border-violet-600/20 transition-all duration-300 overflow-hidden"
           >
             <img
-              src={b.image}
+              src={b.image} {...imgSize(b.image)}
               alt={b.title}
               class="w-full h-28 object-cover object-center rounded-t-xl"
               loading="lazy"
@@ -554,7 +558,7 @@ const planes = [
             )}
 
             <img
-              src={plan.logo}
+              src={plan.logo} {...imgSize(plan.logo)}
               alt={`Plan ${plan.nombre}`}
               class="h-28 w-auto object-contain mx-auto mb-6"
               loading="lazy"

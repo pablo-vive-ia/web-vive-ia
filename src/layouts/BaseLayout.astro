@@ -1,4 +1,5 @@
 ---
+import 'aos/dist/aos.css';
 import '../styles/global.css';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
@@ -19,6 +20,10 @@ const {
   canonicalURL = Astro.url,
   schema,
 } = Astro.props;
+
+// JSON dentro de <script>: se escapan < > & para que ningún texto pueda cerrar la etiqueta
+const safeJson = (data: unknown) =>
+  JSON.stringify(data).replace(/</g, '\\u003c').replace(/>/g, '\\u003e').replace(/&/g, '\\u0026');
 
 const extraSchemas = Array.isArray(schema) ? schema : schema ? [schema] : [];
 
@@ -107,25 +112,18 @@ const websiteSchema = {
     <link rel="icon" href="/favicon.ico" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 
-    <!-- Inter Font -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
-      rel="stylesheet"
-    />
+    <!-- Inter desde el propio sitio (ver global.css): se precarga la parte latina -->
+    <link rel="preload" href="/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin />
 
-    <!-- AOS -->
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css"
-    />
+    <!-- Marca que hay JS antes de pintar: sin JS (o si AOS no carga) el contenido se ve igual,
+         sin quedar escondido esperando la animación (ver global.css) -->
+    <script is:inline>document.documentElement.classList.add('js')</script>
 
     <!-- JSON-LD Structured Data -->
-    <script is:inline type="application/ld+json" set:html={JSON.stringify(organizationSchema)} />
-    <script is:inline type="application/ld+json" set:html={JSON.stringify(websiteSchema)} />
+    <script is:inline type="application/ld+json" set:html={safeJson(organizationSchema)} />
+    <script is:inline type="application/ld+json" set:html={safeJson(websiteSchema)} />
     {extraSchemas.map((s) => (
-      <script is:inline type="application/ld+json" set:html={JSON.stringify(s)} />
+      <script is:inline type="application/ld+json" set:html={safeJson(s)} />
     ))}
   </head>
   <body class="bg-brand-bg text-text-primary font-sans antialiased">
@@ -137,13 +135,11 @@ const websiteSchema = {
     <Footer />
     <WhatsAppFAB />
 
-    <!-- AOS init: script externo (no inline) para poder correr la CSP sin
-         'unsafe-inline' en script-src. Ver public/scripts/aos-init.js -->
-    <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"
-      is:inline
-    ></script>
-    <script src="/scripts/aos-init.js" is:inline></script>
+    <!-- AOS desde el paquete del proyecto (antes cdnjs): sin dependencia de un CDN externo -->
+    <script>
+      import AOS from 'aos';
+      AOS.init({ duration: 700, easing: 'ease-out-cubic', once: true, offset: 60 });
+    </script>
 
     <!-- WebMCP: expone el envío del formulario de contacto como tool para
          agentes, en TODO el sitio (no solo /contacto) — un agente no

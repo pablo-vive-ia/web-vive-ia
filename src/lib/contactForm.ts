@@ -57,11 +57,16 @@ export function validateContactForm(d: ContactPayload): string | null {
 
 /** POSTea el payload ya sanitizado y validado al webhook de n8n. No toca el DOM. */
 export async function postContactPayload(payload: ContactPayload): Promise<{ ok: boolean; message: string }> {
+  // Corta a los 15 s para no dejar el botón en "Enviando..." si n8n no responde
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort(), 15000);
   try {
     const res = await fetch(WEBHOOK_URL, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(payload),
+      signal: controller.signal,
+      credentials: 'omit',
     });
 
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
@@ -69,6 +74,8 @@ export async function postContactPayload(payload: ContactPayload): Promise<{ ok:
     return { ok: true, message: 'Mensaje enviado. Te contactaremos en menos de 24 horas.' };
   } catch {
     return { ok: false, message: 'Ocurrió un error. Escribinos por WhatsApp y lo resolvemos.' };
+  } finally {
+    clearTimeout(timer);
   }
 }
 

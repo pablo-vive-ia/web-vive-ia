@@ -25,13 +25,20 @@ const { value, label, prefix = '', suffix = '' } = Astro.props;
         const target = parseInt(el.dataset.value ?? '0');
         const span = el.querySelector('.counter-value');
         if (!span) return;
-        let current = 0;
-        const step = Math.ceil(target / 60);
-        const timer = setInterval(() => {
-          current = Math.min(current + step, target);
-          span.textContent = current.toLocaleString('es-AR');
-          if (current >= target) clearInterval(timer);
-        }, 20);
+        // Mismo conteo que antes (1,2 s, lineal) pero medido por tiempo con
+        // requestAnimationFrame: igual de rápido a 60, 120 o 144 Hz y sin setInterval
+        const DURATION = 1200;
+        if (matchMedia('(prefers-reduced-motion: reduce)').matches) {
+          span.textContent = target.toLocaleString('es-AR');
+        } else {
+          const start = performance.now();
+          const tick = (now: number) => {
+            const t = Math.min((now - start) / DURATION, 1);
+            span.textContent = Math.round(target * t).toLocaleString('es-AR');
+            if (t < 1) requestAnimationFrame(tick);
+          };
+          requestAnimationFrame(tick);
+        }
         observer.unobserve(el);
       });
     },

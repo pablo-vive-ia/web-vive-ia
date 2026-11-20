@@ -1,4 +1,5 @@
 ---
+import { imgSize } from '../lib/imageSize';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import SectionBadge from '../components/SectionBadge.astro';
 import MetricCounter from '../components/MetricCounter.astro';
@@ -233,7 +234,10 @@ const afterPoints = [
     <!-- Video de fondo -->
     <div class="absolute inset-0 overflow-hidden z-0">
       <iframe
-        src="https://www.youtube.com/embed/omr91fMMxk4?autoplay=1&mute=1&loop=1&playlist=omr91fMMxk4&controls=0&showinfo=0&rel=0&modestbranding=1&playsinline=1"
+        referrerpolicy="strict-origin-when-cross-origin"
+        sandbox="allow-scripts allow-same-origin allow-presentation"
+        loading="eager"
+        src="https://www.youtube-nocookie.com/embed/omr91fMMxk4?autoplay=1&mute=1&loop=1&playlist=omr91fMMxk4&controls=0&showinfo=0&rel=0&modestbranding=1&playsinline=1"
         allow="autoplay; encrypted-media"
         allowfullscreen
         title="VIVE-IA video presentación"
@@ -435,7 +439,7 @@ const afterPoints = [
                      shadow-[0_0_20px_rgba(124,58,237,0.05)] hover:shadow-[0_0_30px_rgba(124,58,237,0.15)]`}
             >
               <img
-                src={service.image}
+                src={service.image} {...imgSize(service.image)}
                 alt={service.title}
                 class="w-full h-24 object-cover rounded-t-xl"
                 loading="lazy"
@@ -462,7 +466,7 @@ const afterPoints = [
                      transition-all duration-300 backdrop-blur-sm overflow-hidden"
             >
               <img
-                src={service.image}
+                src={service.image} {...imgSize(service.image)}
                 alt={service.title}
                 class="w-full h-24 object-cover rounded-t-xl"
                 loading="lazy"
@@ -610,10 +614,13 @@ const afterPoints = [
   </section>
 
   <script>
-    import * as THREE from 'three';
+    // Three.js se baja recién cuando hace falta (no frena la carga inicial de la página)
+    import type * as T3 from 'three';
 
     const canvasNoCaos = document.getElementById('canvas-no-caos') as HTMLCanvasElement;
     if (canvasNoCaos) {
+      const boot = async () => {
+      const THREE = await import('../lib/three');
       const rendererNC = new THREE.WebGLRenderer({ canvas: canvasNoCaos, antialias: true, alpha: true });
       rendererNC.setPixelRatio(Math.min(window.devicePixelRatio, 2));
       rendererNC.setClearColor(0x000000, 0);
@@ -627,8 +634,8 @@ const afterPoints = [
 
       // — Nodos —
       const NODE_COUNT = 50;
-      const positions: THREE.Vector3[] = [];
-      const velocities: THREE.Vector3[] = [];
+      const positions: T3.Vector3[] = [];
+      const velocities: T3.Vector3[] = [];
       // Fase aleatoria por nodo para el efecto destello
       const flashPhases = new Float32Array(NODE_COUNT);
       const flashSpeeds = new Float32Array(NODE_COUNT);
@@ -769,6 +776,15 @@ const afterPoints = [
         cameraNC.aspect = w / h;
         cameraNC.updateProjectionMatrix();
       });
+          };
+      // Arranca cuando la sección está por entrar en pantalla
+      const nearIO = new IntersectionObserver((entries) => {
+        if (entries.some((e) => e.isIntersecting)) {
+          nearIO.disconnect();
+          boot();
+        }
+      }, { rootMargin: '800px 0px' });
+      nearIO.observe(canvasNoCaos);
     }
   </script>
 
@@ -820,7 +836,7 @@ const afterPoints = [
                    hover:border-violet-600/20 transition-colors duration-300 overflow-hidden"
           >
             <img
-              src={pillar.image}
+              src={pillar.image} {...imgSize(pillar.image)}
               alt={pillar.title}
               class="w-full h-24 object-cover rounded-t-xl"
               loading="lazy"

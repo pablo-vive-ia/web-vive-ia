@@ -1,4 +1,5 @@
 ---
+import { imgSize } from '../lib/imageSize';
 import BaseLayout from '../layouts/BaseLayout.astro';
 
 const pageSchema = [
@@ -154,7 +155,7 @@ const portfolio = [
           >
             <div class="w-full h-48 overflow-hidden">
               <img
-                src={s.image}
+                src={s.image} {...imgSize(s.image)}
                 alt={s.imageAlt}
                 class="w-full h-full object-cover"
                 loading="lazy"
@@ -195,7 +196,7 @@ const portfolio = [
             <!-- Preview con imagen real -->
             <div class="relative h-48 overflow-hidden">
               <img
-                src={p.image}
+                src={p.image} {...imgSize(p.image)}
                 alt={p.imageAlt}
                 class="w-full h-full object-cover"
                 loading="lazy"

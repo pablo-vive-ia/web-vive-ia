@@ -29,23 +29,24 @@ Leé este archivo completo antes de tocar cualquier archivo del proyecto.
 - **Luciana Frisardi** — Cofundadora, asesora empresarial y estratégica (+18 años en negocios)
 
 **Dominio en producción:** `https://vive-ia.com`
-**Infraestructura:** VPS DigitalOcean + Easypanel + Docker + nginx (ver sección Deploy). **No es Hostinger ni FTP** — si ves esa idea en algún lugar, está desactualizada.
+**Infraestructura:** Hostinger, hosting compartido (LiteSpeed), deploy por Git desde la rama `hostinger` (ver sección Deploy). El VPS de DigitalOcean + Easypanel + nginx queda como respaldo (y sigue alojando n8n, Chatwoot y las bases).
 
 ---
 
 ## Stack tecnológico
 
 ```
-Framework:    Astro 6.x          (generación estática, output: 'static')
+Framework:    Astro 7.x          (generación estática, output: 'static', compressHTML: false)
 Estilos:      Tailwind CSS 4.x   (config CSS-first vía @theme en src/styles/global.css,
                                    NO hay tailwind.config.mjs — no lo recrees)
-Animaciones:  AOS.js (CDN)       (scroll reveals) + Three.js (fondos animados en
+Animaciones:  AOS.js (npm)       (scroll reveals) + Three.js (fondos animados en
                                    index/contacto/desarrollos, ver más abajo)
 Íconos:       SVG inline         (a mano en los componentes; lucide-astro está
                                    instalado pero no se usa activamente)
 Formulario:   fetch() → n8n      (contacto.astro, webhook ya configurado)
-Serving:      nginx:alpine       (Dockerfile en la raíz + nginx.conf propio)
-Deploy:       Easypanel          (build automático desde GitHub vía Dockerfile)
+Fuentes:      Inter propia       (public/fonts, sin Google Fonts; ver global.css)
+Serving:      Hostinger          (public/.htaccess = config real de producción)
+Respaldo:     nginx:alpine       (Dockerfile + nginx.conf, Easypanel en DigitalOcean)
 ```
 
 **No usar:**
@@ -64,28 +65,27 @@ Deploy:       Easypanel          (build automático desde GitHub vía Dockerfile
 ```
 web_vive_ia/
 ├── Dockerfile                   ← FROM nginx:alpine, copia dist/ + nginx.conf
-├── nginx.conf                   ← config real de producción (headers, CSP,
-│                                   Link header, negociación de Markdown)
+├── nginx.conf                   ← respaldo en DigitalOcean (mismos headers y
+│                                   CSP que public/.htaccess)
+├── originales/imagenes/         ← PNG originales (no se publican)
 ├── astro.config.mjs
 ├── tsconfig.json
 ├── package.json                 ← "build" corre astro build + generate-markdown.mjs
 │
 ├── scripts/
 │   ├── convert-to-webp.mjs      ← conversión manual de imágenes a WebP (no corre en build)
+│   ├── image-sizes.mjs          ← mide public/images → src/data/image-sizes.json (corre en build)
+│   ├── deploy-hostinger.mjs     ← dist/ → rama hostinger (npm run deploy:hostinger)
 │   └── generate-markdown.mjs    ← genera dist/**/*.md para "Markdown for Agents"
 │
 ├── public/
 │   ├── favicon.ico, favicon.svg, apple-touch-icon
 │   ├── robots.txt                ← incluye Content-Signal por user-agent
 │   ├── llms.txt                  ← resumen de VIVE-IA para LLMs/agentes
-│   ├── .htaccess                 ← INERTE en producción (nginx no lo lee).
-│   │                                Se deja solo por si algún día se sirve
-│   │                                el mismo dist/ desde Apache. La config
-│   │                                real de headers vive en nginx.conf.
-│   ├── scripts/aos-init.js       ← AOS.init() externo, no inline (ver nota
-│   │                                de CSP más abajo — igual quedó con
-│   │                                'unsafe-inline', pero este sigue siendo
-│   │                                el patrón correcto para scripts nuevos)
+│   ├── .htaccess                 ← config REAL de producción en Hostinger
+│   │                                (seguridad, CSP, caché, redirecciones,
+│   │                                Markdown). Mantener igual que nginx.conf.
+│   ├── fonts/                    ← Inter (latin y latin-ext), servida local
 │   ├── video/
 │   └── images/                   ← todo en .webp
 │
@@ -399,7 +399,29 @@ Ver la sección de accesibilidad dentro de "Sistema de diseño" más arriba — 
 
 ---
 
-## 🚀 Deploy — DigitalOcean + Easypanel + Docker + nginx
+## 🚀 Deploy — Hostinger (producción)
+
+hPanel → Avanzado → Git copia **la rama entera** a `public_html`. Por eso se publica una rama aparte, `hostinger`, que contiene solo el `dist/` (nada de `src/`, `CLAUDE.md`, `nginx.conf` ni `originales/`).
+
+```bash
+npm run deploy:hostinger             # build + commit en la rama hostinger (local)
+npm run deploy:hostinger -- --push   # además git push origin hostinger
+# En hPanel → Git → "Implementar" (o deploy automático al recibir el push)
+```
+
+- `public/.htaccess` es la config real (LiteSpeed): HTTPS sin www en un solo salto, barra final con un solo 301 a https, `/soluciones` → `/soluciones/ecommerce/`, 404 (no 403) para archivos ocultos salvo `/.well-known/`, negociación de Markdown, `Link` header en el home, CSP + seguridad + COOP, caché (un año para `.js`/`.css` con hash) y compresión. Si se toca un header o la CSP acá, tocarlo también en `nginx.conf`.
+- `master` + Easypanel en DigitalOcean siguen funcionando como respaldo hasta que se confirme Hostinger.
+- Tras cada deploy: `curl -I https://vive-ia.com/` (CSP, HSTS, COOP, nosniff, `content-encoding`), `/.env` y `/.htaccess` en 404, `curl -H "Accept: text/markdown" https://vive-ia.com/` devuelve Markdown, y Chrome sin violaciones de CSP.
+
+### Seguridad y optimización (2026-11-19)
+- Astro 6 → 7.4 (`npm audit` en 0). `compressHTML: false`: el compresor de Astro 7 pegaba palabras alrededor de `<br>` y `</span>`.
+- Sin terceros salvo YouTube: AOS sale de npm (no cdnjs), Inter de `public/fonts`, Three.js se carga en diferido desde `src/lib/three.ts` (solo las clases usadas) cuando la escena está por verse.
+- Videos con `youtube-nocookie.com`, `sandbox` y `referrerpolicy`. JSON-LD con `safeJson()` en `BaseLayout.astro`.
+- Sin JS el contenido se ve (`html:not(.js) [data-aos]` en `global.css`).
+- Imágenes: los PNG originales están en `originales/imagenes/` (no se publican); los WebP de `public/images` están al tamaño que se muestran (2x escritorio, 3x celular). Todo `<img>` lleva `width`/`height`: las de ruta fija en el código y las dinámicas con `imgSize()` (`src/lib/imageSize.ts`, medidas de `scripts/image-sizes.mjs`, que corre en cada build). Si sumás una imagen, solo ponela en `public/images`.
+- Formulario: honeypot + tiempo mínimo de 3 s + corte a los 15 s. La URL del webhook es pública: validación, límite por IP y CORS van en el workflow de n8n.
+
+## 🚀 Respaldo — DigitalOcean + Easypanel + Docker + nginx
 
 **Esto reemplaza cualquier mención anterior de Hostinger/FTP/GitHub Actions en este archivo — esas nunca fueron el flujo real, o dejaron de serlo.**
 
@@ -440,7 +462,8 @@ EXPOSE 80
 - [ ] Links de WhatsApp funcionando, `target="_blank"` con `rel="noopener noreferrer"`
 - [ ] Formulario conectado al webhook (probar en dev con consola/network tab)
 - [ ] Si agregaste una página: sumarla a `scripts/generate-markdown.mjs` (array `PAGES`) y a los `rewrite` de `nginx.conf` si querés que tenga versión Markdown
-- [ ] AOS inicializado (`public/scripts/aos-init.js`, referenciado desde `BaseLayout.astro`)
+- [ ] AOS inicializado (script con `import AOS from 'aos'` en `BaseLayout.astro`)
+- [ ] `npm audit` en 0
 - [ ] Sin `console.log` residuales en producción
 - [ ] `dist/` regenerado y commiteado junto con el código fuente antes de pushear (el deploy lo copia tal cual)
 
