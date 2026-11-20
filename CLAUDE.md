@@ -393,7 +393,7 @@ const { value, label, prefix = '', suffix = '' } = Astro.props;
 Ver la sección de accesibilidad dentro de "Sistema de diseño" más arriba — son patrones ya resueltos en el código, no reinventarlos ni regresar a una versión más simple.
 
 ### Performance
-- Imágenes: `.webp` + `loading="lazy"`. Bastantes `<img>` de cards no tienen `width`/`height` explícitos (deuda pendiente, puede causar CLS) — si tocás una card, aprovechá y agregalos.
+- Imágenes: `.webp` + `loading="lazy"`, siempre con `width`/`height` (ver "Seguridad y optimización" más abajo: `imgSize()` para las dinámicas).
 - Fuentes: `rel="preconnect"` y `display=swap`.
 - Three.js/WebGL: seguir el patrón de pausa por `IntersectionObserver` + `prefers-reduced-motion` (ver arriba).
 
