@@ -6,6 +6,7 @@ import MetricCounter from '../../components/MetricCounter.astro';
 import HeroFlow from '../../components/HeroFlow.astro';
 import HeroVideo from '../../components/HeroVideo.astro';
 import VideoDialog from '../../components/VideoDialog.astro';
+import AgentBuilder from '../../components/AgentBuilder.astro';
 
 const problemas = [
   {
@@ -78,44 +79,59 @@ const beneficios = [
   },
 ];
 
-const planes = [
+// "Armá tu agente": mismas funciones que antes estaban repartidas en los planes
+// y en lo que la página ya dice que hace el agente
+const plataformas = ['Hotmart', 'Kajabi', 'Teachable', 'Systeme.io', 'Otra plataforma'];
+
+// Íconos: trazos de Lucide (constantes del propio sitio, por eso van con set:html)
+const funciones = [
   {
-    nombre: 'Bronce',
-    logo: '/images/logo-bronce.webp',
-    descripcion: 'Automatización esencial para profesionalizar tu atención',
-    features: [
-      'Agente conversacional con respuestas automáticas',
-      'Información sobre programas, precios y fechas',
-      'Derivación inteligente a humano',
-      'Disponibilidad 24/7',
-    ],
-    destacado: false,
-    cta: 'Quiero el Plan Bronce',
+    title: 'Atención 24/7',
+    desc: 'Responde al instante a cada consulta, a cualquier hora.',
+    msg: 'responda consultas las 24 horas',
+    icon: '<circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/>',
   },
   {
-    nombre: 'Plata',
-    logo: '/images/logo-plata.webp',
-    descripcion: 'Para comunidades activas que quieren vender más',
-    features: [
-      'Todo lo del Plan Bronce',
-      'Asesoramiento y recomendaciones inteligentes',
-      'Calificación y segmentación automática de leads',
-    ],
-    destacado: true,
-    cta: 'Quiero el Plan Plata',
+    title: 'Programas, precios y fechas',
+    desc: 'Informa sobre tus programas, precios y próximas fechas.',
+    msg: 'informe sobre mis programas, precios y fechas',
+    icon: '<path d="M8 2v4"/><path d="M16 2v4"/><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M3 10h18"/>',
   },
   {
-    nombre: 'Oro',
-    logo: '/images/logo-oro.webp',
-    descripcion: 'Escala profesional con máxima eficiencia',
-    features: [
-      'Todo lo del Plan Plata',
-      'IA conversacional con lenguaje natural personalizado',
-      'Automatización completa de embudos y secuencias',
-      'Soporte prioritario y optimización continua',
-    ],
-    destacado: false,
-    cta: 'Quiero el Plan Oro',
+    title: 'Asesoramiento y recomendaciones',
+    desc: 'Recomienda el programa indicado para cada persona.',
+    msg: 'asesore y recomiende el programa indicado a cada persona',
+    icon: '<path d="M12 3l1.9 5.8L20 11l-6.1 2.2L12 19l-1.9-5.8L4 11l6.1-2.2z"/>',
+  },
+  {
+    title: 'Calificación de leads',
+    desc: 'Detecta quién está listo para avanzar y segmenta a cada lead.',
+    msg: 'califique y segmente leads',
+    icon: '<path d="M22 3H2l8 9.46V19l4 2v-8.54L22 3z"/>',
+  },
+  {
+    title: 'Embudos y secuencias',
+    desc: 'Automatiza embudos y secuencias de seguimiento.',
+    msg: 'automatice embudos y secuencias de seguimiento',
+    icon: '<path d="m17 2 4 4-4 4"/><path d="M3 11v-1a4 4 0 0 1 4-4h14"/><path d="m7 22-4-4 4-4"/><path d="M21 13v1a4 4 0 0 1-4 4H3"/>',
+  },
+  {
+    title: 'Con tu voz y tu estilo',
+    desc: 'Lenguaje natural personalizado: habla como vos.',
+    msg: 'hable con mi estilo y mi forma de comunicar',
+    icon: '<path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><path d="M12 19v3"/>',
+  },
+  {
+    title: 'Derivación a vos o tu equipo',
+    desc: 'Te pasa la conversación cuando hace falta una persona.',
+    msg: 'me derive la conversación cuando haga falta una persona',
+    icon: '<path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>',
+  },
+  {
+    title: 'WhatsApp, Instagram y tu web',
+    desc: 'Un solo agente en todos tus canales.',
+    msg: 'atienda en WhatsApp, Instagram y mi web',
+    icon: '<path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>',
   },
 ];
 ---
@@ -142,24 +158,11 @@ const planes = [
       serviceType: 'Automatización con Inteligencia Artificial',
       hasOfferCatalog: {
         '@type': 'OfferCatalog',
-        name: 'Planes de Agente IA para Mentores',
-        itemListElement: [
-          {
-            '@type': 'Offer',
-            name: 'Plan Bronce',
-            description: 'Agente básico de atención y derivación de consultas para mentores y coaches.',
-          },
-          {
-            '@type': 'Offer',
-            name: 'Plan Plata',
-            description: 'Agente avanzado con calificación de leads, seguimiento automático y recomendación de programas.',
-          },
-          {
-            '@type': 'Offer',
-            name: 'Plan Oro',
-            description: 'IA conversacional personalizada con automatización completa de embudos, nurturing y soporte prioritario.',
-          },
-        ],
+        name: 'Funciones del agente IA para Mentores',
+        itemListElement: funciones.map((f) => ({
+          '@type': 'Offer',
+          itemOffered: { '@type': 'Service', name: f.title, description: f.desc },
+        })),
       },
     },
     {
@@ -642,77 +645,21 @@ const planes = [
 
 
   <!-- ═══════════════════════════════════════════ -->
-  <!-- 8. PLANES                                    -->
+  <!-- 8. ARMÁ TU AGENTE                            -->
   <!-- ═══════════════════════════════════════════ -->
-  <section class="py-24 px-4 sm:px-6 lg:px-8 bg-[#0D0D14]">
-    <div class="max-w-7xl mx-auto">
-      <div class="text-center mb-16" data-aos="fade-up">
-        <SectionBadge text="Inversión" />
-        <h2 class="text-[clamp(2rem,4vw,3rem)] font-semibold text-white mb-4">
-          Planes diseñados para tu etapa
-        </h2>
-        <p class="text-slate-400 text-lg">Elegí el nivel que mejor se adapta a tu comunidad y tus objetivos.</p>
-      </div>
-
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch">
-        {planes.map((plan, i) => (
-          <div
-            data-aos="fade-up"
-            data-aos-delay={String(i * 100)}
-            class={`relative flex flex-col p-8 rounded-2xl transition-all duration-300
-              ${plan.destacado
-                ? 'bg-[#111118] border-2 border-violet-600 shadow-[0_0_40px_rgba(124,58,237,0.2)] scale-[1.03] z-10'
-                : 'bg-[#111118] border border-white/[0.06] hover:border-violet-600/30'
-              }`}
-          >
-            {plan.destacado && (
-              <div class="absolute -top-4 left-1/2 -translate-x-1/2
-                          bg-violet-600 text-white px-4 py-1 rounded-full
-                          text-xs font-black uppercase tracking-widest">
-                Más popular
-              </div>
-            )}
-
-            <img
-              src={plan.logo} {...imgSize(plan.logo)}
-              alt={`Plan ${plan.nombre}`}
-              class="h-28 w-auto object-contain mx-auto mb-6"
-              loading="lazy"
-            />
-
-            <h3 class="text-white font-bold text-xl mb-2 text-center">{plan.nombre}</h3>
-            <p class="text-slate-400 text-sm text-center mb-6">{plan.descripcion}</p>
-
-            <ul class="space-y-3 mb-10 flex-grow">
-              {plan.features.map((f) => (
-                <li class="flex items-start gap-3 text-sm text-slate-300">
-                  <svg class="w-4 h-4 text-violet-400 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
-                  </svg>
-                  {f}
-                </li>
-              ))}
-            </ul>
-
-            <a
-              href="/contacto"
-              class={`w-full py-3 rounded-xl font-bold text-center transition-all duration-300
-                ${plan.destacado
-                  ? 'bg-violet-600 hover:bg-violet-500 text-white shadow-[0_0_20px_rgba(124,58,237,0.3)]'
-                  : 'border border-white/[0.12] text-white hover:bg-white/[0.04]'
-                }`}
-            >
-              {plan.cta}
-            </a>
-          </div>
-        ))}
-      </div>
-
-      <p class="text-center text-slate-400 text-sm mt-10">
-        Contratación mínima: 6 meses. Incluye: funcionamiento del servicio, onboarding, soporte, mantenimiento y asesoramiento en mejoras continuas.
-      </p>
-    </div>
-  </section>
+  <!-- Reemplaza a los planes: quien visita elige plataforma y funciones y manda el
+       resumen por WhatsApp ya escrito (ver AgentBuilder.astro). -->
+  <AgentBuilder
+    sectionClass="py-24 px-4 sm:px-6 lg:px-8 bg-[#0D0D14]"
+    title="Elegí qué querés que haga tu agente"
+    subtitle="Marcá lo que necesitás y mandanos el resumen por WhatsApp. Te respondemos con una propuesta a medida para tu comunidad."
+    platformQuestion="¿Dónde vendés tus programas?"
+    platformLabel="Vendo mis programas en"
+    platforms={plataformas}
+    functions={funciones}
+    defaultMessage="Hola VIVE-IA, vengo de la web y quiero armar un agente para mi marca personal. ¿Me ayudan con el diagnóstico?"
+    note="Contratación mínima: 6 meses. Incluye: funcionamiento del servicio, onboarding, soporte, mantenimiento y asesoramiento en mejoras continuas."
+  />
 
 
   <!-- ═══════════════════════════════════════════ -->

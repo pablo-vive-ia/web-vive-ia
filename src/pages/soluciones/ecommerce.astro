@@ -6,6 +6,7 @@ import MetricCounter from '../../components/MetricCounter.astro';
 import HeroFlow from '../../components/HeroFlow.astro';
 import HeroVideo from '../../components/HeroVideo.astro';
 import VideoDialog from '../../components/VideoDialog.astro';
+import AgentBuilder from '../../components/AgentBuilder.astro';
 
 const problemas = [
   {
@@ -143,7 +144,6 @@ const funciones = [
   },
 ];
 
-const waBase = 'https://wa.me/5492665258874?text=';
 ---
 
 <BaseLayout
@@ -577,169 +577,17 @@ const waBase = 'https://wa.me/5492665258874?text=';
   <!-- ═══════════════════════════════════════════ -->
   <!-- 7. ARMÁ TU AGENTE                            -->
   <!-- ═══════════════════════════════════════════ -->
-  <!-- Reemplaza a los planes: quien visita elige plataforma y funciones y manda el
-       resumen por WhatsApp ya escrito. Sin JS funciona igual: el botón abre WhatsApp
-       con un mensaje general. -->
-  <section id="arma-tu-agente" class="py-24 px-4 sm:px-6 lg:px-8 bg-[#0A0A0F]">
-    <div class="max-w-7xl mx-auto">
-      <div class="text-center mb-14" data-aos="fade-up">
-        <SectionBadge text="Armá tu agente" />
-        <h2 class="text-[clamp(2rem,4vw,3rem)] font-semibold text-white mb-4">
-          Elegí qué querés que haga tu agente
-        </h2>
-        <p class="text-slate-400 text-lg max-w-2xl mx-auto">
-          Marcá lo que necesitás y mandanos el resumen por WhatsApp. Te respondemos con una propuesta a medida para tu tienda.
-        </p>
-      </div>
-
-      <form class="agent-builder grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_380px] gap-8 items-start" data-agent-builder>
-        <div class="space-y-10">
-          <!-- Paso 1: plataforma -->
-          <fieldset data-aos="fade-up">
-            <legend class="flex items-center gap-3 text-white font-semibold text-lg mb-4">
-              <span class="w-8 h-8 rounded-lg bg-violet-600/15 border border-violet-600/30 text-violet-400 text-sm font-bold flex items-center justify-center">1</span>
-              ¿Dónde vendés?
-            </legend>
-            <div class="flex flex-wrap gap-3">
-              {plataformas.map((p, i) => (
-                <label class="cursor-pointer">
-                  <input type="radio" name="plataforma" value={p} checked={i === 0} class="peer sr-only" />
-                  <span class="inline-flex items-center px-5 py-2.5 rounded-full border border-white/10 bg-white/[0.03] text-slate-300 text-sm font-medium
-                               transition-colors duration-200 hover:border-violet-500/40
-                               peer-checked:border-violet-500 peer-checked:bg-violet-600/15 peer-checked:text-white
-                               peer-focus-visible:outline peer-focus-visible:outline-2 peer-focus-visible:outline-violet-400 peer-focus-visible:outline-offset-2">
-                    {p}
-                  </span>
-                </label>
-              ))}
-            </div>
-          </fieldset>
-
-          <!-- Paso 2: funciones -->
-          <fieldset data-aos="fade-up">
-            <legend class="flex items-center gap-3 text-white font-semibold text-lg mb-4">
-              <span class="w-8 h-8 rounded-lg bg-violet-600/15 border border-violet-600/30 text-violet-400 text-sm font-bold flex items-center justify-center">2</span>
-              ¿Qué querés que haga?
-            </legend>
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              {funciones.map((f, i) => (
-                <label class="agent-option group relative cursor-pointer rounded-2xl border border-white/[0.08] bg-[#111118] p-5
-                              transition-colors duration-200 hover:border-violet-500/40
-                              has-[:checked]:border-violet-500/70 has-[:checked]:bg-violet-600/[0.08]
-                              has-[:focus-visible]:outline has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-violet-400 has-[:focus-visible]:outline-offset-2">
-                  <input type="checkbox" name="funcion" value={f.title} data-msg={f.msg} checked={i === 0} class="sr-only" />
-                  <span class="flex items-start gap-4">
-                    <span class="w-10 h-10 rounded-xl bg-violet-600/10 border border-violet-600/30 text-violet-400 flex items-center justify-center flex-shrink-0">
-                      <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" set:html={f.icon} />
-                    </span>
-                    <span class="flex-1 pr-6">
-                      <span class="block text-white font-semibold mb-1">{f.title}</span>
-                      <span class="block text-slate-400 text-sm leading-relaxed">{f.desc}</span>
-                    </span>
-                  </span>
-                  <!-- Tilde de seleccionado -->
-                  <span class="absolute top-4 right-4 w-6 h-6 rounded-full border border-white/15 flex items-center justify-center
-                               transition-colors duration-200 group-has-[:checked]:bg-violet-600 group-has-[:checked]:border-violet-600" aria-hidden="true">
-                    <svg class="w-3.5 h-3.5 text-white opacity-0 transition-opacity duration-200 group-has-[:checked]:opacity-100" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3">
-                      <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
-                    </svg>
-                  </span>
-                </label>
-              ))}
-            </div>
-          </fieldset>
-        </div>
-
-        <!-- Resumen (fijo al costado en escritorio) -->
-        <aside class="lg:sticky lg:top-28 rounded-2xl border border-violet-600/30 p-6 md:p-8
-                      shadow-[0_0_40px_rgba(124,58,237,0.12)]"
-               style="background: linear-gradient(160deg, rgba(124,58,237,0.16) 0%, #111118 45%, #111118 100%);"
-               data-aos="fade-up" aria-labelledby="agent-summary-title">
-          <h3 id="agent-summary-title" class="text-white font-semibold text-xl mb-1">Tu agente</h3>
-          <p class="text-slate-400 text-sm mb-6">Para <span class="text-white font-medium" data-summary-platform>{plataformas[0]}</span></p>
-
-          <ul class="space-y-2.5 mb-6 min-h-[3rem]" data-summary-list aria-live="polite">
-            <li class="flex items-start gap-2.5 text-sm text-slate-200">
-              <svg class="w-4 h-4 text-violet-400 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>
-              {funciones[0].title}
-            </li>
-          </ul>
-          <p class="hidden text-slate-400 text-sm mb-6" data-summary-empty>Marcá al menos una función.</p>
-
-          <a
-            href={waBase + encodeURIComponent('Hola VIVE-IA, vengo de la web y quiero armar un agente para mi tienda. ¿Me ayudan con el diagnóstico?')}
-            target="_blank"
-            rel="noopener noreferrer"
-            data-summary-wa
-            class="w-full inline-flex items-center justify-center gap-2 px-6 py-4 rounded-xl font-semibold text-white
-                   bg-[#25D366] hover:bg-[#1ebe5a] transition-colors duration-300"
-          >
-            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
-            </svg>
-            Enviar por WhatsApp
-          </a>
-          <a href="/contacto" class="mt-3 w-full inline-flex items-center justify-center gap-1 py-2 text-sm font-medium text-violet-300 hover:text-white transition-colors">
-            Prefiero agendar un diagnóstico gratuito
-            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
-          </a>
-
-          <p class="mt-6 pt-6 border-t border-white/[0.08] text-slate-400 text-xs leading-relaxed">
-            Todos los proyectos incluyen onboarding, soporte, mantenimiento y mejoras continuas. Contratación mínima: 6 meses.
-          </p>
-        </aside>
-      </form>
-    </div>
-  </section>
-
-  <script>
-    // "Armá tu agente": arma el resumen y el mensaje de WhatsApp con las opciones
-    // marcadas. Todo el texto sale de las opciones del propio sitio (no hay texto libre)
-    // y el DOM se arma con createElement/textContent.
-    const form = document.querySelector<HTMLFormElement>('[data-agent-builder]');
-    if (form) {
-      const list = form.querySelector<HTMLElement>('[data-summary-list]')!;
-      const empty = form.querySelector<HTMLElement>('[data-summary-empty]')!;
-      const platform = form.querySelector<HTMLElement>('[data-summary-platform]')!;
-      const wa = form.querySelector<HTMLAnchorElement>('[data-summary-wa]')!;
-      const base = wa.href.split('?')[0];
-      const checkSvg = list.querySelector('svg')!;
-      const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-      const update = (changed?: EventTarget | null) => {
-        const plat = form.querySelector<HTMLInputElement>('input[name="plataforma"]:checked')?.value ?? '';
-        const picked = [...form.querySelectorAll<HTMLInputElement>('input[name="funcion"]:checked')];
-        platform.textContent = plat;
-
-        list.replaceChildren(...picked.map((input) => {
-          const li = document.createElement('li');
-          li.className = 'flex items-start gap-2.5 text-sm text-slate-200';
-          li.append(checkSvg.cloneNode(true), document.createTextNode(input.value));
-          // la que se acaba de marcar entra con un pequeño movimiento
-          if (input === changed && !reduceMotion) {
-            li.animate([{ opacity: 0, transform: 'translateX(8px)' }, { opacity: 1, transform: 'none' }], { duration: 260, easing: 'ease-out' });
-          }
-          return li;
-        }));
-        empty.classList.toggle('hidden', picked.length > 0);
-        wa.classList.toggle('pointer-events-none', picked.length === 0);
-        wa.classList.toggle('opacity-50', picked.length === 0);
-        wa.setAttribute('aria-disabled', String(picked.length === 0));
-
-        const lines = [
-          'Hola VIVE-IA, armé mi agente en la web.',
-          `Vendo en: ${plat}`,
-          'Quiero que el agente:',
-          ...picked.map((i) => `- ${i.dataset.msg}`),
-          '¿Me ayudan con el diagnóstico?',
-        ];
-        wa.href = `${base}?text=${encodeURIComponent(lines.join('\n'))}`;
-      };
-
-      form.addEventListener('change', (e) => update(e.target));
-      update();
-    }
-  </script>
+  <AgentBuilder
+    sectionClass="py-24 px-4 sm:px-6 lg:px-8 bg-[#0A0A0F]"
+    title="Elegí qué querés que haga tu agente"
+    subtitle="Marcá lo que necesitás y mandanos el resumen por WhatsApp. Te respondemos con una propuesta a medida para tu tienda."
+    platformQuestion="¿Dónde vendés?"
+    platformLabel="Vendo en"
+    platforms={plataformas}
+    functions={funciones}
+    defaultMessage="Hola VIVE-IA, vengo de la web y quiero armar un agente para mi tienda. ¿Me ayudan con el diagnóstico?"
+    note="Todos los proyectos incluyen onboarding, soporte, mantenimiento y mejoras continuas. Contratación mínima: 6 meses."
+  />
 
 
   <!-- ═══════════════════════════════════════════ -->
