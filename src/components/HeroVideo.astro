@@ -59,15 +59,16 @@ const play = 'M8 5.14v13.72a1 1 0 0 0 1.5.86l11-6.86a1 1 0 0 0 0-1.72l-11-6.86A1
       class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.04]"
     />
     <span class="absolute inset-0" style="background: linear-gradient(to top, rgba(10,10,15,0.92) 0%, rgba(10,10,15,0.15) 45%, rgba(10,10,15,0) 100%);"></span>
-    <span class="absolute inset-0 flex items-center justify-center">
-      <span class="w-16 h-16 rounded-full bg-violet-600/90 flex items-center justify-center
-                   shadow-[0_0_30px_rgba(124,58,237,0.6)] transition-transform duration-300 group-hover:scale-110">
-        <svg class="w-6 h-6 text-white translate-x-0.5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d={play} /></svg>
+    <!-- Play abajo, junto al texto: no tapa la cara de quien habla -->
+    <span class="absolute left-0 right-0 bottom-0 p-5 flex items-center gap-4 text-left">
+      <span class="w-12 h-12 rounded-full bg-violet-600 flex items-center justify-center flex-shrink-0
+                   shadow-[0_0_24px_rgba(124,58,237,0.6)] transition-transform duration-300 group-hover:scale-110">
+        <svg class="w-5 h-5 text-white translate-x-0.5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d={play} /></svg>
       </span>
-    </span>
-    <span class="absolute left-0 right-0 bottom-0 p-5 text-left">
-      <span class="block text-white font-semibold">{label}</span>
-      <span class="block text-slate-400 text-sm">{sublabel}</span>
+      <span class="min-w-0">
+        <span class="block text-white font-semibold">{label}</span>
+        <span class="block text-slate-300 text-sm leading-snug">{sublabel}</span>
+      </span>
     </span>
   </button>
 )}
