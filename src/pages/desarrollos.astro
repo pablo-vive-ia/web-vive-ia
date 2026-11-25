@@ -60,16 +60,42 @@ const services = [
   },
 ];
 
-const portfolio = [
+// Lo que incluye cada web o landing que entregamos (íconos: trazos de Lucide, constantes de esta página)
+const includes = [
   {
-    tag: 'Sitio corporativo',
-    title: 'Webs Modernas',
-    desc: 'Sitio web corporativo con red neuronal animada (Three.js), integración con Gemini AI y formulario conectado a n8n.',
-    accent: 'bg-violet-500/20 text-violet-300',
-    image: '/images/webs.webp',
-    imageAlt: 'Webs modernas',
-    link: null,
+    title: 'Diseño propio para tu marca',
+    desc: 'Tipografías, colores y fotos pensados para tu negocio. Nada de plantillas compradas ni sitios que se parecen a todos.',
+    icon: '<path d="M12 22a1 1 0 0 1 0-20 10 9 0 0 1 10 9 5 5 0 0 1-5 5h-2.25a1.75 1.75 0 0 0-1.4 2.8l.3.4a1.75 1.75 0 0 1-1.4 2.8z"/><circle cx="13.5" cy="6.5" r=".5" fill="currentColor"/><circle cx="17.5" cy="10.5" r=".5" fill="currentColor"/><circle cx="6.5" cy="12.5" r=".5" fill="currentColor"/><circle cx="8.5" cy="7.5" r=".5" fill="currentColor"/>',
   },
+  {
+    title: 'Rápida en cualquier pantalla',
+    desc: 'Liviana y con animaciones fluidas en celular, tablet y computadora. Tus clientes no esperan a que cargue.',
+    icon: '<path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z"/>',
+  },
+  {
+    title: 'Lista para Google',
+    desc: 'SEO técnico, datos estructurados y vista previa al compartir, para que tu negocio se muestre bien en buscadores y redes.',
+    icon: '<path d="m21 21-4.34-4.34"/><circle cx="11" cy="11" r="8"/>',
+  },
+  {
+    title: 'WhatsApp y formularios conectados',
+    desc: 'Botones a WhatsApp con el mensaje listo y formularios que llegan directo a tus automatizaciones, tu CRM o tus planillas.',
+    icon: '<path d="M2.992 16.342a2 2 0 0 1 .094 1.167l-1.065 3.29a1 1 0 0 0 1.236 1.168l3.413-.998a2 2 0 0 1 1.099.092 10 10 0 1 0-4.777-4.719"/>',
+  },
+  {
+    title: 'Segura desde el primer día',
+    desc: 'HTTPS, cabeceras de seguridad y formularios protegidos contra spam y abusos.',
+    icon: '<path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/>',
+  },
+  {
+    title: 'Publicada y funcionando',
+    desc: 'Nos ocupamos del hosting, el dominio y la puesta en línea. Antes de publicar, revisás y aprobás cada pantalla.',
+    icon: '<path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/><path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"/><path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/>',
+  },
+];
+
+// Color de etiqueta por tipo: landing = cian, sitio institucional = violeta, app = fucsia
+const portfolio = [
   {
     tag: 'Landing page',
     title: 'Modo Campeón',
@@ -78,6 +104,27 @@ const portfolio = [
     image: '/images/modo-campeon.webp',
     imageAlt: 'Modo Campeón',
     link: 'https://modocampeon.store',
+    linkLabel: 'Ver proyecto',
+  },
+  {
+    tag: 'Landing page',
+    title: 'Álvaro Jiménez · Coach',
+    desc: 'Landing para un coach online: la página arranca dentro de un túnel y, al bajar, la cámara avanza hacia la luz. Primera sesión gratuita por WhatsApp.',
+    accent: 'bg-cyan-500/20 text-cyan-300',
+    image: '/images/alvaro-coach.webp',
+    imageAlt: 'Landing de Álvaro Jiménez, coach online',
+    link: 'https://alvaro-coach.netlify.app/',
+    linkLabel: 'Ver proyecto',
+  },
+  {
+    tag: 'Sitio institucional · Demo',
+    title: 'Casa Alba',
+    desc: 'Demo de sitio para una clínica de estética y bienestar: recorrido por la casa con el scroll, especialidades, opiniones y preguntas frecuentes. La clínica y sus datos son ficticios.',
+    accent: 'bg-violet-500/20 text-violet-300',
+    image: '/images/casa-alba.webp',
+    imageAlt: 'Demo de sitio web para la clínica Casa Alba',
+    link: 'https://demo-clinicas-vive.netlify.app/',
+    linkLabel: 'Ver demo',
   },
   {
     tag: 'App a medida',
@@ -87,6 +134,7 @@ const portfolio = [
     image: '/images/app-perso.webp',
     imageAlt: 'Aplicación personalizada',
     link: null,
+    linkLabel: null,
   },
 ];
 ---
@@ -171,8 +219,41 @@ const portfolio = [
     </div>
   </section>
 
-  <!-- ── Portfolio ── -->
+  <!-- ── Webs y landings: qué incluye ── -->
   <section class="py-20 md:py-28 bg-[#111118]/50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16" data-aos="fade-up">
+        <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-violet-600/10 border border-violet-600/30 text-violet-400 text-sm font-medium mb-4">
+          Webs y landing pages
+        </span>
+        <h2 class="text-3xl md:text-4xl font-bold text-slate-50">
+          Todo lo que incluye tu web
+        </h2>
+        <p class="mt-4 text-slate-400 max-w-xl mx-auto">
+          Sea una landing para vender o el sitio completo de tu empresa, cada web sale con esto resuelto.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {includes.map((item, i) => (
+          <div
+            class="group rounded-2xl border border-white/[0.08] bg-[#111118] p-8 hover:border-violet-600/30 hover:-translate-y-1 transition-all duration-300"
+            data-aos="fade-up"
+            data-aos-delay={String((i % 3) * 100)}
+          >
+            <div class="w-12 h-12 mb-5 flex items-center justify-center rounded-xl bg-violet-600/10 border border-violet-600/30 text-violet-400 group-hover:shadow-[0_0_30px_rgba(124,58,237,0.3)] transition-shadow duration-300">
+              <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" set:html={item.icon} />
+            </div>
+            <h3 class="text-lg font-semibold text-slate-100 mb-2">{item.title}</h3>
+            <p class="text-slate-400 text-sm leading-relaxed">{item.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Portfolio ── -->
+  <section class="py-20 md:py-28">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center mb-16" data-aos="fade-up">
         <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-violet-600/10 border border-violet-600/30 text-violet-400 text-sm font-medium mb-4">
@@ -186,19 +267,19 @@ const portfolio = [
         </p>
       </div>
 
-      <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
         {portfolio.map((p, i) => (
           <div
             class="flex flex-col rounded-2xl overflow-hidden border border-white/[0.08] bg-[#111118] hover:-translate-y-1 transition-transform duration-300"
             data-aos="fade-up"
-            data-aos-delay={String(i * 120)}
+            data-aos-delay={String((i % 2) * 120)}
           >
             <!-- Preview con imagen real -->
-            <div class="relative h-48 overflow-hidden">
+            <div class="relative h-48 lg:h-64 overflow-hidden">
               <img
                 src={p.image} {...imgSize(p.image)}
                 alt={p.imageAlt}
-                class="w-full h-full object-cover"
+                class="w-full h-full object-cover object-top"
                 loading="lazy"
                 width="400"
                 height="192"
@@ -220,7 +301,7 @@ const portfolio = [
                   rel="noopener noreferrer"
                   class="mt-4 inline-flex items-center gap-1.5 text-sm text-violet-400 hover:text-violet-300 font-medium transition-colors"
                 >
-                  Ver proyecto
+                  {p.linkLabel}
                   <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
                   </svg>
