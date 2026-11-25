@@ -199,6 +199,38 @@
     "width": 1170,
     "height": 339
   },
+  "/images/srv-atencion-cliente.webp": {
+    "width": 1280,
+    "height": 787
+  },
+  "/images/srv-automatizacion.webp": {
+    "width": 1280,
+    "height": 802
+  },
+  "/images/srv-e-commerce.webp": {
+    "width": 1280,
+    "height": 790
+  },
+  "/images/srv-integracion.webp": {
+    "width": 1280,
+    "height": 786
+  },
+  "/images/srv-mentores.webp": {
+    "width": 235,
+    "height": 151
+  },
+  "/images/srv-reportes.webp": {
+    "width": 1280,
+    "height": 782
+  },
+  "/images/srv-ventas.webp": {
+    "width": 1280,
+    "height": 784
+  },
+  "/images/srv-webs_icon.webp": {
+    "width": 1280,
+    "height": 462
+  },
   "/images/tareas-manuales.webp": {
     "width": 1120,
     "height": 338

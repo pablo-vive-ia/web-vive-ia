@@ -1,4 +1,7 @@
 ---
+// Paso numerado del proceso. Con scroll-driven animations, la línea se dibuja con el
+// scroll y cada paso se enciende cuando la línea lo alcanza (a la altura de lectura,
+// 55% de la pantalla). Sin soporte o con movimiento reducido: todo visible y quieto.
 interface Props {
   number: string;
   title: string;
@@ -8,24 +11,62 @@ interface Props {
 const { number, title, description, isLast = false } = Astro.props;
 ---
 
-<div class="relative flex gap-6">
+<div class="step relative flex gap-6">
   <!-- Número + línea conectora -->
   <div class="flex flex-col items-center flex-shrink-0">
     <div
-      class="w-12 h-12 rounded-xl flex items-center justify-center
+      class="relative w-12 h-12 rounded-xl flex items-center justify-center
              bg-violet-600/15 border border-violet-600/30 text-violet-400
              font-bold text-sm z-10"
     >
-      {number}
+      <span class="step-lit absolute -inset-px rounded-xl" aria-hidden="true"></span>
+      <span class="step-num relative">{number}</span>
     </div>
     {!isLast && (
-      <div class="w-px flex-1 mt-2 bg-gradient-to-b from-violet-600/30 to-transparent min-h-[3rem]"></div>
+      <div class="step-line relative w-0.5 flex-1 mt-2 min-h-[3rem] rounded-full bg-violet-600/15 overflow-hidden">
+        <span class="step-line-fill absolute inset-0 rounded-full"></span>
+      </div>
     )}
   </div>
 
   <!-- Contenido -->
-  <div class="pb-10">
+  <div class="step-body pb-10">
     <h3 class="text-lg font-semibold text-white mb-2">{title}</h3>
     <p class="text-slate-400 text-sm leading-relaxed">{description}</p>
   </div>
 </div>
+
+<style>
+  .step-line-fill {
+    background: linear-gradient(to bottom, #A855F7, #06B6D4);
+    transform-origin: top;
+  }
+  .step-lit {
+    opacity: 0;
+    background: linear-gradient(135deg, #7C3AED 0%, #06B6D4 100%);
+    box-shadow: 0 0 24px rgba(124, 58, 237, 0.45);
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    @supports (animation-timeline: view()) {
+      .step-line { view-timeline: --step-line block; view-timeline-inset: 55% 45%; }
+      .step-line-fill { animation: step-draw linear both; }
+      .step-lit { animation: step-on linear both; }
+      .step-num { animation: step-num-on linear both; }
+      .step-body { animation: step-read linear both; }
+
+      /* Regla aparte y más específica: el minificador de Astro 7 funde
+         animation-timeline dentro del atajo "animation" y Chrome descarta la
+         declaración entera (la animación no corre, sin error). */
+      .step .step-line-fill { animation-timeline: --step-line; animation-range: cover 0% cover 100%; }
+      .step .step-lit,
+      .step .step-num { animation-timeline: view(block 55% 45%); animation-range: cover 0% cover 100%; }
+      .step .step-body { animation-timeline: view(block 55% 45%); animation-range: cover 0% cover 18%; }
+    }
+  }
+
+  @keyframes step-draw { from { transform: scaleY(0); } to { transform: scaleY(1); } }
+  @keyframes step-on { from { opacity: 0; } to { opacity: 1; } }
+  @keyframes step-num-on { from { color: #A78BFA; } to { color: #FFFFFF; } }
+  @keyframes step-read { from { opacity: 0.4; } to { opacity: 1; } }
+</style>
