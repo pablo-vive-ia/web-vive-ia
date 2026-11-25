@@ -15,17 +15,9 @@
     "width": 1440,
     "height": 454
   },
-  "/images/atencion-cliente.webp": {
-    "width": 1070,
-    "height": 747
-  },
   "/images/atencion-comu.webp": {
     "width": 200,
     "height": 192
-  },
-  "/images/automatizacion.webp": {
-    "width": 1070,
-    "height": 762
   },
   "/images/automatizaciones.webp": {
     "width": 1190,
@@ -62,10 +54,6 @@
   "/images/diagnostico.webp": {
     "width": 150,
     "height": 150
-  },
-  "/images/e-commerce.webp": {
-    "width": 1070,
-    "height": 750
   },
   "/images/eficiencia-humano.webp": {
     "width": 357,
@@ -123,10 +111,6 @@
     "width": 200,
     "height": 177
   },
-  "/images/mentores.webp": {
-    "width": 235,
-    "height": 172
-  },
   "/images/mision.webp": {
     "width": 1070,
     "height": 465
@@ -166,10 +150,6 @@
   "/images/proposito.webp": {
     "width": 1070,
     "height": 405
-  },
-  "/images/reportes.webp": {
-    "width": 1070,
-    "height": 743
   },
   "/images/responder-dm.webp": {
     "width": 1370,
@@ -247,9 +227,13 @@
     "width": 200,
     "height": 172
   },
-  "/images/ventas.webp": {
-    "width": 1070,
-    "height": 745
+  "/images/video-ecommerce.webp": {
+    "width": 560,
+    "height": 700
+  },
+  "/images/video-mentores.webp": {
+    "width": 560,
+    "height": 700
   },
   "/images/video-presentacion.webp": {
     "width": 560,

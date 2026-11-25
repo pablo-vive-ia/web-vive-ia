@@ -5,6 +5,9 @@ import SectionBadge from '../components/SectionBadge.astro';
 import MetricCounter from '../components/MetricCounter.astro';
 import StepCard from '../components/StepCard.astro';
 import HeroPhrase from '../components/HeroPhrase.astro';
+import HeroFlow from '../components/HeroFlow.astro';
+import HeroVideo from '../components/HeroVideo.astro';
+import VideoDialog from '../components/VideoDialog.astro';
 
 const painPoints = [
   'Respondés las mismas preguntas una y otra vez',
@@ -212,8 +215,8 @@ const afterPoints = [
   <!-- 1. HERO                                      -->
   <!-- ═══════════════════════════════════════════ -->
   <section class="relative min-h-[92vh] flex items-center overflow-hidden bg-[#0A0A0F]">
-    <!-- Fondo propio: líneas que pasan del caos al orden (shader WebGL2, ver script abajo) -->
-    <canvas id="hero-flow" class="absolute inset-0 w-full h-full z-0" aria-hidden="true"></canvas>
+    <!-- Fondo propio: líneas que pasan del caos al orden -->
+    <HeroFlow />
 
     <!-- Velo para que el texto se lea: más oscuro del lado del texto y abajo -->
     <div
@@ -277,257 +280,36 @@ const afterPoints = [
         </div>
 
         <!-- Video en celular y tablet: enlace compacto -->
-        <button
-          type="button"
-          data-video-open
-          data-aos="fade-up"
-          data-aos-delay="400"
-          class="lg:hidden mt-8 inline-flex items-center gap-3 text-slate-300 hover:text-white transition-colors"
-        >
-          <span class="relative w-12 h-12 rounded-full overflow-hidden border border-white/15 flex-shrink-0">
-            <img src="/images/video-presentacion.webp" alt="" width="560" height="700" class="w-full h-full object-cover" />
-            <span class="absolute inset-0 flex items-center justify-center bg-black/40">
-              <svg class="w-4 h-4 text-white" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5.14v13.72a1 1 0 0 0 1.5.86l11-6.86a1 1 0 0 0 0-1.72l-11-6.86A1 1 0 0 0 8 5.14z"/></svg>
-            </span>
-          </span>
-          <span class="text-left text-sm leading-snug">
-            <span class="block font-semibold text-white">Conocenos en video</span>
-            <span class="block text-slate-400">Luciana Frisardi · Cofundadora</span>
-          </span>
-        </button>
+        <HeroVideo
+          variant="compact"
+          videoId="omr91fMMxk4"
+          title="Conocé VIVE-IA"
+          poster="/images/video-presentacion.webp"
+          label="Conocenos en video"
+          sublabel="Luciana Frisardi · Cofundadora"
+        />
       </div>
 
       <!-- Video en escritorio: tarjeta con portada; el reproductor se carga recién al hacer clic -->
-      <button
-        type="button"
-        data-video-open
-        data-aos="fade-left"
-        data-aos-delay="300"
-        class="hero-video-card group hidden lg:block relative w-[300px] xl:w-[340px] aspect-[4/5] rounded-2xl overflow-hidden
-               border border-white/10 hover:border-violet-500/50
-               shadow-[0_0_40px_rgba(124,58,237,0.18)] hover:shadow-[0_0_60px_rgba(124,58,237,0.35)]
-               transition-[border-color,box-shadow] duration-300"
-        aria-label="Ver video: conocé VIVE-IA, con Luciana Frisardi"
-      >
-        <img
-          src="/images/video-presentacion.webp"
-          alt=""
-          width="560"
-          height="700"
-          class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.04]"
-        />
-        <span class="absolute inset-0" style="background: linear-gradient(to top, rgba(10,10,15,0.92) 0%, rgba(10,10,15,0.15) 45%, rgba(10,10,15,0) 100%);"></span>
-        <span class="absolute inset-0 flex items-center justify-center">
-          <span class="w-16 h-16 rounded-full bg-violet-600/90 flex items-center justify-center
-                       shadow-[0_0_30px_rgba(124,58,237,0.6)] transition-transform duration-300 group-hover:scale-110">
-            <svg class="w-6 h-6 text-white translate-x-0.5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5.14v13.72a1 1 0 0 0 1.5.86l11-6.86a1 1 0 0 0 0-1.72l-11-6.86A1 1 0 0 0 8 5.14z"/></svg>
-          </span>
-        </span>
-        <span class="absolute left-0 right-0 bottom-0 p-5 text-left">
-          <span class="block text-white font-semibold">Conocenos en video</span>
-          <span class="block text-slate-400 text-sm">Luciana Frisardi · Cofundadora</span>
-        </span>
-      </button>
+      <HeroVideo
+        variant="card"
+        videoId="omr91fMMxk4"
+        title="Conocé VIVE-IA"
+        poster="/images/video-presentacion.webp"
+        label="Conocenos en video"
+        sublabel="Luciana Frisardi · Cofundadora"
+      />
     </div>
 
     <!-- Flecha scroll -->
-    <div class="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 animate-bounce hidden md:block">
+    <div class="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 motion-safe:animate-bounce hidden md:block">
       <svg class="w-6 h-6 text-slate-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
         <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
       </svg>
     </div>
   </section>
 
-  <!-- Reproductor del video de presentación (se arma al abrir, se vacía al cerrar) -->
-  <dialog
-    id="video-dialog"
-    class="video-dialog m-auto p-0 bg-transparent max-w-none max-h-none overflow-visible"
-    aria-label="Video de presentación de VIVE-IA"
-  >
-    <div class="relative" style="width: min(90vw, calc(82vh * 9 / 16)); aspect-ratio: 9 / 16;">
-      <button
-        type="button"
-        data-video-close
-        class="absolute -top-12 right-0 w-10 h-10 rounded-full flex items-center justify-center
-               bg-white/10 hover:bg-white/20 text-white transition-colors"
-        aria-label="Cerrar video"
-      >
-        <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
-        </svg>
-      </button>
-      <div id="video-slot" class="w-full h-full rounded-2xl overflow-hidden bg-black border border-white/10"></div>
-    </div>
-  </dialog>
-
-  <style>
-    .video-dialog::backdrop { background: rgba(5, 5, 10, 0.85); }
-    @media (prefers-reduced-motion: no-preference) {
-      .video-dialog[open] { animation: video-in 0.35s cubic-bezier(0.2, 0.8, 0.2, 1); }
-      .video-dialog[open]::backdrop { animation: video-fade 0.35s ease; }
-    }
-    @keyframes video-in { from { opacity: 0; transform: scale(0.96); } }
-    @keyframes video-fade { from { opacity: 0; } }
-    @media (prefers-reduced-motion: reduce) {
-      .hero-video-card img { transition: none; }
-    }
-  </style>
-
-  <script>
-    // Video de presentación: el iframe de YouTube se crea recién al abrir (no pesa en la carga)
-    const dialog = document.getElementById('video-dialog') as HTMLDialogElement | null;
-    const slot = document.getElementById('video-slot');
-    if (dialog && slot) {
-      const open = () => {
-        const iframe = document.createElement('iframe');
-        iframe.src = 'https://www.youtube-nocookie.com/embed/omr91fMMxk4?autoplay=1&rel=0&modestbranding=1&playsinline=1';
-        iframe.title = 'VIVE-IA — video de presentación';
-        iframe.allow = 'autoplay; encrypted-media; fullscreen; picture-in-picture';
-        iframe.referrerPolicy = 'strict-origin-when-cross-origin';
-        iframe.setAttribute('sandbox', 'allow-scripts allow-same-origin allow-presentation');
-        iframe.setAttribute('allowfullscreen', '');
-        iframe.className = 'w-full h-full border-0';
-        slot.replaceChildren(iframe);
-        dialog.showModal();
-      };
-      document.querySelectorAll('[data-video-open]').forEach((b) => b.addEventListener('click', open));
-      dialog.querySelector('[data-video-close]')?.addEventListener('click', () => dialog.close());
-      // Clic fuera del video (en el fondo) cierra
-      dialog.addEventListener('click', (e) => { if (e.target === dialog) dialog.close(); });
-      // Al cerrar se quita el iframe para que el video deje de sonar
-      dialog.addEventListener('close', () => slot.replaceChildren());
-    }
-  </script>
-
-  <script>
-    // Fondo del hero: líneas de luz que entran desordenadas por la izquierda y salen
-    // ordenadas y en paralelo por la derecha ("del caos al orden"). Todo depende del
-    // tiempo transcurrido, no de los fotogramas: se ve igual a 60, 120 o 144 Hz.
-    const canvas = document.getElementById('hero-flow') as HTMLCanvasElement | null;
-    const gl = canvas?.getContext('webgl2', { antialias: false, alpha: false, powerPreference: 'low-power' });
-    if (canvas && gl) {
-      const vert = `#version 300 es
-in vec2 position;
-void main(){ gl_Position = vec4(position, 0.0, 1.0); }`;
-
-      const frag = `#version 300 es
-precision highp float;
-out vec4 O;
-uniform vec2 R;
-uniform float T;
-uniform float mobile;
-
-const vec3 BG = vec3(0.039, 0.039, 0.059);
-const vec3 VIOLET = vec3(0.486, 0.227, 0.929);
-const vec3 CYAN = vec3(0.024, 0.714, 0.831);
-const float N = 9.0;
-
-// Altura de la línea i en la posición x (0..1)
-float lineY(float x, float i) {
-  float k = i / (N - 1.0);
-  // orden: líneas paralelas y parejas
-  float ordered = 0.5 + (k - 0.5) * 0.42;
-  // caos: ondas distintas por línea que se mueven con el tiempo
-  float chaos = 0.5
-    + 0.30 * sin(x * (5.0 + i * 0.9) + i * 1.7 + T * (0.35 + 0.05 * i))
-    + 0.12 * sin(x * 13.0 - i * 2.3 - T * 0.6);
-  float w = smoothstep(0.12, 0.78, x);
-  float y = mix(chaos, ordered, w);
-  // en el celular las líneas van en la franja de abajo, lejos del texto
-  return mix(y, 0.03 + y * 0.26, mobile);
-}
-
-void main() {
-  vec2 uv = gl_FragCoord.xy / R;
-  float px = 1.0 / R.y;
-  vec3 col = BG;
-  for (float i = 0.0; i < N; i++) {
-    float y = lineY(uv.x, i);
-    // distancia corregida por la pendiente, para que el grosor sea parejo
-    float dy = (lineY(uv.x + 0.002, i) - y) / 0.002 * (R.y / R.x);
-    float d = abs(uv.y - y) / sqrt(1.0 + dy * dy);
-    float core = exp(-pow(d / (1.4 * px), 2.0));
-    float halo = exp(-d / (18.0 * px)) * 0.18;
-    // pulso de luz que viaja hacia la derecha por cada línea
-    float ph = fract(uv.x * 0.9 - T * 0.09 - i * 0.137) - 0.5;
-    float pulse = exp(-ph * ph * 260.0); // campana suave: sin cortes verticales
-    float order = smoothstep(0.2, 0.8, uv.x);
-    vec3 c = mix(VIOLET, CYAN, clamp(uv.x * 0.9 + 0.12 * sin(i * 1.3), 0.0, 1.0));
-    float a = core * (0.35 + 0.4 * order) * (0.6 + 1.6 * pulse) + halo * (0.7 + 0.6 * pulse);
-    col += c * a;
-  }
-  O = vec4(col, 1.0);
-}`;
-
-      const compile = (type: number, src: string) => {
-        const s = gl.createShader(type)!;
-        gl.shaderSource(s, src);
-        gl.compileShader(s);
-        return s;
-      };
-      const prog = gl.createProgram()!;
-      gl.attachShader(prog, compile(gl.VERTEX_SHADER, vert));
-      gl.attachShader(prog, compile(gl.FRAGMENT_SHADER, frag));
-      gl.linkProgram(prog);
-
-      if (gl.getProgramParameter(prog, gl.LINK_STATUS)) {
-        gl.useProgram(prog);
-        const buf = gl.createBuffer();
-        gl.bindBuffer(gl.ARRAY_BUFFER, buf);
-        gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1, 1, -1, -1, 1, 1, 1, -1]), gl.STATIC_DRAW);
-        const pos = gl.getAttribLocation(prog, 'position');
-        gl.enableVertexAttribArray(pos);
-        gl.vertexAttribPointer(pos, 2, gl.FLOAT, false, 0, 0);
-
-        const uRes = gl.getUniformLocation(prog, 'R');
-        const uTime = gl.getUniformLocation(prog, 'T');
-        const uMobile = gl.getUniformLocation(prog, 'mobile');
-
-        // Resolución: hasta 1,5x y nunca más de ~1,6 MP (pantallas 4K, celulares de gama media)
-        const resize = () => {
-          const w = canvas.clientWidth;
-          const h = canvas.clientHeight;
-          let scale = Math.min(window.devicePixelRatio || 1, 1.5);
-          const max = 1_600_000;
-          if (w * h * scale * scale > max) scale = Math.sqrt(max / (w * h));
-          canvas.width = Math.max(1, Math.round(w * scale));
-          canvas.height = Math.max(1, Math.round(h * scale));
-          gl.viewport(0, 0, canvas.width, canvas.height);
-          gl.uniform2f(uRes, canvas.width, canvas.height);
-          gl.uniform1f(uMobile, w < 1024 ? 1 : 0);
-        };
-
-        const draw = (now: number) => {
-          gl.uniform1f(uTime, now * 0.001);
-          gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
-        };
-
-        const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-        let visible = true;
-        let rafId: number | null = null;
-        const loop = (now: number) => {
-          if (!visible) { rafId = null; return; }
-          rafId = requestAnimationFrame(loop);
-          draw(now);
-        };
-
-        resize();
-        if (reduceMotion) {
-          // Movimiento reducido: un solo cuadro quieto
-          draw(12000);
-          window.addEventListener('resize', () => { resize(); draw(12000); });
-        } else {
-          window.addEventListener('resize', resize);
-          // Pausa cuando el hero sale de la pantalla
-          new IntersectionObserver((entries) => {
-            visible = entries[0]?.isIntersecting ?? true;
-            if (visible && rafId === null) rafId = requestAnimationFrame(loop);
-          }).observe(canvas);
-          rafId = requestAnimationFrame(loop);
-        }
-      }
-    }
-  </script>
+  <VideoDialog />
 
 
   <!-- ═══════════════════════════════════════════ -->

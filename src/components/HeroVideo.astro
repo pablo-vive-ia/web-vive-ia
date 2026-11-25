@@ -1,0 +1,79 @@
+---
+// Disparador del video del hero: tarjeta con portada (escritorio) o enlace compacto
+// (celular y tablet). El reproductor de YouTube no se carga hasta el clic: lo arma
+// VideoDialog.astro, que tiene que estar una vez en la página.
+interface Props {
+  videoId: string;      // id de YouTube (11 caracteres)
+  title: string;        // título del video, para el reproductor y lectores de pantalla
+  poster: string;       // portada en /public/images (4:5)
+  label: string;
+  sublabel: string;
+  variant: 'card' | 'compact';
+}
+const { videoId, title, poster, label, sublabel, variant } = Astro.props;
+if (!/^[\w-]{11}$/.test(videoId)) throw new Error(`HeroVideo: id de YouTube inválido: ${videoId}`);
+const play = 'M8 5.14v13.72a1 1 0 0 0 1.5.86l11-6.86a1 1 0 0 0 0-1.72l-11-6.86A1 1 0 0 0 8 5.14z';
+---
+
+{variant === 'compact' ? (
+  <button
+    type="button"
+    data-video-open
+    data-video-id={videoId}
+    data-video-title={title}
+    data-aos="fade-up"
+    data-aos-delay="400"
+    class="lg:hidden mt-8 inline-flex items-center gap-3 text-slate-300 hover:text-white transition-colors"
+    aria-label={`Ver video: ${title}`}
+  >
+    <span class="relative w-12 h-12 rounded-full overflow-hidden border border-white/15 flex-shrink-0">
+      <img src={poster} alt="" width="560" height="700" class="w-full h-full object-cover" />
+      <span class="absolute inset-0 flex items-center justify-center bg-black/40">
+        <svg class="w-4 h-4 text-white" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d={play} /></svg>
+      </span>
+    </span>
+    <span class="text-left text-sm leading-snug">
+      <span class="block font-semibold text-white">{label}</span>
+      <span class="block text-slate-400">{sublabel}</span>
+    </span>
+  </button>
+) : (
+  <button
+    type="button"
+    data-video-open
+    data-video-id={videoId}
+    data-video-title={title}
+    data-aos="fade-left"
+    data-aos-delay="300"
+    class="hero-video-card group hidden lg:block relative w-[300px] xl:w-[340px] aspect-[4/5] rounded-2xl overflow-hidden
+           border border-white/10 hover:border-violet-500/50
+           shadow-[0_0_40px_rgba(124,58,237,0.18)] hover:shadow-[0_0_60px_rgba(124,58,237,0.35)]
+           transition-[border-color,box-shadow] duration-300"
+    aria-label={`Ver video: ${title}`}
+  >
+    <img
+      src={poster}
+      alt=""
+      width="560"
+      height="700"
+      class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.04]"
+    />
+    <span class="absolute inset-0" style="background: linear-gradient(to top, rgba(10,10,15,0.92) 0%, rgba(10,10,15,0.15) 45%, rgba(10,10,15,0) 100%);"></span>
+    <span class="absolute inset-0 flex items-center justify-center">
+      <span class="w-16 h-16 rounded-full bg-violet-600/90 flex items-center justify-center
+                   shadow-[0_0_30px_rgba(124,58,237,0.6)] transition-transform duration-300 group-hover:scale-110">
+        <svg class="w-6 h-6 text-white translate-x-0.5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d={play} /></svg>
+      </span>
+    </span>
+    <span class="absolute left-0 right-0 bottom-0 p-5 text-left">
+      <span class="block text-white font-semibold">{label}</span>
+      <span class="block text-slate-400 text-sm">{sublabel}</span>
+    </span>
+  </button>
+)}
+
+<style>
+  @media (prefers-reduced-motion: reduce) {
+    .hero-video-card img { transition: none; }
+  }
+</style>
