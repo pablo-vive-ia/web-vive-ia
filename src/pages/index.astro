@@ -841,46 +841,172 @@ void main() {
         </p>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+      <!-- Comparador: al arrastrar, cada renglón pasa del caos (torcido, en rojo) al orden.
+           Los renglones de beforePoints y afterPoints se corresponden uno a uno. -->
+      <div class="caos max-w-3xl mx-auto relative rounded-2xl p-6 md:p-10" data-caos data-aos="fade-up">
+        <!-- Marco: rojo en "sin", violeta en "con" (se cruzan por opacidad) -->
+        <span class="caos-frame-sin absolute inset-0 rounded-2xl pointer-events-none" aria-hidden="true"></span>
+        <span class="caos-frame-con absolute inset-0 rounded-2xl pointer-events-none" aria-hidden="true"></span>
 
-        <!-- Antes -->
-        <div data-aos="fade-right"
-             class="p-8 rounded-2xl"
-             style="border: 1px solid rgba(239,68,68,0.25); background: rgba(17,17,24,0.85); backdrop-filter: blur(12px);">
-          <div class="flex items-center gap-3 mb-6">
-            <span class="w-8 h-8 rounded-full bg-red-900/30 flex items-center justify-center text-red-400 text-sm font-bold">✗</span>
-            <h3 class="text-red-400 font-semibold text-lg">Sin VIVE-IA</h3>
+        <!-- Control -->
+        <div class="caos-control relative flex flex-wrap md:flex-nowrap items-center justify-between gap-x-5 gap-y-3 mb-8">
+          <button type="button" data-caos-set="0" class="caos-label-sin shrink-0 inline-flex items-center gap-2 text-red-400 font-semibold text-sm md:text-base">
+            <span class="w-7 h-7 rounded-full bg-red-900/30 flex items-center justify-center text-xs font-bold" aria-hidden="true">✗</span>
+            Sin VIVE-IA
+          </button>
+          <div class="caos-track relative h-10 order-last basis-full md:order-none md:basis-auto md:flex-1">
+            <span class="absolute left-0 right-0 top-1/2 -translate-y-1/2 h-1.5 rounded-full pointer-events-none"
+                  style="background: linear-gradient(90deg, rgba(239,68,68,0.5), rgba(124,58,237,0.7) 70%, rgba(6,182,212,0.7));" aria-hidden="true"></span>
+            <!-- Riel del ancho útil (pista menos el pulgar): se mueve con transform, no con left -->
+            <span class="caos-rail absolute left-0 top-0 h-full pointer-events-none" style="width: calc(100% - 2.5rem);" aria-hidden="true">
+              <span class="caos-thumb absolute left-0 top-0 w-10 h-10 rounded-full bg-white flex items-center justify-center
+                           shadow-[0_0_20px_rgba(124,58,237,0.5)]">
+                <svg class="w-5 h-5 text-violet-700" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M9 6l-6 6 6 6M15 6l6 6-6 6" />
+                </svg>
+              </span>
+            </span>
+            <input
+              type="range" min="0" max="1000" value="0" step="1"
+              class="caos-input absolute inset-0 w-full h-full opacity-0 cursor-grab active:cursor-grabbing"
+              aria-label="Comparar tu negocio sin y con VIVE-IA"
+              aria-valuetext="Sin VIVE-IA"
+            />
           </div>
-          <ul class="space-y-3">
-            {beforePoints.map((point) => (
-              <li class="flex items-start gap-3 text-sm text-slate-400">
-                <span class="text-red-500/60 mt-1 flex-shrink-0">—</span>
-                {point}
-              </li>
-            ))}
-          </ul>
+          <button type="button" data-caos-set="1" class="caos-label-con shrink-0 inline-flex items-center gap-2 text-violet-400 font-semibold text-sm md:text-base">
+            <span class="w-7 h-7 rounded-full bg-violet-600/20 flex items-center justify-center text-xs font-bold" aria-hidden="true">✓</span>
+            Con VIVE-IA
+          </button>
         </div>
 
-        <!-- Después -->
-        <div data-aos="fade-left" data-aos-delay="100"
-             class="p-8 rounded-2xl shadow-[0_0_40px_rgba(124,58,237,0.08)]"
-             style="border: 1px solid rgba(124,58,237,0.35); background: rgba(17,17,24,0.85); backdrop-filter: blur(12px);">
-          <div class="flex items-center gap-3 mb-6">
-            <span class="w-8 h-8 rounded-full bg-violet-600/20 flex items-center justify-center text-violet-400 text-sm font-bold">✓</span>
-            <h3 class="text-violet-400 font-semibold text-lg">Con VIVE-IA</h3>
-          </div>
-          <ul class="space-y-3">
-            {afterPoints.map((point) => (
-              <li class="flex items-start gap-3 text-sm text-slate-300">
-                <svg class="w-4 h-4 text-violet-500 mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+        <!-- Renglones (visuales; el contenido para lectores de pantalla va en la lista de abajo) -->
+        <ul class="relative space-y-3" aria-hidden="true">
+          {beforePoints.map((before, i) => (
+            <li class="caos-row grid" style={`--tilt:${[-1.4, 1, -0.7, 1.6, -1.1][i]}deg; --shift:${[10, -6, 16, -3, 7][i]}px;`}>
+              <div class="caos-before col-start-1 row-start-1 flex items-start gap-3 rounded-lg px-4 py-3 bg-red-950/20 border border-red-500/15">
+                <span class="text-red-500/70 mt-0.5 flex-shrink-0">✗</span>
+                <span class="text-slate-400 text-sm md:text-base">{before}</span>
+              </div>
+              <div class="caos-after col-start-1 row-start-1 flex items-start gap-3 rounded-lg px-4 py-3 bg-violet-600/[0.07] border border-violet-500/20">
+                <svg class="w-4 h-4 text-violet-400 mt-1 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
                   <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
-                {point}
-              </li>
-            ))}
-          </ul>
+                <span class="text-slate-200 text-sm md:text-base">{afterPoints[i]}</span>
+              </div>
+            </li>
+          ))}
+        </ul>
+
+        <p class="caos-hint relative mt-6 text-center text-slate-400 text-xs" aria-hidden="true">Mové el control para comparar</p>
+
+        <div class="sr-only">
+          <h3>Sin VIVE-IA</h3>
+          <ul>{beforePoints.map((p) => <li>{p}</li>)}</ul>
+          <h3>Con VIVE-IA</h3>
+          <ul>{afterPoints.map((p) => <li>{p}</li>)}</ul>
         </div>
       </div>
+
+      <style>
+        .caos { background: rgba(17, 17, 24, 0.92); }
+        .caos-frame-sin { border: 1px solid rgba(239, 68, 68, 0.3); }
+        .caos-frame-con { border: 1px solid rgba(124, 58, 237, 0.45); box-shadow: 0 0 40px rgba(124, 58, 237, 0.12); opacity: 0; }
+        /* Estado inicial ("sin"), antes de que corra el script */
+        .caos-before { transform: translateX(var(--shift)) rotate(var(--tilt)); }
+        .caos-after { opacity: 0; }
+        .caos-track:has(.caos-input:focus-visible) .caos-thumb { outline: 2px solid #A855F7; outline-offset: 3px; }
+
+        /* Sin JS: las dos versiones de cada renglón, una debajo de la otra, sin control */
+        :global(html:not(.js)) .caos-control,
+        :global(html:not(.js)) .caos-hint,
+        :global(html:not(.js)) .caos-frame-sin { display: none; }
+        :global(html:not(.js)) .caos-frame-con { opacity: 1; }
+        :global(html:not(.js)) .caos-row { display: flex; flex-direction: column; gap: 0.5rem; }
+        :global(html:not(.js)) .caos-before { transform: none; }
+        :global(html:not(.js)) .caos-after { opacity: 1; }
+      </style>
+
+      <script>
+        // Comparador "sin / con VIVE-IA". El progreso p (0..1) sale del control; cada
+        // renglón cambia en su propio tramo (escalonado). Solo se animan transform y
+        // opacity, y cada elemento se toca directo (sin variables heredadas).
+        const root = document.querySelector<HTMLElement>('[data-caos]');
+        if (root) {
+          const input = root.querySelector<HTMLInputElement>('.caos-input')!;
+          const rail = root.querySelector<HTMLElement>('.caos-rail')!;
+          const frameSin = root.querySelector<HTMLElement>('.caos-frame-sin')!;
+          const frameCon = root.querySelector<HTMLElement>('.caos-frame-con')!;
+          const labelSin = root.querySelector<HTMLElement>('.caos-label-sin')!;
+          const labelCon = root.querySelector<HTMLElement>('.caos-label-con')!;
+          const rows = [...root.querySelectorAll<HTMLElement>('.caos-row')].map((row) => ({
+            before: row.querySelector<HTMLElement>('.caos-before')!,
+            after: row.querySelector<HTMLElement>('.caos-after')!,
+            tilt: parseFloat(row.style.getPropertyValue('--tilt')),
+            shift: parseFloat(row.style.getPropertyValue('--shift')),
+          }));
+          const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+          const clamp = (v: number) => Math.min(1, Math.max(0, v));
+          const ease = (t: number) => t * t * (3 - 2 * t);
+
+          const render = (p: number) => {
+            rail.style.transform = `translateX(${p * 100}%)`;
+            frameSin.style.opacity = String(1 - p);
+            frameCon.style.opacity = String(p);
+            labelSin.style.opacity = String(1 - 0.55 * p);
+            labelCon.style.opacity = String(0.45 + 0.55 * p);
+            const n = rows.length;
+            rows.forEach((r, i) => {
+              // tramo de cada renglón: escalonado, 30% del recorrido. En la primera mitad
+              // sale el texto de "sin"; en la segunda entra el de "con" (nunca se superponen)
+              const start = (i / (n - 1)) * 0.7;
+              const t = clamp((p - start) / 0.3);
+              const out = ease(clamp(t * 2));
+              const inn = ease(clamp(t * 2 - 1));
+              r.before.style.opacity = String(1 - out);
+              r.before.style.transform = `translateX(${r.shift * (1 - out) - 16 * out}px) rotate(${r.tilt * (1 - out)}deg)`;
+              r.after.style.opacity = String(inn);
+              r.after.style.transform = `translateX(${16 * (1 - inn)}px)`;
+            });
+            input.setAttribute('aria-valuetext', p < 0.5 ? 'Sin VIVE-IA' : 'Con VIVE-IA');
+          };
+
+          let anim: number | null = null;
+          const stop = () => { if (anim !== null) cancelAnimationFrame(anim); anim = null; };
+          // Animación por tiempo (no por fotogramas): dura lo mismo a 60 o 144 Hz
+          const animateTo = (target: number, ms: number) => {
+            stop();
+            const from = Number(input.value) / 1000;
+            if (reduceMotion || ms === 0) { input.value = String(target * 1000); render(target); return; }
+            const t0 = performance.now();
+            const tick = (now: number) => {
+              const t = clamp((now - t0) / ms);
+              const p = from + (target - from) * ease(t);
+              input.value = String(Math.round(p * 1000));
+              render(p);
+              anim = t < 1 ? requestAnimationFrame(tick) : null;
+            };
+            anim = requestAnimationFrame(tick);
+          };
+
+          input.addEventListener('input', () => { stop(); render(Number(input.value) / 1000); });
+          root.querySelectorAll<HTMLElement>('[data-caos-set]').forEach((b) =>
+            b.addEventListener('click', () => animateTo(Number(b.dataset.caosSet), 700)));
+
+          if (reduceMotion) {
+            // Movimiento reducido: arranca mostrando el resultado, sin animación
+            animateTo(1, 0);
+          } else {
+            render(0);
+            // La primera vez que se ve, pasa solo del caos al orden; después lo maneja quien mira
+            const io = new IntersectionObserver((entries) => {
+              if (!entries.some((e) => e.isIntersecting)) return;
+              io.disconnect();
+              setTimeout(() => { if (Number(input.value) === 0) animateTo(1, 2200); }, 400);
+            }, { threshold: 0.6 });
+            io.observe(root);
+          }
+        }
+      </script>
     </div>
   </section>
 
