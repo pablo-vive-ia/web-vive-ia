@@ -1,15 +1,22 @@
 ---
-// HeroPhrase.astro — subtítulo dinámico generado por Gemini con efecto typewriter
-// No recibe props
+// HeroPhrase.astro — subtítulo del hero con efecto máquina de escribir.
+// El texto completo va en el HTML (Google, lectores de pantalla, sin JS) y reserva
+// su lugar: al escribirse no empuja los botones de abajo.
+const PHRASE = 'Ordenamos, estructuramos y automatizamos tus procesos para que puedas crecer sin caos.';
 ---
 
 <div class="min-h-[2rem] flex items-center justify-center md:justify-start">
-  <p id="hero-phrase" class="text-slate-300 text-xl leading-relaxed max-w-xl">
-    <span id="phrase-text"></span><span id="cursor" class="text-violet-500 cursor-blink">|</span>
+  <p id="hero-phrase" class="text-slate-300 text-xl leading-relaxed max-w-xl grid" data-phrase={PHRASE}>
+    <span class="sr-only">{PHRASE}</span>
+    <!-- Reserva el alto final; sin JS es el texto que se ve -->
+    <span class="phrase-reserve col-start-1 row-start-1" aria-hidden="true">{PHRASE}</span>
+    <span class="col-start-1 row-start-1" aria-hidden="true"><span id="phrase-text"></span><span id="cursor" class="text-violet-500 cursor-blink">|</span></span>
   </p>
 </div>
 
 <style>
+  :global(html.js) .phrase-reserve { visibility: hidden; }
+  :global(html:not(.js)) #cursor { display: none; }
   @keyframes blink {
     0%, 100% { opacity: 1; }
     50% { opacity: 0; }
@@ -20,21 +27,30 @@
 </style>
 
 <script>
-  const PHRASE = 'Ordenamos, estructuramos y automatizamos tus procesos para que puedas crecer sin caos.';
-  const DELAY_MS = 38;
+  const MS_PER_CHAR = 38;
+  const root = document.getElementById('hero-phrase');
+  const phraseSpan = document.getElementById('phrase-text');
+  const cursorSpan = document.getElementById('cursor');
 
-  const phraseSpan = document.getElementById('phrase-text') as HTMLElement;
-  const cursorSpan = document.getElementById('cursor') as HTMLElement;
-
-  if (phraseSpan && cursorSpan) {
-    let i = 0;
-    const timer = setInterval(() => {
-      phraseSpan.textContent += PHRASE[i];
-      i++;
-      if (i >= PHRASE.length) {
-        clearInterval(timer);
-        cursorSpan.style.display = 'none';
-      }
-    }, DELAY_MS);
+  if (root && phraseSpan && cursorSpan) {
+    const phrase = root.dataset.phrase ?? '';
+    const done = () => {
+      phraseSpan.textContent = phrase;
+      cursorSpan.style.display = 'none';
+    };
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      done();
+    } else {
+      // Avanza según el tiempo transcurrido (no por fotogramas)
+      let start: number | null = null;
+      const step = (now: number) => {
+        start ??= now;
+        const n = Math.min(phrase.length, Math.floor((now - start) / MS_PER_CHAR));
+        if (n !== phraseSpan.textContent?.length) phraseSpan.textContent = phrase.slice(0, n);
+        if (n < phrase.length) requestAnimationFrame(step);
+        else done();
+      };
+      requestAnimationFrame(step);
+    }
   }
 </script>
