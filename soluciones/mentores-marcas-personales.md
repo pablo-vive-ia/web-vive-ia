@@ -157,7 +157,7 @@ Delegá la atención repetitiva a la IA y enfocá tu energía en contenido de al
 
 #### Más conversiones
 
-Un agente que nunca deja enfriar un lead convierte hasta 3x más que la atención manual.
+Un agente que responde al instante no deja que un lead se enfríe.
 
 ![Integración total](/images/integracion.webp)
 
@@ -177,13 +177,13 @@ Descubrí qué preguntan, qué frena la compra y qué temas generan más interé
 
 El agente aprende de cada conversación y se optimiza con el tiempo para responder cada vez mejor.
 
-80%
+4+
 
-Reducción de consultas manuales
+Plataformas de cursos
 
-3x
+30 min
 
-Más leads calificados por mes
+Diagnóstico gratuito
 
 24/7
 

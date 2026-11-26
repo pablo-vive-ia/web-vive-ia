@@ -13,17 +13,17 @@ Transformá tu tienda online con IA que vende, atiende y fideliza 24/7. Reducí 
 
  ![](/images/video-ecommerce.webp)Mirá el video La IA no sirve para vender más
 
-50+
-
-Carritos recuperados/mes
-
-+1.150%
-
-ROI en implementación
-
 24/7
 
-Disponibilidad garantizada
+Atención sin horario
+
+4+
+
+Plataformas de e-commerce
+
+30 min
+
+Diagnóstico gratuito
 
 El problema
 
@@ -33,7 +33,7 @@ El problema
 
 ### Carritos abandonados
 
-El 70% de tus clientes potenciales se van sin comprar por falta de asistencia inmediata.
+Muchos clientes se van sin comprar porque nadie les responde a tiempo.
 
 ![Tareas manuales](/images/tareas-manuales.webp)
 

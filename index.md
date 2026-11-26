@@ -154,23 +154,21 @@ Resultados
 -   Integración con las herramientas que ya usás
 -   Métricas y visibilidad en tiempo real
 
-+1.150%
-
-ROI E-commerce
-
-+400%
-
-ROI Mentores
-
 24/7
 
-Disponibilidad
+Tu agente atiende sin horario
 
-6hrs
++38
 
-Liberadas por semana
+Años de experiencia combinada
 
-Resultados promedio observados en implementaciones con clientes.
+30 min
+
+Diagnóstico gratuito
+
+<24 hs
+
+Para responder tu consulta
 
 ¿Por qué VIVE-IA?
 
