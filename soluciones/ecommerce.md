@@ -9,11 +9,15 @@ E-commerce
 
 Transformá tu tienda online con IA que vende, atiende y fideliza 24/7. Reducí el abandono de carritos y escalá tus ventas sin aumentar el equipo.
 
+[Agendar diagnóstico gratuito](/contacto) [Escribinos por WhatsApp](https://wa.me/5492665258874)
+
+ ![](/images/video-ecommerce.webp)Mirá el video La IA no sirve para vender más
+
 50+
 
 Carritos recuperados/mes
 
-+0%
++1.150%
 
 ROI en implementación
 
@@ -164,46 +168,29 @@ Tratamiento de datos personales bajo los más altos estándares internacionales.
 
 Implementación en menos de 15 días con entrenamiento personalizado.
 
-Inversión
+Armá tu agente
 
-## Planes diseñados para crecer
+## Elegí qué querés que haga tu agente
 
-Elegí el motor que impulsará tu tienda al siguiente nivel.
+Marcá lo que necesitás y mandanos el resumen por WhatsApp. Te respondemos con una propuesta a medida para tu tienda.
 
-![Plan Bronce](/images/logo-bronce.webp)
+1 ¿Dónde vendés?
 
-### Bronce
+ Tienda Nube Shopify  WooCommerce  MercadoShops  Otra plataforma
 
--   Información sobre productos, envíos y medios de pago
--   Derivación inteligente a humano según necesidad
--   Configuración básica y soporte
+2 ¿Qué querés que haga?
 
-[Quiero el Plan Bronce](/contacto)
+ Consultas de productos, envíos y pagos Responde al instante sobre productos, envíos y medios de pago. Recomendación de productos Asesora y sugiere productos según lo que busca cada cliente.  Recuperación de carritos Le escribe a quien dejó el carrito para ayudarlo a terminar la compra.  Post-compra y recompra Embudos post-compra y remarketing para que vuelvan a comprar.  Calificación de clientes Detecta el interés de cada cliente y los segmenta.  Derivación a tu equipo Pasa la conversación a una persona cuando hace falta.  Reportes de conversaciones y ventas Reportes de interacción y conversión para decidir con datos.  Integración con tu CRM Conecta clientes y pedidos con tus herramientas.
 
-Más popular
+### Tu agente
 
-![Plan Plata](/images/logo-plata.webp)
+Para Tienda Nube
 
-### Plata
+-   Consultas de productos, envíos y pagos
 
--   Agente que asesora y recomienda productos personalizados
--   Calificación y segmentación inteligente de clientes
--   Reportes detallados de interacción y conversión
--   Integración avanzada con e-commerce y CRM
+[Enviar por WhatsApp](https://wa.me/5492665258874?text=Hola%20VIVE-IA%2C%20vengo%20de%20la%20web%20y%20quiero%20armar%20un%20agente%20para%20mi%20tienda.%20%C2%BFMe%20ayudan%20con%20el%20diagn%C3%B3stico%3F) [Prefiero agendar un diagnóstico gratuito](/contacto)
 
-[Quiero el Plan Plata](/contacto)
-
-![Plan Oro](/images/logo-oro.webp)
-
-### Oro
-
--   IA conversacional de última generación
--   Seguimiento automático a carritos abandonados
--   Automatización de embudos post-compra y remarketing
-
-[Quiero el Plan Oro](/contacto)
-
-Contratación mínima: 6 meses. Incluye onboarding, soporte, mantenimiento y mejoras continuas.
+Todos los proyectos incluyen onboarding, soporte, mantenimiento y mejoras continuas. Contratación mínima: 6 meses.
 
 ¿Listo para escalar?
 

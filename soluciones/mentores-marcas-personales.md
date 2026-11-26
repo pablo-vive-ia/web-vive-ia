@@ -10,6 +10,8 @@ Automatizá la atención, calificá leads y escalá tu negocio sin trabajar más
 
 [¡Lo necesito!](/contacto) [Escribir por WhatsApp](https://wa.me/5492665258874)
 
+ ![](/images/video-mentores.webp)Mirá el video ¿Todavía no tenés IA en tu negocio?
+
 El problema
 
 ## ¿Te identificás con alguno de estos problemas?
@@ -175,11 +177,11 @@ Descubrí qué preguntan, qué frena la compra y qué temas generan más interé
 
 El agente aprende de cada conversación y se optimiza con el tiempo para responder cada vez mejor.
 
-0%
+80%
 
 Reducción de consultas manuales
 
-0x
+3x
 
 Más leads calificados por mes
 
@@ -187,51 +189,27 @@ Más leads calificados por mes
 
 Disponibilidad del agente
 
-Inversión
+Armá tu agente
 
-## Planes diseñados para tu etapa
+## Elegí qué querés que haga tu agente
 
-Elegí el nivel que mejor se adapta a tu comunidad y tus objetivos.
+Marcá lo que necesitás y mandanos el resumen por WhatsApp. Te respondemos con una propuesta a medida para tu comunidad.
 
-![Plan Bronce](/images/logo-bronce.webp)
+1 ¿Dónde vendés tus programas?
 
-### Bronce
+ Hotmart Kajabi  Teachable  Systeme.io  Otra plataforma
 
-Automatización esencial para profesionalizar tu atención
+2 ¿Qué querés que haga?
 
--   Agente conversacional con respuestas automáticas
--   Información sobre programas, precios y fechas
--   Derivación inteligente a humano
--   Disponibilidad 24/7
+ Atención 24/7 Responde al instante a cada consulta, a cualquier hora. Programas, precios y fechas Informa sobre tus programas, precios y próximas fechas.  Asesoramiento y recomendaciones Recomienda el programa indicado para cada persona.  Calificación de leads Detecta quién está listo para avanzar y segmenta a cada lead.  Embudos y secuencias Automatiza embudos y secuencias de seguimiento.  Con tu voz y tu estilo Lenguaje natural personalizado: habla como vos.  Derivación a vos o tu equipo Te pasa la conversación cuando hace falta una persona.  WhatsApp, Instagram y tu web Un solo agente en todos tus canales.
 
-[Quiero el Plan Bronce](/contacto)
+### Tu agente
 
-Más popular
+Para Hotmart
 
-![Plan Plata](/images/logo-plata.webp)
+-   Atención 24/7
 
-### Plata
-
-Para comunidades activas que quieren vender más
-
--   Todo lo del Plan Bronce
--   Asesoramiento y recomendaciones inteligentes
--   Calificación y segmentación automática de leads
-
-[Quiero el Plan Plata](/contacto)
-
-![Plan Oro](/images/logo-oro.webp)
-
-### Oro
-
-Escala profesional con máxima eficiencia
-
--   Todo lo del Plan Plata
--   IA conversacional con lenguaje natural personalizado
--   Automatización completa de embudos y secuencias
--   Soporte prioritario y optimización continua
-
-[Quiero el Plan Oro](/contacto)
+[Enviar por WhatsApp](https://wa.me/5492665258874?text=Hola%20VIVE-IA%2C%20vengo%20de%20la%20web%20y%20quiero%20armar%20un%20agente%20para%20mi%20marca%20personal.%20%C2%BFMe%20ayudan%20con%20el%20diagn%C3%B3stico%3F) [Prefiero agendar un diagnóstico gratuito](/contacto)
 
 Contratación mínima: 6 meses. Incluye: funcionamiento del servicio, onboarding, soporte, mantenimiento y asesoramiento en mejoras continuas.
 

@@ -6,7 +6,11 @@ Agencia de IA en Argentina 🇦🇷
 
 # Automatizá tu negocio con inteligencia artificial
 
-|
+Ordenamos, estructuramos y automatizamos tus procesos para que puedas crecer sin caos.
+
+[Agendar diagnóstico gratuito](/contacto) [Escribinos por WhatsApp](https://wa.me/5492665258874)
+
+ ![](/images/video-presentacion.webp)Conocenos en video Luciana Frisardi · Cofundadora
 
 ✦ VIVE la IA con propósito. · ✦ VIVE la transformación de tu negocio. · ✦ VIVE lo que tu empresa puede ser. ·
 
@@ -83,53 +87,61 @@ negocios que quieren crecer
 
 Cada solución está adaptada a las necesidades reales de tu negocio, no a una plantilla genérica.
 
-![Agentes de Atención al Cliente](/images/atencion-cliente.webp)
+![Agentes de Atención al Cliente](/images/srv-atencion-cliente.webp) 
 
 ### Agentes de Atención al Cliente
 
 Respondé consultas las 24 horas, 7 días a la semana. Tus clientes siempre atendidos, sin aumentar tu equipo.
 
-![Agentes de Ventas](/images/ventas.webp)
+![Agentes de Ventas](/images/srv-ventas.webp) 
 
 ### Agentes de Ventas
 
 Calificá leads, hacé seguimiento automatizado y convertí más oportunidades sin intervención manual.
 
-![Automatización de Procesos](/images/automatizacion.webp)
+![Automatización de Procesos](/images/srv-automatizacion.webp) 
 
 ### Automatización de Procesos
 
 Eliminá las tareas repetitivas de tu operación. Tus procesos internos funcionando solos, sin errores humanos.
 
-![Integración de Sistemas](/images/integracion.webp)
+![Integración de Sistemas](/images/srv-integracion.webp) 
 
 ### Integración de Sistemas
 
 Conectamos tus herramientas existentes para que trabajen juntas: CRM, e-commerce, formularios, WhatsApp y más.
 
-![Reportes y Análisis Automáticos](/images/reportes.webp)
+![Reportes y Análisis Automáticos](/images/srv-reportes.webp) 
 
 ### Reportes y Análisis Automáticos
 
 Generá reportes de tu negocio en forma automática. Datos actualizados en tiempo real para decidir más rápido.
 
-[![Agentes para E-commerce](/images/e-commerce.webp)
+ [![Agentes para E-commerce](/images/srv-e-commerce.webp) 
 
-### Agentes para E-commerce
+### Agentes para E‑commerce
 
 Recuperá carritos abandonados, gestioná consultas de productos y mejorá la experiencia post-compra.
 
-Ver solución
-
-](/soluciones/ecommerce)[![Agentes para Mentores](/images/mentores.webp)
+Ver solución](/soluciones/ecommerce) [![Agentes para Mentores](/images/srv-mentores.webp) 
 
 ### Agentes para Mentores
 
 Escalá tu marca personal con IA. Automatizá la captación, el onboarding y el seguimiento de tus alumnos.
 
-Ver solución
+Ver solución](/soluciones/mentores-marcas-personales) [![Webs y Landing Pages](/images/srv-webs_icon.webp) 
 
-](/soluciones/mentores-marcas-personales)
+### Webs y Landing Pages
+
+Tu sitio o landing con diseño propio, rápido y listo para Google, conectado a WhatsApp y a tus automatizaciones.
+
+Ver solución](/desarrollos)[
+
+### ¿No ves lo que necesitás?
+
+Contanos qué necesitás y te proponemos la solución más eficiente para tu negocio.
+
+Agendar diagnóstico gratuito](/contacto)
 
 Resultados
 
@@ -142,19 +154,19 @@ Resultados
 -   Integración con las herramientas que ya usás
 -   Métricas y visibilidad en tiempo real
 
-+0%
++1.150%
 
 ROI E-commerce
 
-+0%
++400%
 
 ROI Mentores
 
-0/7
+24/7
 
 Disponibilidad
 
-0hrs
+6hrs
 
 Liberadas por semana
 
@@ -166,17 +178,17 @@ Resultados promedio observados en implementaciones con clientes.
 
 Antes de agregar tecnología, ordenamos tus procesos. Una automatización mal diseñada solo acelera el desorden.
 
-✗
+Sin VIVE-IA
+
+Con VIVE-IA
 
 ### Sin VIVE-IA
 
--   — Equipo desbordado de tareas repetitivas
--   — Leads que se pierden por falta de seguimiento
--   — Procesos que dependen de personas específicas
--   — Atención al cliente limitada al horario laboral
--   — Crecimiento que genera más caos, no más orden
-
-✓
+-   Equipo desbordado de tareas repetitivas
+-   Leads que se pierden por falta de seguimiento
+-   Procesos que dependen de personas específicas
+-   Atención al cliente limitada al horario laboral
+-   Crecimiento que genera más caos, no más orden
 
 ### Con VIVE-IA
 
