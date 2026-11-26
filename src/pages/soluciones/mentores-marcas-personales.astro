@@ -2,7 +2,6 @@
 import { imgSize } from '../../lib/imageSize';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import SectionBadge from '../../components/SectionBadge.astro';
-import MetricCounter from '../../components/MetricCounter.astro';
 import HeroFlow from '../../components/HeroFlow.astro';
 import HeroVideo from '../../components/HeroVideo.astro';
 import VideoDialog from '../../components/VideoDialog.astro';
@@ -60,7 +59,7 @@ const beneficios = [
   {
     image: '/images/impacto-real.webp',
     title: 'Más conversiones',
-    description: 'Un agente que nunca deja enfriar un lead convierte hasta 3x más que la atención manual.',
+    description: 'Un agente que responde al instante no deja que un lead se enfríe.',
   },
   {
     image: '/images/integracion.webp',
@@ -626,15 +625,17 @@ const funciones = [
 
 
   <!-- ═══════════════════════════════════════════ -->
-  <!-- 7. MÉTRICAS DE IMPACTO                       -->
+  <!-- 7. DATOS CLAVE (sin cifras que no se puedan respaldar) -->
   <!-- ═══════════════════════════════════════════ -->
   <section class="py-14 px-4 sm:px-6 bg-[#0A0A0F] border-t border-b border-white/[0.06]">
     <div class="max-w-4xl mx-auto grid grid-cols-1 sm:grid-cols-3 gap-10 text-center">
       <div data-aos="fade-up" data-aos-delay="0">
-        <MetricCounter value={80} suffix="%" label="Reducción de consultas manuales" />
+        <div class="text-4xl font-extrabold text-white mb-2">4+</div>
+        <p class="text-slate-400 uppercase tracking-widest text-xs font-semibold">Plataformas de cursos</p>
       </div>
       <div data-aos="fade-up" data-aos-delay="100">
-        <MetricCounter value={3} suffix="x" label="Más leads calificados por mes" />
+        <div class="text-4xl font-extrabold text-white mb-2">30 min</div>
+        <p class="text-slate-400 uppercase tracking-widest text-xs font-semibold">Diagnóstico gratuito</p>
       </div>
       <div data-aos="fade-up" data-aos-delay="200">
         <div class="text-4xl font-extrabold text-white mb-2">24/7</div>

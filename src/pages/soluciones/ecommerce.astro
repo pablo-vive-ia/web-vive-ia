@@ -2,7 +2,6 @@
 import { imgSize } from '../../lib/imageSize';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import SectionBadge from '../../components/SectionBadge.astro';
-import MetricCounter from '../../components/MetricCounter.astro';
 import HeroFlow from '../../components/HeroFlow.astro';
 import HeroVideo from '../../components/HeroVideo.astro';
 import VideoDialog from '../../components/VideoDialog.astro';
@@ -12,7 +11,7 @@ const problemas = [
   {
     image: '/images/carrito-abandonado.webp',
     title: 'Carritos abandonados',
-    description: 'El 70% de tus clientes potenciales se van sin comprar por falta de asistencia inmediata.',
+    description: 'Muchos clientes se van sin comprar porque nadie les responde a tiempo.',
   },
   {
     image: '/images/tareas-manuales.webp',
@@ -193,7 +192,7 @@ const funciones = [
           name: '¿Cómo ayuda un agente IA a recuperar carritos abandonados?',
           acceptedAnswer: {
             '@type': 'Answer',
-            text: 'El agente detecta cuando un cliente deja el carrito sin comprar y envía mensajes automáticos por WhatsApp o Instagram con recordatorios, incentivos personalizados y asistencia para completar la compra, aumentando la tasa de recuperación hasta un 30%.',
+            text: 'El agente detecta cuando un cliente deja el carrito sin comprar y envía mensajes automáticos por WhatsApp o Instagram con recordatorios, incentivos personalizados y asistencia para completar la compra.',
           },
         },
         {
@@ -330,20 +329,21 @@ const funciones = [
 
 
   <!-- ═══════════════════════════════════════════ -->
-  <!-- 2. MÉTRICAS                                  -->
+  <!-- 2. DATOS CLAVE (sin cifras que no se puedan respaldar) -->
   <!-- ═══════════════════════════════════════════ -->
   <section class="py-14 px-4 sm:px-6 bg-[#0D0D14] border-t border-b border-white/[0.06]">
     <div class="max-w-4xl mx-auto grid grid-cols-1 sm:grid-cols-3 gap-10 text-center">
       <div data-aos="fade-up" data-aos-delay="0">
-        <div class="text-4xl font-extrabold text-white mb-2">50+</div>
-        <p class="text-slate-400 uppercase tracking-widest text-xs font-semibold">Carritos recuperados/mes</p>
+        <div class="text-4xl font-extrabold text-white mb-2">24/7</div>
+        <p class="text-slate-400 uppercase tracking-widest text-xs font-semibold">Atención sin horario</p>
       </div>
       <div data-aos="fade-up" data-aos-delay="100">
-        <MetricCounter value={1150} prefix="+" suffix="%" label="ROI en implementación" />
+        <div class="text-4xl font-extrabold text-white mb-2">4+</div>
+        <p class="text-slate-400 uppercase tracking-widest text-xs font-semibold">Plataformas de e-commerce</p>
       </div>
       <div data-aos="fade-up" data-aos-delay="200">
-        <div class="text-4xl font-extrabold text-white mb-2">24/7</div>
-        <p class="text-slate-400 uppercase tracking-widest text-xs font-semibold">Disponibilidad garantizada</p>
+        <div class="text-4xl font-extrabold text-white mb-2">30 min</div>
+        <p class="text-slate-400 uppercase tracking-widest text-xs font-semibold">Diagnóstico gratuito</p>
       </div>
     </div>
   </section>

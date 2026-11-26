@@ -44,7 +44,7 @@ Animaciones:  AOS.js (npm)       (scroll reveals) + Three.js (fondos animados en
 Íconos:       SVG inline         (a mano en los componentes; lucide-astro está
                                    instalado pero no se usa activamente)
 Formulario:   fetch() → n8n      (contacto.astro, webhook ya configurado)
-Fuentes:      Inter propia       (public/fonts, sin Google Fonts; ver global.css)
+Fuentes:      Inter + Space Grotesk propias (public/fonts, sin Google Fonts; ver global.css)
 Serving:      Hostinger          (public/.htaccess = config real de producción)
 Respaldo:     nginx:alpine       (Dockerfile + nginx.conf, Easypanel en DigitalOcean)
 ```
@@ -85,7 +85,7 @@ web_vive_ia/
 │   ├── .htaccess                 ← config REAL de producción en Hostinger
 │   │                                (seguridad, CSP, caché, redirecciones,
 │   │                                Markdown). Mantener igual que nginx.conf.
-│   ├── fonts/                    ← Inter (latin y latin-ext), servida local
+│   ├── fonts/                    ← Inter (latin y latin-ext) y Space Grotesk (latin), servidas local
 │   ├── video/
 │   └── images/                   ← todo en .webp
 │
@@ -159,7 +159,7 @@ No hay `Button.astro`, `Card.astro`, `ValueCard.astro`, `ProfileCard.astro`, `Pr
 
 ### Tipografía
 
-- **Fuente:** `Inter` (Google Fonts, weights: 400, 500, 600, 700, 800)
+- **Fuentes:** `Inter` para el texto (400–800) y `Space Grotesk` para los títulos h1–h4 (300–700, `letter-spacing: -0.03em`, regla en `@layer base` de `global.css` para que las clases de Tailwind sigan mandando). Las dos se sirven desde `public/fonts` y se precargan en `BaseLayout.astro`.
 - **H1 hero:** `clamp(2.5rem, 6vw, 5rem)` — bold, gradiente de texto
 - **H2 sección:** `clamp(2rem, 4vw, 3rem)` — semibold
 - **H3:** `clamp(1.25rem, 2.5vw, 1.75rem)`
