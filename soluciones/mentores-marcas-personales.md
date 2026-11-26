@@ -10,7 +10,7 @@ Automatizá la atención, calificá leads y escalá tu negocio sin trabajar más
 
 [¡Lo necesito!](/contacto) [Escribir por WhatsApp](https://wa.me/5492665258874)
 
- ![](/images/video-mentores.webp)Mirá el video ¿Todavía no tenés IA en tu negocio?
+ ![](/images/luciana-retrato.webp)¿Todavía no tenés IA en tu negocio? Luciana Frisardi · Cofundadora
 
 El problema
 

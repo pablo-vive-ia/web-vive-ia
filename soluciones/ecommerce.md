@@ -11,7 +11,7 @@ Transformá tu tienda online con IA que vende, atiende y fideliza 24/7. Reducí 
 
 [Agendar diagnóstico gratuito](/contacto) [Escribinos por WhatsApp](https://wa.me/5492665258874)
 
- ![](/images/video-ecommerce.webp)Mirá el video La IA no sirve para vender más
+ ![](/images/pablo-retrato.webp)La IA no sirve para vender más Pablo Frisardi · Cofundador
 
 24/7
 
