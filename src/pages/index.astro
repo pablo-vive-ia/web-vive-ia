@@ -5,6 +5,9 @@ import SectionBadge from '../components/SectionBadge.astro';
 import MetricCounter from '../components/MetricCounter.astro';
 import StepCard from '../components/StepCard.astro';
 import HeroPhrase from '../components/HeroPhrase.astro';
+import HeroFlow from '../components/HeroFlow.astro';
+import HeroVideo from '../components/HeroVideo.astro';
+import VideoDialog from '../components/VideoDialog.astro';
 
 const painPoints = [
   'Respondés las mismas preguntas una y otra vez',
@@ -44,52 +47,56 @@ const steps = [
 
 const services = [
   {
-    image: '/images/atencion-cliente.webp',
+    image: '/images/srv-atencion-cliente.webp',
     title: 'Agentes de Atención al Cliente',
+    wide: true,
     description:
       'Respondé consultas las 24 horas, 7 días a la semana. Tus clientes siempre atendidos, sin aumentar tu equipo.',
   },
   {
-    image: '/images/ventas.webp',
+    image: '/images/srv-ventas.webp',
     title: 'Agentes de Ventas',
     description:
       'Calificá leads, hacé seguimiento automatizado y convertí más oportunidades sin intervención manual.',
   },
   {
-    image: '/images/automatizacion.webp',
+    image: '/images/srv-automatizacion.webp',
     title: 'Automatización de Procesos',
     description:
       'Eliminá las tareas repetitivas de tu operación. Tus procesos internos funcionando solos, sin errores humanos.',
   },
   {
-    image: '/images/integracion.webp',
+    image: '/images/srv-integracion.webp',
     title: 'Integración de Sistemas',
     description:
       'Conectamos tus herramientas existentes para que trabajen juntas: CRM, e-commerce, formularios, WhatsApp y más.',
   },
   {
-    image: '/images/reportes.webp',
+    image: '/images/srv-reportes.webp',
     title: 'Reportes y Análisis Automáticos',
     description:
       'Generá reportes de tu negocio en forma automática. Datos actualizados en tiempo real para decidir más rápido.',
   },
   {
-    image: '/images/e-commerce.webp',
+    image: '/images/srv-e-commerce.webp',
     title: 'Agentes para E-commerce',
+    wide: true,
     description:
       'Recuperá carritos abandonados, gestioná consultas de productos y mejorá la experiencia post-compra.',
     href: '/soluciones/ecommerce',
   },
   {
-    image: '/images/mentores.webp',
+    image: '/images/srv-mentores.webp',
     title: 'Agentes para Mentores',
     description:
       'Escalá tu marca personal con IA. Automatizá la captación, el onboarding y el seguimiento de tus alumnos.',
     href: '/soluciones/mentores-marcas-personales',
   },
   {
-    image: '/images/webs_icon.webp',
+    image: '/images/srv-webs_icon.webp',
     title: 'Webs y Landing Pages',
+    wide: true,
+    imagePosition: 'object-[80%_50%]', // el globo está a la derecha de la imagen
     description:
       'Tu sitio o landing con diseño propio, rápido y listo para Google, conectado a WhatsApp y a tus automatizaciones.',
     href: '/desarrollos',
@@ -141,7 +148,7 @@ const afterPoints = [
       '@type': 'VideoObject',
       name: 'VIVE-IA — Agencia de Automatización con Inteligencia Artificial',
       description: 'Conocé cómo VIVE-IA transforma negocios en LATAM con automatización inteligente e inteligencia artificial.',
-      thumbnailUrl: 'https://vive-ia.com/images/og-image.jpg',
+      thumbnailUrl: 'https://vive-ia.com/images/video-presentacion.webp',
       uploadDate: '2024-06-01',
       contentUrl: 'https://www.youtube.com/watch?v=omr91fMMxk4',
       embedUrl: 'https://www.youtube.com/embed/omr91fMMxk4',
@@ -204,70 +211,28 @@ const afterPoints = [
   ]}
 >
 
-  <!-- INTRO VIDEO — solo en Home -->
-  <div id="intro-overlay" style="position:fixed;inset:0;z-index:9999;background:#0A0A0F;display:flex;align-items:center;justify-content:center;">
-    <video
-      id="intro-video"
-      autoplay
-      muted
-      playsinline
-      style="width:100%;height:100%;object-fit:cover;"
-    >
-      <source src="/video/logo-vive.mp4" type="video/mp4" />
-    </video>
-  </div>
-
-  <script>
-    const overlay = document.getElementById('intro-overlay');
-    const video = document.getElementById('intro-video') as HTMLVideoElement;
-
-    function dismissOverlay() {
-      if (!overlay?.isConnected) return;
-      overlay.style.transition = 'opacity 0.8s ease';
-      overlay.style.opacity = '0';
-      setTimeout(() => overlay?.remove(), 800);
-    }
-
-    video.addEventListener('ended', dismissOverlay);
-    video.addEventListener('error', dismissOverlay);
-
-    setTimeout(dismissOverlay, 5000);
-  </script>
-
   <!-- ═══════════════════════════════════════════ -->
   <!-- 1. HERO                                      -->
   <!-- ═══════════════════════════════════════════ -->
-  <section class="relative min-h-[92vh] flex items-center overflow-hidden">
-    <!-- Video de fondo -->
-    <div class="absolute inset-0 overflow-hidden z-0">
-      <iframe
-        referrerpolicy="strict-origin-when-cross-origin"
-        sandbox="allow-scripts allow-same-origin allow-presentation"
-        loading="eager"
-        src="https://www.youtube-nocookie.com/embed/omr91fMMxk4?autoplay=1&mute=1&loop=1&playlist=omr91fMMxk4&controls=0&showinfo=0&rel=0&modestbranding=1&playsinline=1"
-        allow="autoplay; encrypted-media"
-        allowfullscreen
-        title="VIVE-IA video presentación"
-        class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2
-               pointer-events-none border-none"
-        style="width:100vw; height:56.25vw; min-height:100vh; min-width:177.77vh;"
-      ></iframe>
-    </div>
+  <section class="relative min-h-[92vh] flex items-center overflow-hidden bg-[#0A0A0F]">
+    <!-- Fondo propio: líneas que pasan del caos al orden -->
+    <HeroFlow />
 
-    <!-- Overlay oscuro degradado -->
+    <!-- Velo para que el texto se lea: más oscuro del lado del texto y abajo -->
     <div
-      class="absolute inset-0 z-10"
-      style="background: linear-gradient(135deg, rgba(10,10,15,0.88) 0%, rgba(10,10,15,0.72) 50%, rgba(10,10,15,0.88) 100%);"
+      class="absolute inset-0 z-10 pointer-events-none"
+      style="background: linear-gradient(90deg, rgba(10,10,15,0.82) 0%, rgba(10,10,15,0.55) 45%, rgba(10,10,15,0.1) 100%), linear-gradient(to bottom, rgba(10,10,15,0) 70%, #0A0A0F 100%);"
     ></div>
 
-    <!-- Partículas decorativas -->
-    <div class="absolute top-20 right-20 w-72 h-72 rounded-full opacity-10 blur-3xl z-10"
-         style="background: radial-gradient(circle, #7C3AED, transparent);"></div>
-    <div class="absolute bottom-20 left-10 w-56 h-56 rounded-full opacity-8 blur-3xl z-10"
-         style="background: radial-gradient(circle, #06B6D4, transparent);"></div>
+    <!-- Luces de color (degradados radiales, sin blur) -->
+    <div class="absolute -top-20 right-0 w-[36rem] h-[36rem] rounded-full opacity-20 z-10 pointer-events-none"
+         style="background: radial-gradient(circle, rgba(124,58,237,0.6), transparent 65%);"></div>
+    <div class="absolute bottom-0 -left-20 w-[28rem] h-[28rem] rounded-full opacity-15 z-10 pointer-events-none"
+         style="background: radial-gradient(circle, rgba(6,182,212,0.5), transparent 65%);"></div>
 
     <!-- Contenido hero -->
-    <div class="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full py-20">
+    <div class="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full py-20
+                grid lg:grid-cols-[minmax(0,1fr)_auto] gap-12 items-center">
       <div class="max-w-3xl">
         <div data-aos="fade-up">
           <SectionBadge text="Agencia de IA en Argentina 🇦🇷" />
@@ -286,16 +251,65 @@ const afterPoints = [
           <HeroPhrase />
         </div>
 
+        <div data-aos="fade-up" data-aos-delay="300" class="flex flex-col sm:flex-row gap-4">
+          <a
+            href="/contacto"
+            class="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-lg font-semibold text-lg
+                   bg-violet-600 hover:bg-violet-500 text-white
+                   shadow-[0_0_30px_rgba(124,58,237,0.4)] hover:shadow-[0_0_50px_rgba(124,58,237,0.6)]
+                   transition-all duration-300"
+          >
+            Agendar diagnóstico gratuito
+            <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+            </svg>
+          </a>
+          <a
+            href="https://wa.me/5492665258874"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-lg font-semibold text-lg
+                   border border-white/15 bg-white/[0.04] hover:bg-white/[0.08] hover:border-[#25D366]/60 text-white
+                   transition-all duration-300"
+          >
+            <svg class="w-5 h-5 text-[#25D366]" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+            </svg>
+            Escribinos por WhatsApp
+          </a>
+        </div>
+
+        <!-- Video en celular y tablet: enlace compacto -->
+        <HeroVideo
+          variant="compact"
+          videoId="omr91fMMxk4"
+          title="Conocé VIVE-IA"
+          poster="/images/video-presentacion.webp"
+          label="Conocenos en video"
+          sublabel="Luciana Frisardi · Cofundadora"
+        />
       </div>
+
+      <!-- Video en escritorio: tarjeta con portada; el reproductor se carga recién al hacer clic -->
+      <HeroVideo
+        variant="card"
+        videoId="omr91fMMxk4"
+        title="Conocé VIVE-IA"
+        poster="/images/video-presentacion.webp"
+        label="Conocenos en video"
+        sublabel="Luciana Frisardi · Cofundadora"
+      />
     </div>
 
     <!-- Flecha scroll -->
-    <div class="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 animate-bounce">
-      <svg class="w-6 h-6 text-slate-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+    <div class="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 motion-safe:animate-bounce hidden md:block">
+      <svg class="w-6 h-6 text-slate-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
         <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
       </svg>
     </div>
   </section>
+
+  <VideoDialog />
 
 
   <!-- ═══════════════════════════════════════════ -->
@@ -388,8 +402,8 @@ const afterPoints = [
     <div class="max-w-7xl mx-auto">
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
 
-        <!-- Texto izquierda -->
-        <div data-aos="fade-right">
+        <!-- Texto izquierda (queda fijo en escritorio mientras pasan los pasos) -->
+        <div data-aos="fade-right" class="lg:sticky lg:top-32">
           <SectionBadge text="Nuestro enfoque" />
           <h2 class="text-[clamp(2rem,4vw,3rem)] font-semibold text-white mb-6">
             Transformamos tu operación<br />
@@ -433,61 +447,93 @@ const afterPoints = [
         </p>
       </div>
 
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-        {services.map((service, i) => (
-          service.href ? (
-            <a
+      <!-- Bento: 4 columnas en escritorio, las tarjetas "wide" ocupan dos (texto + foto en fila).
+           En el celular, carrusel deslizable para no hacer una columna de 9 fotos. -->
+      <div role="region" aria-label="Servicios" tabindex="0" class="srv-track flex overflow-x-auto snap-x snap-mandatory gap-4 -mx-4 px-4 pb-4 scroll-px-4
+                  md:grid md:grid-cols-2 lg:grid-cols-4 md:grid-flow-row-dense md:gap-5 md:overflow-visible md:mx-0 md:px-0 md:pb-0">
+        {services.map((service, i) => {
+          const Tag = service.href ? 'a' : 'div';
+          return (
+            <Tag
               href={service.href}
               data-aos="fade-up"
-              data-aos-delay={String((i % 3) * 100)}
-              class={`group rounded-2xl bg-[#111118] border border-violet-600/20
-                     hover:border-violet-600/50 hover:-translate-y-1
-                     transition-all duration-300 backdrop-blur-sm overflow-hidden
-                     shadow-[0_0_20px_rgba(124,58,237,0.05)] hover:shadow-[0_0_30px_rgba(124,58,237,0.15)]`}
+              data-aos-delay={String((i % 4) * 80)}
+              class:list={[
+                'group relative flex flex-col shrink-0 w-[82%] snap-start md:w-auto rounded-2xl bg-[#111118] border overflow-hidden',
+                'hover:-translate-y-1 transition-[transform,border-color,box-shadow] duration-300',
+                service.wide && 'md:col-span-2 md:flex-row',
+                service.href
+                  ? 'border-violet-600/20 hover:border-violet-600/50 shadow-[0_0_20px_rgba(124,58,237,0.05)] hover:shadow-[0_0_30px_rgba(124,58,237,0.15)]'
+                  : 'border-white/[0.06] hover:border-violet-600/30',
+              ]}
             >
-              <img
-                src={service.image} {...imgSize(service.image)}
-                alt={service.title}
-                class="w-full h-24 object-cover rounded-t-xl"
-                loading="lazy"
-              />
-              <div class="p-6">
-                <h3 class="text-white font-semibold text-lg mb-3">
-                  {service.title}
-                </h3>
-                <p class="text-slate-400 text-sm leading-relaxed mb-4">{service.description}</p>
-                <span class="inline-flex items-center gap-1 text-violet-400 text-xs font-medium group-hover:gap-2 transition-all duration-300">
-                  Ver solución
-                  <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                  </svg>
-                </span>
+              <div class:list={['relative overflow-hidden aspect-[16/9]', service.wide && 'md:order-2 md:w-[42%] md:aspect-auto md:min-h-[17rem]']}>
+                <img
+                  src={service.image} {...imgSize(service.image)}
+                  alt={service.title}
+                  loading="lazy"
+                  class:list={['absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.04]', service.imagePosition]}
+                />
+                <!-- Funde la foto con el fondo de la tarjeta -->
+                <span class:list={['srv-fade absolute inset-0 pointer-events-none', service.wide && 'srv-fade-wide']}></span>
               </div>
-            </a>
-          ) : (
-            <div
-              data-aos="fade-up"
-              data-aos-delay={String((i % 3) * 100)}
-              class="group rounded-2xl bg-[#111118] border border-white/[0.06]
-                     hover:border-violet-600/30 hover:-translate-y-1
-                     transition-all duration-300 backdrop-blur-sm overflow-hidden"
-            >
-              <img
-                src={service.image} {...imgSize(service.image)}
-                alt={service.title}
-                class="w-full h-24 object-cover rounded-t-xl"
-                loading="lazy"
-              />
-              <div class="p-6">
-                <h3 class="text-white font-semibold text-lg mb-3">
-                  {service.title}
+              <div class:list={['flex flex-col flex-1 p-6', service.wide && 'md:w-[58%] md:p-8 md:justify-center']}>
+                <h3 class:list={['text-white font-semibold mb-3', service.wide ? 'text-lg md:text-2xl' : 'text-lg']}>
+                  {service.title.replace('-', '‑') /* guion que no corta: "E-commerce" en una línea */}
                 </h3>
-                <p class="text-slate-400 text-sm leading-relaxed">{service.description}</p>
+                <p class:list={['text-slate-400 leading-relaxed', service.wide ? 'text-sm md:text-base' : 'text-sm']}>
+                  {service.description}
+                </p>
+                {service.href && (
+                  <span class="mt-auto pt-4 inline-flex items-center gap-1 text-violet-400 text-xs font-medium group-hover:gap-2 transition-all duration-300">
+                    Ver solución
+                    <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                    </svg>
+                  </span>
+                )}
               </div>
-            </div>
-          )
-        ))}
+            </Tag>
+          );
+        })}
+
+        <!-- Tarjeta de cierre: para quien no encuentra su caso -->
+        <a
+          href="/contacto"
+          data-aos="fade-up"
+          data-aos-delay="240"
+          class="group relative flex flex-col justify-between shrink-0 w-[82%] snap-start md:w-auto rounded-2xl p-6 overflow-hidden
+                 border border-violet-600/30 hover:border-violet-500/60 hover:-translate-y-1
+                 transition-[transform,border-color] duration-300"
+          style="background: linear-gradient(145deg, rgba(124,58,237,0.24) 0%, #111118 55%, rgba(6,182,212,0.14) 100%);"
+        >
+          <div>
+            <h3 class="text-white font-semibold text-lg mb-3">¿No ves lo que necesitás?</h3>
+            <p class="text-slate-300 text-sm leading-relaxed">
+              Contanos qué necesitás y te proponemos la solución más eficiente para tu negocio.
+            </p>
+          </div>
+          <span class="mt-6 inline-flex items-center gap-1 text-white text-sm font-semibold group-hover:gap-2 transition-all duration-300">
+            Agendar diagnóstico gratuito
+            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+            </svg>
+          </span>
+        </a>
       </div>
+      <p class="md:hidden mt-3 text-slate-400 text-xs text-center" aria-hidden="true">Deslizá para ver todos los servicios →</p>
+
+      <style>
+        .srv-track { scrollbar-width: none; }
+        .srv-track::-webkit-scrollbar { display: none; }
+        .srv-fade { background: linear-gradient(to bottom, rgba(17,17,24,0) 55%, #111118 100%); }
+        @media (min-width: 768px) {
+          .srv-fade-wide { background: linear-gradient(to right, #111118 0%, rgba(17,17,24,0.65) 22%, rgba(17,17,24,0) 55%); }
+        }
+        @media (prefers-reduced-motion: reduce) {
+          .group img { transition: none; }
+        }
+      </style>
     </div>
   </section>
 
@@ -577,46 +623,172 @@ const afterPoints = [
         </p>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+      <!-- Comparador: al arrastrar, cada renglón pasa del caos (torcido, en rojo) al orden.
+           Los renglones de beforePoints y afterPoints se corresponden uno a uno. -->
+      <div class="caos max-w-3xl mx-auto relative rounded-2xl p-6 md:p-10" data-caos data-aos="fade-up">
+        <!-- Marco: rojo en "sin", violeta en "con" (se cruzan por opacidad) -->
+        <span class="caos-frame-sin absolute inset-0 rounded-2xl pointer-events-none" aria-hidden="true"></span>
+        <span class="caos-frame-con absolute inset-0 rounded-2xl pointer-events-none" aria-hidden="true"></span>
 
-        <!-- Antes -->
-        <div data-aos="fade-right"
-             class="p-8 rounded-2xl"
-             style="border: 1px solid rgba(239,68,68,0.25); background: rgba(17,17,24,0.85); backdrop-filter: blur(12px);">
-          <div class="flex items-center gap-3 mb-6">
-            <span class="w-8 h-8 rounded-full bg-red-900/30 flex items-center justify-center text-red-400 text-sm font-bold">✗</span>
-            <h3 class="text-red-400 font-semibold text-lg">Sin VIVE-IA</h3>
+        <!-- Control -->
+        <div class="caos-control relative flex flex-wrap md:flex-nowrap items-center justify-between gap-x-5 gap-y-3 mb-8">
+          <button type="button" data-caos-set="0" class="caos-label-sin shrink-0 inline-flex items-center gap-2 text-red-400 font-semibold text-sm md:text-base">
+            <span class="w-7 h-7 rounded-full bg-red-900/30 flex items-center justify-center text-xs font-bold" aria-hidden="true">✗</span>
+            Sin VIVE-IA
+          </button>
+          <div class="caos-track relative h-10 order-last basis-full md:order-none md:basis-auto md:flex-1">
+            <span class="absolute left-0 right-0 top-1/2 -translate-y-1/2 h-1.5 rounded-full pointer-events-none"
+                  style="background: linear-gradient(90deg, rgba(239,68,68,0.5), rgba(124,58,237,0.7) 70%, rgba(6,182,212,0.7));" aria-hidden="true"></span>
+            <!-- Riel del ancho útil (pista menos el pulgar): se mueve con transform, no con left -->
+            <span class="caos-rail absolute left-0 top-0 h-full pointer-events-none" style="width: calc(100% - 2.5rem);" aria-hidden="true">
+              <span class="caos-thumb absolute left-0 top-0 w-10 h-10 rounded-full bg-white flex items-center justify-center
+                           shadow-[0_0_20px_rgba(124,58,237,0.5)]">
+                <svg class="w-5 h-5 text-violet-700" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M9 6l-6 6 6 6M15 6l6 6-6 6" />
+                </svg>
+              </span>
+            </span>
+            <input
+              type="range" min="0" max="1000" value="0" step="1"
+              class="caos-input absolute inset-0 w-full h-full opacity-0 cursor-grab active:cursor-grabbing"
+              aria-label="Comparar tu negocio sin y con VIVE-IA"
+              aria-valuetext="Sin VIVE-IA"
+            />
           </div>
-          <ul class="space-y-3">
-            {beforePoints.map((point) => (
-              <li class="flex items-start gap-3 text-sm text-slate-400">
-                <span class="text-red-500/60 mt-1 flex-shrink-0">—</span>
-                {point}
-              </li>
-            ))}
-          </ul>
+          <button type="button" data-caos-set="1" class="caos-label-con shrink-0 inline-flex items-center gap-2 text-violet-400 font-semibold text-sm md:text-base">
+            <span class="w-7 h-7 rounded-full bg-violet-600/20 flex items-center justify-center text-xs font-bold" aria-hidden="true">✓</span>
+            Con VIVE-IA
+          </button>
         </div>
 
-        <!-- Después -->
-        <div data-aos="fade-left" data-aos-delay="100"
-             class="p-8 rounded-2xl shadow-[0_0_40px_rgba(124,58,237,0.08)]"
-             style="border: 1px solid rgba(124,58,237,0.35); background: rgba(17,17,24,0.85); backdrop-filter: blur(12px);">
-          <div class="flex items-center gap-3 mb-6">
-            <span class="w-8 h-8 rounded-full bg-violet-600/20 flex items-center justify-center text-violet-400 text-sm font-bold">✓</span>
-            <h3 class="text-violet-400 font-semibold text-lg">Con VIVE-IA</h3>
-          </div>
-          <ul class="space-y-3">
-            {afterPoints.map((point) => (
-              <li class="flex items-start gap-3 text-sm text-slate-300">
-                <svg class="w-4 h-4 text-violet-500 mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+        <!-- Renglones (visuales; el contenido para lectores de pantalla va en la lista de abajo) -->
+        <ul class="relative space-y-3" aria-hidden="true">
+          {beforePoints.map((before, i) => (
+            <li class="caos-row grid" style={`--tilt:${[-1.4, 1, -0.7, 1.6, -1.1][i]}deg; --shift:${[10, -6, 16, -3, 7][i]}px;`}>
+              <div class="caos-before col-start-1 row-start-1 flex items-start gap-3 rounded-lg px-4 py-3 bg-red-950/20 border border-red-500/15">
+                <span class="text-red-500/70 mt-0.5 flex-shrink-0">✗</span>
+                <span class="text-slate-400 text-sm md:text-base">{before}</span>
+              </div>
+              <div class="caos-after col-start-1 row-start-1 flex items-start gap-3 rounded-lg px-4 py-3 bg-violet-600/[0.07] border border-violet-500/20">
+                <svg class="w-4 h-4 text-violet-400 mt-1 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
                   <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
-                {point}
-              </li>
-            ))}
-          </ul>
+                <span class="text-slate-200 text-sm md:text-base">{afterPoints[i]}</span>
+              </div>
+            </li>
+          ))}
+        </ul>
+
+        <p class="caos-hint relative mt-6 text-center text-slate-400 text-xs" aria-hidden="true">Mové el control para comparar</p>
+
+        <div class="sr-only">
+          <h3>Sin VIVE-IA</h3>
+          <ul>{beforePoints.map((p) => <li>{p}</li>)}</ul>
+          <h3>Con VIVE-IA</h3>
+          <ul>{afterPoints.map((p) => <li>{p}</li>)}</ul>
         </div>
       </div>
+
+      <style>
+        .caos { background: rgba(17, 17, 24, 0.92); }
+        .caos-frame-sin { border: 1px solid rgba(239, 68, 68, 0.3); }
+        .caos-frame-con { border: 1px solid rgba(124, 58, 237, 0.45); box-shadow: 0 0 40px rgba(124, 58, 237, 0.12); opacity: 0; }
+        /* Estado inicial ("sin"), antes de que corra el script */
+        .caos-before { transform: translateX(var(--shift)) rotate(var(--tilt)); }
+        .caos-after { opacity: 0; }
+        .caos-track:has(.caos-input:focus-visible) .caos-thumb { outline: 2px solid #A855F7; outline-offset: 3px; }
+
+        /* Sin JS: las dos versiones de cada renglón, una debajo de la otra, sin control */
+        :global(html:not(.js)) .caos-control,
+        :global(html:not(.js)) .caos-hint,
+        :global(html:not(.js)) .caos-frame-sin { display: none; }
+        :global(html:not(.js)) .caos-frame-con { opacity: 1; }
+        :global(html:not(.js)) .caos-row { display: flex; flex-direction: column; gap: 0.5rem; }
+        :global(html:not(.js)) .caos-before { transform: none; }
+        :global(html:not(.js)) .caos-after { opacity: 1; }
+      </style>
+
+      <script>
+        // Comparador "sin / con VIVE-IA". El progreso p (0..1) sale del control; cada
+        // renglón cambia en su propio tramo (escalonado). Solo se animan transform y
+        // opacity, y cada elemento se toca directo (sin variables heredadas).
+        const root = document.querySelector<HTMLElement>('[data-caos]');
+        if (root) {
+          const input = root.querySelector<HTMLInputElement>('.caos-input')!;
+          const rail = root.querySelector<HTMLElement>('.caos-rail')!;
+          const frameSin = root.querySelector<HTMLElement>('.caos-frame-sin')!;
+          const frameCon = root.querySelector<HTMLElement>('.caos-frame-con')!;
+          const labelSin = root.querySelector<HTMLElement>('.caos-label-sin')!;
+          const labelCon = root.querySelector<HTMLElement>('.caos-label-con')!;
+          const rows = [...root.querySelectorAll<HTMLElement>('.caos-row')].map((row) => ({
+            before: row.querySelector<HTMLElement>('.caos-before')!,
+            after: row.querySelector<HTMLElement>('.caos-after')!,
+            tilt: parseFloat(row.style.getPropertyValue('--tilt')),
+            shift: parseFloat(row.style.getPropertyValue('--shift')),
+          }));
+          const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+          const clamp = (v: number) => Math.min(1, Math.max(0, v));
+          const ease = (t: number) => t * t * (3 - 2 * t);
+
+          const render = (p: number) => {
+            rail.style.transform = `translateX(${p * 100}%)`;
+            frameSin.style.opacity = String(1 - p);
+            frameCon.style.opacity = String(p);
+            labelSin.style.opacity = String(1 - 0.55 * p);
+            labelCon.style.opacity = String(0.45 + 0.55 * p);
+            const n = rows.length;
+            rows.forEach((r, i) => {
+              // tramo de cada renglón: escalonado, 30% del recorrido. En la primera mitad
+              // sale el texto de "sin"; en la segunda entra el de "con" (nunca se superponen)
+              const start = (i / (n - 1)) * 0.7;
+              const t = clamp((p - start) / 0.3);
+              const out = ease(clamp(t * 2));
+              const inn = ease(clamp(t * 2 - 1));
+              r.before.style.opacity = String(1 - out);
+              r.before.style.transform = `translateX(${r.shift * (1 - out) - 16 * out}px) rotate(${r.tilt * (1 - out)}deg)`;
+              r.after.style.opacity = String(inn);
+              r.after.style.transform = `translateX(${16 * (1 - inn)}px)`;
+            });
+            input.setAttribute('aria-valuetext', p < 0.5 ? 'Sin VIVE-IA' : 'Con VIVE-IA');
+          };
+
+          let anim: number | null = null;
+          const stop = () => { if (anim !== null) cancelAnimationFrame(anim); anim = null; };
+          // Animación por tiempo (no por fotogramas): dura lo mismo a 60 o 144 Hz
+          const animateTo = (target: number, ms: number) => {
+            stop();
+            const from = Number(input.value) / 1000;
+            if (reduceMotion || ms === 0) { input.value = String(target * 1000); render(target); return; }
+            const t0 = performance.now();
+            const tick = (now: number) => {
+              const t = clamp((now - t0) / ms);
+              const p = from + (target - from) * ease(t);
+              input.value = String(Math.round(p * 1000));
+              render(p);
+              anim = t < 1 ? requestAnimationFrame(tick) : null;
+            };
+            anim = requestAnimationFrame(tick);
+          };
+
+          input.addEventListener('input', () => { stop(); render(Number(input.value) / 1000); });
+          root.querySelectorAll<HTMLElement>('[data-caos-set]').forEach((b) =>
+            b.addEventListener('click', () => animateTo(Number(b.dataset.caosSet), 700)));
+
+          if (reduceMotion) {
+            // Movimiento reducido: arranca mostrando el resultado, sin animación
+            animateTo(1, 0);
+          } else {
+            render(0);
+            // La primera vez que se ve, pasa solo del caos al orden; después lo maneja quien mira
+            const io = new IntersectionObserver((entries) => {
+              if (!entries.some((e) => e.isIntersecting)) return;
+              io.disconnect();
+              setTimeout(() => { if (Number(input.value) === 0) animateTo(1, 2200); }, 400);
+            }, { threshold: 0.6 });
+            io.observe(root);
+          }
+        }
+      </script>
     </div>
   </section>
 

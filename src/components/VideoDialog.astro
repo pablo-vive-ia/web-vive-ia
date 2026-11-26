@@ -1,0 +1,63 @@
+---
+// Reproductor de video en un <dialog>. Lo abren los botones con data-video-open
+// (ver HeroVideo.astro). El iframe de YouTube se crea al abrir y se quita al cerrar,
+// así no pesa en la carga y el video deja de sonar. Una vez por página.
+---
+
+<dialog
+  id="video-dialog"
+  class="video-dialog m-auto p-0 bg-transparent max-w-none max-h-none overflow-visible"
+  aria-label="Video de VIVE-IA"
+>
+  <div class="relative" style="width: min(90vw, calc(82vh * 9 / 16)); aspect-ratio: 9 / 16;">
+    <button
+      type="button"
+      data-video-close
+      class="absolute -top-12 right-0 w-10 h-10 rounded-full flex items-center justify-center
+             bg-white/10 hover:bg-white/20 text-white transition-colors"
+      aria-label="Cerrar video"
+    >
+      <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+      </svg>
+    </button>
+    <div id="video-slot" class="w-full h-full rounded-2xl overflow-hidden bg-black border border-white/10"></div>
+  </div>
+</dialog>
+
+<style>
+  .video-dialog::backdrop { background: rgba(5, 5, 10, 0.85); }
+  @media (prefers-reduced-motion: no-preference) {
+    .video-dialog[open] { animation: video-in 0.35s cubic-bezier(0.2, 0.8, 0.2, 1); }
+    .video-dialog[open]::backdrop { animation: video-fade 0.35s ease; }
+  }
+  @keyframes video-in { from { opacity: 0; transform: scale(0.96); } }
+  @keyframes video-fade { from { opacity: 0; } }
+</style>
+
+<script>
+  const dialog = document.getElementById('video-dialog') as HTMLDialogElement | null;
+  const slot = document.getElementById('video-slot');
+  if (dialog && slot) {
+    const open = (trigger: HTMLElement) => {
+      const id = trigger.dataset.videoId ?? '';
+      if (!/^[\w-]{11}$/.test(id)) return;
+      const iframe = document.createElement('iframe');
+      iframe.src = `https://www.youtube-nocookie.com/embed/${id}?autoplay=1&rel=0&modestbranding=1&playsinline=1`;
+      iframe.title = trigger.dataset.videoTitle ?? 'Video de VIVE-IA';
+      iframe.allow = 'autoplay; encrypted-media; fullscreen; picture-in-picture';
+      iframe.referrerPolicy = 'strict-origin-when-cross-origin';
+      iframe.setAttribute('sandbox', 'allow-scripts allow-same-origin allow-presentation');
+      iframe.setAttribute('allowfullscreen', '');
+      iframe.className = 'w-full h-full border-0';
+      slot.replaceChildren(iframe);
+      dialog.showModal();
+    };
+    document.querySelectorAll<HTMLElement>('[data-video-open]').forEach((b) => b.addEventListener('click', () => open(b)));
+    dialog.querySelector('[data-video-close]')?.addEventListener('click', () => dialog.close());
+    // Clic fuera del video (en el fondo) cierra
+    dialog.addEventListener('click', (e) => { if (e.target === dialog) dialog.close(); });
+    // Al cerrar se quita el iframe para que el video deje de sonar
+    dialog.addEventListener('close', () => slot.replaceChildren());
+  }
+</script>

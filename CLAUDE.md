@@ -111,7 +111,11 @@ web_vive_ia/
 │   │   │                           fijo hoy; el comentario menciona Gemini
 │   │   │                           pero esa integración nunca se conectó)
 │   │   ├── SectionBadge.astro   ← pill/badge encima de H2
-│   │   ├── StepCard.astro       ← card de proceso numerado (01, 02...)
+│   │   ├── StepCard.astro       ← paso numerado; la línea se dibuja con el scroll
+│   │   │                           (scroll-driven animations, regla aparte por el minificador)
+│   │   ├── HeroFlow.astro       ← fondo WebGL2 de los heroes (home, e-commerce, mentores)
+│   │   ├── HeroVideo.astro      ← tarjeta / enlace compacto que abre el video del hero
+│   │   ├── VideoDialog.astro    ← <dialog> que arma el iframe de YouTube al abrir (uno por página)
 │   │   └── MetricCounter.astro  ← contador animado al entrar en viewport
 │   │
 │   └── pages/
@@ -197,7 +201,7 @@ Glow accent:         shadow-[0_0_30px_rgba(124,58,237,0.3)]
 Los números de sección de cada página están en comentarios `<!-- N. NOMBRE -->` dentro del archivo — son la fuente de verdad, esto es solo un resumen para orientarte rápido.
 
 ### Home (`/` — `index.astro`)
-1. Hero (video/typewriter + CTAs) 2. Problema 3. Proceso (4 pasos) 4. Servicios (grid de cards) 5. Resultados + métricas animadas 6. Diferencial (antes/después) 7. Filosofía 8. Quiénes somos (resumido) 9. CTA final
+1. Hero (HeroFlow + typewriter + CTAs + HeroVideo) 2. Problema 3. Proceso (4 pasos, línea por scroll) 4. Servicios (bento de 4 columnas; carrusel en celular) 5. Resultados + métricas animadas 6. Diferencial (comparador sin/con VIVE-IA con deslizador) 7. Filosofía 8. Quiénes somos (resumido) 9. CTA final
 
 ### Quiénes Somos (`/quienes-somos`)
 1. Hero 2. Somos VIVE-IA 3. Manifiesto 4. Propósito/Misión/Visión 5. Valores 6. Proceso diferencial 7. Equipo (bios completas) 8. CTA final
@@ -307,40 +311,7 @@ const { text } = Astro.props;
 ```
 
 ### MetricCounter (contador animado con IntersectionObserver)
-```astro
----
-interface Props { value: number; label: string; prefix?: string; suffix?: string; }
-const { value, label, prefix = '', suffix = '' } = Astro.props;
----
-<div class="text-center" data-counter data-value={value}>
-  <div class="text-4xl md:text-5xl font-bold text-white mb-2">
-    {prefix}<span class="counter-value">0</span>{suffix}
-  </div>
-  <p class="text-slate-400 text-sm">{label}</p>
-</div>
-
-<script>
-  const counters = document.querySelectorAll('[data-counter]');
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      if (!entry.isIntersecting) return;
-      const el = entry.target as HTMLElement;
-      const target = parseInt(el.dataset.value ?? '0');
-      const span = el.querySelector('.counter-value');
-      if (!span) return;
-      let current = 0;
-      const step = Math.ceil(target / 60);
-      const timer = setInterval(() => {
-        current = Math.min(current + step, target);
-        span.textContent = current.toLocaleString('es-AR');
-        if (current >= target) clearInterval(timer);
-      }, 20);
-      observer.unobserve(el);
-    });
-  }, { threshold: 0.5 });
-  counters.forEach((c) => observer.observe(c));
-</script>
-```
+`src/components/MetricCounter.astro`. El valor real va en el HTML (Google, Markdown para agentes y sin JS lo leen); el script lo pone en 0 y lo cuenta en 1,2 s con `requestAnimationFrame` medido por tiempo (nada de `setInterval`). Con movimiento reducido queda el valor final.
 
 ### WhatsApp FAB (flotante sticky)
 ```astro
@@ -473,4 +444,4 @@ EXPOSE 80
 
 No existe `VIVE-IA_PRD.md` en este repo — si necesitás el detalle de contenido/copy, es este mismo código fuente (`src/pages/*.astro`) la referencia, no un PRD externo.
 
-Los assets de imagen (fotos del equipo, logos, íconos de sección) están en `/public/images/`, todos en `.webp`. No hay video hosteado localmente — el video del hero se embebe desde YouTube.
+Los assets de imagen (fotos del equipo, logos, íconos de sección) están en `/public/images/`, todos en `.webp`. No hay video hosteado localmente: los videos de los heroes son de YouTube y se cargan recién al hacer clic (VideoDialog); las portadas están en `public/images/video-*.webp`. Ningún hero lleva YouTube de fondo ni intro que bloquee la página.

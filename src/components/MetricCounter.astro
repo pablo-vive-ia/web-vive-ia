@@ -6,17 +6,20 @@ interface Props {
   suffix?: string;
 }
 const { value, label, prefix = '', suffix = '' } = Astro.props;
+// El valor real va en el HTML (Google, Markdown para agentes, sin JS); el script lo
+// pone en 0 recién antes de animarlo.
 ---
 
 <div class="text-center" data-counter data-value={value}>
   <div class="text-4xl md:text-5xl font-bold text-white mb-2">
-    {prefix}<span class="counter-value">0</span>{suffix}
+    {prefix}<span class="counter-value">{value.toLocaleString('es-AR')}</span>{suffix}
   </div>
   <p class="text-slate-400 text-sm">{label}</p>
 </div>
 
 <script>
-  const counters = document.querySelectorAll('[data-counter]');
+  const counters = document.querySelectorAll<HTMLElement>('[data-counter]');
+  const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
   const observer = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
@@ -28,7 +31,7 @@ const { value, label, prefix = '', suffix = '' } = Astro.props;
         // Mismo conteo que antes (1,2 s, lineal) pero medido por tiempo con
         // requestAnimationFrame: igual de rápido a 60, 120 o 144 Hz y sin setInterval
         const DURATION = 1200;
-        if (matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        if (reduceMotion) {
           span.textContent = target.toLocaleString('es-AR');
         } else {
           const start = performance.now();
@@ -44,5 +47,11 @@ const { value, label, prefix = '', suffix = '' } = Astro.props;
     },
     { threshold: 0.5 }
   );
-  counters.forEach((c) => observer.observe(c));
+  if (!reduceMotion) {
+    counters.forEach((c) => {
+      const span = c.querySelector('.counter-value');
+      if (span) span.textContent = '0';
+      observer.observe(c);
+    });
+  }
 </script>
