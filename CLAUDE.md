@@ -204,7 +204,9 @@ Los números de sección de cada página están en comentarios `<!-- N. NOMBRE -
 1. Hero (HeroFlow + typewriter + CTAs + HeroVideo) 2. Problema 3. Proceso (4 pasos, línea por scroll) 4. Servicios (bento de 4 columnas; carrusel en celular) 5. Resultados + métricas animadas 6. Diferencial (comparador sin/con VIVE-IA con deslizador) 7. Filosofía 8. Quiénes somos (resumido) 9. CTA final
 
 ### Quiénes Somos (`/quienes-somos`)
-1. Hero 2. Somos VIVE-IA 3. Manifiesto 4. Propósito/Misión/Visión 5. Valores 6. Proceso diferencial 7. Equipo (bios completas) 8. CTA final
+1. Hero (Pablo y Luciana con sus retratos, HeroFlow, video de presentación) 2. Manifiesto palabra por palabra + Somos VIVE-IA 3. Con quién vas a trabajar (bios + los pasos del proceso de cada uno: Luciana 01–02, Pablo 03–04) 4. Propósito/Misión/Visión + Valores (compactos, sin imágenes) 5. CTA final
+
+Manifiesto: cada palabra es un `inline-block` con su propia `view()` (en línea, todas comparten la caja y se encienden juntas). La sección usa `overflow-clip`, no `overflow-hidden`: hidden la vuelve contenedor de scroll y `view()` queda atado a ella en vez de a la página (la animación no avanza). Retratos: `public/images/pablo-retrato.webp` (el original es chico, 730×490: si hay una foto mejor, reemplazarla) y `luciana-retrato.webp`; también son las portadas de los videos de E-commerce y Mentores.
 
 ### Desarrollos (`/desarrollos`)
 Hero (shader WebGL2 propio, no Three.js) → Servicios → Portfolio → CTA final. Página más nueva, no tiene numeración en comentarios como las demás.
